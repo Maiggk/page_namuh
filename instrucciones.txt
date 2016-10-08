@@ -1,0 +1,15 @@
+1.-Crear user y password para usar en mysql
+
+2.-Correr script BD (conceder permisos al la BD)
+
+3.-Configurar proyecto con el usuario
+
+
+EXTRAS:
+La pagina principal
+http://localhost/Residencia/index.php/egresados
+
+Para hacer uso de CRUD (ingresar user y password de la BD)
+http://localhost/Residencia/index.php/egresados/login
+
+
