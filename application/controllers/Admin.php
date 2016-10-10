@@ -265,6 +265,7 @@ class Admin extends CI_Controller {
                  $crud->set_relation('estado','estados','estado');
             $crud->display_as('imagen', 'Foto');
                $crud->callback_after_insert(array($this, 'crear_imagen_baja_resolucion'));
+              $crud->callback_after_update(array($this, 'crear_imagen_baja_resolucion'));
             //$crud->set_relation('id_grupo','grupos','Grupo');
               /*
             $crud->display_as('descripcion', 'Descripción');
@@ -312,16 +313,24 @@ class Admin extends CI_Controller {
     function crear_imagen_baja_resolucion($post_array,$primary_key)
     {
         $producto=$this->Admin_models->producto_insertado($primary_key);
-        
-       
+
+         $widthImage=getimagesize(base_url()."assets/uploads/productos/".$producto->imagen);
+        $widthDefault=800;
+        $contante=10;
+        $var1=(int)$widthImage[0];
+        $var2=(int)$widthImage[1];
+        $x=$var1-$contante;
+        $y=$var2-$contante;
+        $resultado=($widthDefault*$widthImage[1])/$widthImage[0];
         ini_set('memory_limit', '30M');
         $config['image_library'] = 'gd2';
         $config['source_image'] = './assets/uploads/productos/'.$producto->imagen;
         $config['new_image'] = './assets/uploads/productos_baja_resolucion/'.$producto->imagen;
         $config['maintain_ratio'] = TRUE;
         $config['create_thumb'] = FALSE;
-        $config['width'] = 800;
-        $config['height'] = 800;
+        $config['width'] = $x;//$widthDefault;
+        $config['height'] = $y;//$resultado;
+        //$config['quality']      = '90%';
 //var_dump($config);
         $this->image_lib->initialize($config);
 

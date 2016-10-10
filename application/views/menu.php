@@ -180,24 +180,77 @@
                       </a>
                   </li>
 				  -->
+                   <li class="">
+                      <a  href="<?php echo base_url().'index.php/Admin/users_namuh'; ?>">
+                          <i class="fa fa-user"></i>
+                          <span class="trn">Usuarios</span>
+                      </a>
+                  </li>
+                   <li class="sub-menu">
+
+                      <a href="javascript:;" >
+                          <i class="fa fa-barcode"></i>
+                          <span>Productos</span>
+                      </a>
+                      <ul class="sub">
+                          <li>
+                              <a  href="<?php echo base_url().'index.php/admin/productos'; ?>">
+                                  <i class="fa fa-barcode"></i>
+                                  <span>Productos</span>
+                              </a>
+                          </li>
+                          <li>
+                              <a  href="<?php echo base_url().'index.php/admin/clasificacion'; ?>">
+                                <i class="fa fa-gears"></i>
+                                <span class="trn">Clasificación</span>
+                              </a>
+                          </li>
+                          <li>
+                              <a  href="<?php echo base_url().'index.php/admin/categoria'; ?>">
+                                <i class="fa fa-book"></i>
+                                <span class="trn">Categorías</span>
+                              </a>
+                          </li>
+                          <li>
+                              <a  href="<?php echo base_url().'index.php/admin/grupo'; ?>">
+                                <i class="fa fa-check-square-o"></i>
+                                <span class="trn">Grupos</span>
+                              </a>
+                          </li>
+                          <li>
+                            <a  href="<?php echo base_url().'index.php/Admin/tipo'; ?>">
+                                <i class="fa fa-check-square-o"></i>
+                                <span class="trn">Tipos</span>
+                            </a>
+                          </li>
+                      </ul>
+                  </li>
+
+<!--
 				  <li class="mt">
                       <a  href="<?php echo base_url().'index.php/admin/productos'; ?>">
                           <i class="fa fa-barcode"></i>
                           <span>Productos</span>
                       </a>
                   </li>
+-->
+<!--
 				  <li class="">
                       <a  href="<?php echo base_url().'index.php/admin/clasificacion'; ?>">
                           <i class="fa fa-gears"></i>
                           <span class="trn">Clasificación</span>
                       </a>
                   </li>
+-->
+<!--
 				  <li class="">
                       <a  href="<?php echo base_url().'index.php/admin/categoria'; ?>">
                           <i class="fa fa-book"></i>
                           <span class="trn">Categorías</span>
                       </a>
                   </li>
+-->
+<!--
 				  
 				  <li class="">
                       <a  href="<?php echo base_url().'index.php/admin/grupo'; ?>">
@@ -205,6 +258,8 @@
                           <span class="trn">Grupos</span>
                       </a>
                   </li>
+-->
+<!--
 				  
 				  <li class="">
                       <a  href="<?php echo base_url().'index.php/Admin/tipo'; ?>">
@@ -213,26 +268,74 @@
                       </a>
                   </li>  
                   
-				   <li class="">
-                      <a  href="<?php echo base_url().'index.php/Admin/users_namuh'; ?>">
-                          <i class="fa fa-user"></i>
-                          <span class="trn">Usuarios</span>
+-->
+
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-chevron-circle-left"></i><i class="fa fa-chevron-circle-right"></i>
+                          <span>Slides</span>
                       </a>
+                      <ul class="sub">
+                            <li>
+                              <a  href="<?php echo base_url().'index.php/Admin/slides'; ?>">
+<!--                                  <i class="fa fa-chevron-circle-left"></i><i class="fa fa-chevron-circle-right"></i>-->
+                                  <span class="trn">Slides Home</span>
+                              </a>
+                            </li>
+                            <li class="">
+                              <a  href="<?php echo base_url().'index.php/Admin/slidesInteriorismo'; ?>">
+<!--                                  <i class="fa fa-chevron-circle-left"></i><i class="fa fa-chevron-circle-right"></i>-->
+                                  <span class="trn">Slides Interiorismo</span>
+                              </a>
+                            </li>
+                      </ul>
                   </li>
-				  
-				  <li class="">
+
+<!--
+				  <li>
                       <a  href="<?php echo base_url().'index.php/Admin/slides'; ?>">
                           <i class="fa fa-chevron-circle-left"></i><i class="fa fa-chevron-circle-right"></i>
                           <span class="trn">Slides Home</span>
                       </a>
                   </li> 
+-->
                   
+<!--
 				  <li class="">
                       <a  href="<?php echo base_url().'index.php/Admin/slidesInteriorismo'; ?>">
                           <i class="fa fa-chevron-circle-left"></i><i class="fa fa-chevron-circle-right"></i>
                           <span class="trn">Slides Interiorismo</span>
                       </a>
                   </li> 
+-->
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                         <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          <span>Divulgación</span>
+                      </a>
+                      <ul class="sub">
+                             <li class="">
+                                  <a  href="<?php echo base_url().'index.php/Admin/albums_postales'; ?>">
+                                <i class="fa fa-file-image-o"></i>
+                                      <span class="trn">Postales Álbums</span>
+                                  </a>
+                             </li>
+                              <li class="">
+                                  <a  href="<?php echo base_url().'index.php/Admin/prensa_caratulas'; ?>">
+                                <i class="fa fa-book"></i>
+                                      <span class="trn">Portadas Prensa</span>
+                                  </a>
+                              </li>
+                             <li class="">
+                                  <a  href="<?php echo base_url().'index.php/Admin/artistas'; ?>">
+                                <i class="fa fa-book"></i>
+                                      <span class="trn">Galeria Artistas</span>
+                                  </a>
+                            </li>
+                      </ul>
+                  </li>
+<!--
                   
 				  <li class="">
                       <a  href="<?php echo base_url().'index.php/Admin/albums_postales'; ?>">
@@ -240,19 +343,24 @@
                           <span class="trn">Postales Álbums</span>
                       </a>
                   </li>
+-->
 				  
+<!--
 				    <li class="">
                       <a  href="<?php echo base_url().'index.php/Admin/prensa_caratulas'; ?>">
                     <i class="fa fa-book"></i>
                           <span class="trn">Portadas Prensa</span>
                       </a>
                   </li> 
+-->
+<!--
                   <li class="">
                       <a  href="<?php echo base_url().'index.php/Admin/artistas'; ?>">
                     <i class="fa fa-book"></i>
                           <span class="trn">Galeria Artistas</span>
                       </a>
                   </li>
+-->
                  <!-- <li class="">
                       <a  href="<?php echo base_url().'index.php/Admin/galeria_artistas'; ?>">
                     <i class="fa fa-book"></i>

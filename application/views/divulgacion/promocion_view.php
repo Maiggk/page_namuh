@@ -94,16 +94,29 @@
                           <div class="col-md-4 sep-bottom-lg">
                            <figure itemprop="associatedMedia" itemscope>
                            
-                                    <a href="<?php echo base_url(); ?>assets/img/products/<?php echo $i; ?>.jpg" itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>" data-index="<?php echo $i; ?>" data-informeichon="prueba <?php echo $i; ?>">
-                                        <img src="<?php echo base_url(); ?>assets/img/products/<?php echo $i; ?>.jpg" width="350">
+                                    <a class="product-image" href="<?php echo base_url(); ?>assets/img/products/<?php echo $i; ?>.jpg" itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>" data-index="<?php echo $i; ?>" data-informeichon="prueba <?php echo $i; ?>">
+                                        <span class="bullet">20%</span><img src="<?php echo base_url(); ?>assets/img/products/<?php echo $i; ?>.jpg" width="350">
                                     </a>
                             </figure>
                           </div>      
                           <?php } ?>
                       
                       </div>
+
                       
-                      
+		<div class="col-md-3 sep-bottom-lg"><a href="shop-product.html" class="product-image outline-outward"><img src="<?php echo base_url();?>assets/img/products/1.jpg" alt="Sunny Tank Selected Femme" class="img-responsive"><span class="bullet">20%</span></a>
+             <div class="product-title"><span class="upper">woman</span>
+                <p>Sunny Tank Selected Femme</p>
+              </div>
+              <!--<div class="product-detail">
+                <div class="pull-right price-shop text-right">
+                  <del>$19.00</del><ins>$15.00</ins>
+                </div>
+                <div class="rate">
+                  <input type="number" name="" value="5" data-clearable="remove" data-max="5" data-min="1" data-icon-lib="fa" data-active-icon="fa-star" data-inactive-icon="fa-star-o" data-clearable-icon="fa-times" class="rating">
+                </div><a href="#">3 customer reviews</a>
+              </div>-->
+		</div>
                       
                     
                   </div>

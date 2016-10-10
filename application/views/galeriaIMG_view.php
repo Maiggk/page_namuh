@@ -13,11 +13,13 @@
  <?php $i=1;
               foreach($IMG as $imagen)
                 {   $widthImage=getimagesize(base_url()."assets/uploads/productos/".$imagen->imagen);
+               //  echo 'asc: '.$widthImage[0];
+                // echo 'ddd: '.$widthImage[1];
                     ?>
              <div class="picture col-lg-4 col-md-4 col-sm-4" style="text-align:center" id="imagenesdiv">
                         <figure itemprop="associatedMedia" itemscope>
                             <a href="<?php echo base_url();?>assets/uploads/productos/<?php echo $imagen->imagen;?>"  itemprop="contentUrl" data-size="1000x667" data-index="<?php echo $i; ?>">
-                                <img src="<?php echo base_url();?>assets/uploads/productos/<?php echo $imagen->imagen;?>" width="230" itemprop="thumbnail" alt="">
+    <img src="<?php echo base_url();?>assets/uploads/productos_baja_resolucion/<?php echo $imagen->imagen;?>" width="230" itemprop="thumbnail" alt="">
                             </a>
                              
                             <br>
