@@ -1777,7 +1777,40 @@ dl.metadata dt {
   right: -18px;
   border-radius: 50%;
   font-size: 2em;
+  z-index: 1;
 }
+
+@media screen and (max-height:767px) {
+	.product-image .bullet {
+	  width: 90px;
+	  height: 90px;
+	  line-height: 90px;
+	  text-align: center;
+	  position: absolute;
+	  top: -1px;
+	  right: 145px;
+	  border-radius: 50%;
+	  font-size: 2em;
+	  z-index: 1;
+	}
+}
+
+@media screen and (max-height:660px) and (min-height:470px){
+	.product-image .bullet {
+	  width: 90px;
+	  height: 90px;
+	  line-height: 90px;
+	  text-align: center;
+	  position: absolute;
+	  top: -1px;
+	  right: 0px;
+	  border-radius: 50%;
+	  font-size: 2em;
+	  z-index: 1;
+	}
+}
+
+
 .product-image .bullet.out {
   font-size: 1em;
   line-height: 15px;
