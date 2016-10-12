@@ -245,6 +245,130 @@ class Admin extends CI_Controller {
     }
     
     
+
+
+
+     function productosGaleria()
+    {
+
+          try{
+            $crud = new Grocery_CRUD();
+            $crud->set_theme('bootstrap');
+
+           // $crud->where('estado',1);
+            $crud->set_table('productos');
+            $crud->set_subject('Productos');
+            $crud->set_language('spanish');
+               $crud->callback_column('acciones', array($this, 'galeriasProductos'));
+            $crud->display_as('codigo', 'Código');
+            $crud->display_as('nombre', 'Nombre');
+            $crud->display_as('descripcion', 'Descripción');
+            $crud->display_as('precio', 'Precio');
+            $crud->display_as('extra', 'Busqueda');
+              //   $crud->set_relation('estado','estados','estado');
+             // $crud->field_type('nuevo_precio', 'hidden', 0);
+            //  $crud->field_type('porcentaje', 'hidden', 0);
+            //  $crud->field_type('estado_promocion', 'hidden', 0);
+
+
+			 //$crud->callback_column('eliminar',array($this,'EliminarArtista'));
+
+
+            $crud->unset_delete();
+            $crud->unset_edit();
+            $crud->unset_add();
+
+            $crud->columns(
+             'codigo',
+              'nombre',
+              'descripcion',
+              'precio',
+                 'acciones'
+
+            );
+
+
+
+               $state = $crud->getState(); //obtener el estado
+				$state_info=$crud->getStateInfo();
+              // $crud->set_field_upload('imagen','assets/uploads/productos');
+               $output = $crud->render();
+
+
+            $output->titulo ="Administración Catálogos";
+            $output->subtitulo ="Galeria Productos";
+		vista_crud_admin('principalAdmin',$output);
+        }catch(Exception $e){
+            show_error($e->getMessage().' --- '.$e->getTraceAsString());
+        }
+
+    }
+     function galeriasProductos($primary_key,$row){
+
+         return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/galeriasProductos1/'.$row->id_producto.'">Agregar Fotografias</a>';
+    }
+       function EliminarGaleriaProductos($value,$row)
+    {
+           return '<a onclick="ValidarEliminarPermanentementeGaleriaProductos('.$row->id_producto.')"  class="btn btn-danger">Eliminar</a>';
+    }
+    function galeriasProductos1()
+    {
+
+    try{
+
+                      if($this->uri->segment(3)==NULL){
+                echo '<script>
+                    window.parent.location.href="'.base_url().'index.php/Admin/productosGaleria";
+                    </script>';
+              }else{
+                     $idProducto=$this->uri->segment(3);
+            $crud = new Grocery_CRUD();
+            $crud->set_theme('bootstrap');
+
+            $crud->where('id_producto',$idProducto);
+            $crud->set_table('galeria_productos');
+            $crud->set_subject('Galeria Productos');
+            $crud->set_language('spanish');
+
+            $crud->callback_column('eliminar',array($this,'EliminarGaleriaProductos'));
+
+            $crud->display_as('ruta_foto', 'Foto');
+            $crud->field_type('id_producto', 'hidden', $idProducto);
+
+            $crud->unset_delete();
+
+            $crud->required_fields(
+              'ruta_foto'
+
+            );
+            $crud->columns(
+
+              'ruta_foto','eliminar'
+            );
+
+
+
+               $state = $crud->getState(); //obtener el estado
+				$state_info=$crud->getStateInfo();
+
+
+               $crud->set_field_upload('ruta_foto','assets/uploads/galeria_productos');
+               $output = $crud->render();
+
+
+            $output->titulo ="Administración Catálogos";
+            $output->subtitulo ="Galeria Productos";
+		vista_crud_admin('principalAdmin',$output);
+                     }
+        }catch(Exception $e){
+            show_error($e->getMessage().' --- '.$e->getTraceAsString());
+        }
+    }
+
+
+
+
+
     function productos()
     {
         
@@ -263,6 +387,9 @@ class Admin extends CI_Controller {
             $crud->display_as('precio', 'Precio');
             $crud->display_as('extra', 'Busqueda');
                  $crud->set_relation('estado','estados','estado');
+              $crud->field_type('nuevo_precio', 'hidden', 0);
+              $crud->field_type('porcentaje', 'hidden', 0);
+              $crud->field_type('estado_promocion', 'hidden', 0);
             $crud->display_as('imagen', 'Foto');
                $crud->callback_after_insert(array($this, 'crear_imagen_baja_resolucion'));
               $crud->callback_after_update(array($this, 'crear_imagen_baja_resolucion'));
@@ -316,11 +443,11 @@ class Admin extends CI_Controller {
 
          $widthImage=getimagesize(base_url()."assets/uploads/productos/".$producto->imagen);
         $widthDefault=800;
-        $contante=10;
-        $var1=(int)$widthImage[0];
-        $var2=(int)$widthImage[1];
-        $x=$var1-$contante;
-        $y=$var2-$contante;
+        //$contante=10;
+        //$var1=(int)$widthImage[0];
+        //$var2=(int)$widthImage[1];
+       // $x=$var1-$contante;
+        //$y=$var2-$contante;
         $resultado=($widthDefault*$widthImage[1])/$widthImage[0];
         ini_set('memory_limit', '30M');
         $config['image_library'] = 'gd2';
@@ -328,8 +455,8 @@ class Admin extends CI_Controller {
         $config['new_image'] = './assets/uploads/productos_baja_resolucion/'.$producto->imagen;
         $config['maintain_ratio'] = TRUE;
         $config['create_thumb'] = FALSE;
-        $config['width'] = $x;//$widthDefault;
-        $config['height'] = $y;//$resultado;
+        $config['width'] = $widthDefault;
+        $config['height'] =$resultado;
         //$config['quality']      = '90%';
 //var_dump($config);
         $this->image_lib->initialize($config);
@@ -1235,6 +1362,11 @@ class Admin extends CI_Controller {
              $this->db->delete('artistas', array('id_artista' => $id));
             $this->db->delete('galeria_artistas', array('id_artista' => $id));
         }
+        if($opcion==3)
+        {
+             $this->db->delete('galeria_productos', array('id_galeriaproductos' => $id));
+            //$this->db->delete('galeria_artistas', array('id_artista' => $id));
+        }
     }
       function galeriasArtista($primary_key,$row){
  
@@ -1249,6 +1381,68 @@ class Admin extends CI_Controller {
            return '<a onclick="ValidarEliminarPermanentementeGaleria('.$row->id_galeria_artista.')"  class="btn btn-danger">Eliminar</a>';
     }
     
+	function productos_arribos(){
+
+                  try{
+            $crud = new Grocery_CRUD();
+            $crud->set_theme('bootstrap');
+
+
+            $crud->set_table('productos_arribos');
+            $crud->set_subject('Arribos');
+            $crud->set_language('spanish');
+
+             /*$crud->callback_column('acciones', array($this, 'articulos'));
+			 $crud->callback_column('eliminar',array($this,'boton_borrar_caratula'));*/
+
+
+            // $crud->field_type('nombre_album', 'string');
+            $crud->unset_delete();
+
+            $crud->required_fields('nombre_arribo');
+            $crud->columns('id_arribo','nombre_arribo');
+		   $crud->set_field_upload('nombre_arribo','assets/uploads/divulgacion_arribos');
+		   $crud->display_as('id_arribo','#');
+		   $crud->display_as('nombre_arribo','Imagen Arribo');
+		   $output = $crud->render();
+
+
+            $output->titulo ="Administración Arribos";
+            $output->subtitulo ="Nuevos Productos";
+		vista_crud_admin('principalAdmin',$output);
+        }catch(Exception $e){
+            show_error($e->getMessage().' --- '.$e->getTraceAsString());
+        }
+    }
+
+	function promociones_carrusel(){
+
+                  try{
+            $crud = new Grocery_CRUD();
+            $crud->set_theme('bootstrap');
+
+
+            $crud->set_table('promociones_carrusel');
+            $crud->set_subject('Promociones');
+            $crud->set_language('spanish');
+
+            $crud->unset_delete();
+
+            $crud->required_fields('imagen_promocion');
+            $crud->columns('id_promocion', 'imagen_promocion', 'descripcion');
+		   $crud->set_field_upload('imagen_promocion','assets/uploads/promociones');
+		   $crud->display_as('id_promocion','#');
+		   $crud->display_as('nombre_arribo','Imagen Promoción');
+		   $output = $crud->render();
+
+
+            $output->titulo ="Administración Promociones";
+            $output->subtitulo ="Promociones";
+		vista_crud_admin('principalAdmin',$output);
+        }catch(Exception $e){
+            show_error($e->getMessage().' --- '.$e->getTraceAsString());
+        }
+    }
 }
 
 ?>

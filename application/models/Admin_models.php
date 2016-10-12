@@ -31,6 +31,15 @@ class Admin_models extends CI_Model
         return $resultado;
         
  } 
+    function traeSlides_promos() /*funcion para traer slides de arribos en promocion*/
+ {
+
+        $this->db->from('promociones_carrusel');
+         $q = $this->db->get();
+        $resultado = $q->result();
+        return $resultado;
+
+ }
     function traeSlidesInteriorismo() /*funcion para traer el id del usuario que inteneta ingresar*/
  {
         

@@ -200,6 +200,12 @@
                               </a>
                           </li>
                           <li>
+                              <a  href="<?php echo base_url().'index.php/admin/productosGaleria'; ?>">
+                                  <i class="fa fa-barcode"></i>
+                                  <span>Galeria Productos</span>
+                              </a>
+                          </li>
+                          <li>
                               <a  href="<?php echo base_url().'index.php/admin/clasificacion'; ?>">
                                 <i class="fa fa-gears"></i>
                                 <span class="trn">Clasificación</span>
@@ -223,6 +229,25 @@
                                 <span class="trn">Tipos</span>
                             </a>
                           </li>
+                          <li>
+                              <a  href="<?php echo base_url().'index.php/Promociones/Promocion'; ?>">
+                                  <i class="fa fa-usd"></i>
+                                  <span>Descuentos a productos</span>
+                              </a>
+                          </li>
+                          <li>
+                              <a  href="<?php echo base_url().'index.php/Promociones/desactivarPromocion'; ?>">
+                                  <i class="fa fa-usd"></i>
+                                  <span>Quitar descuentos</span>
+                              </a>
+                          </li>
+						  <li>
+                              <a  href="<?php echo base_url().'index.php/Admin/productos_arribos'; ?>">
+                                  <i class="fa fa-file-image-o"></i>
+                                  <span>Arribos</span>
+                              </a>
+                          </li>
+
                       </ul>
                   </li>
 
@@ -333,6 +358,12 @@
                                       <span class="trn">Galeria Artistas</span>
                                   </a>
                             </li>
+							<li class="">
+                                  <a  href="<?php echo base_url().'index.php/Admin/promociones_carrusel'; ?>">
+                                <i class="fa fa-file-image-o"></i>
+                                      <span class="trn">Imagenes Promociones</span>
+                                  </a>
+                             </li>
                       </ul>
                   </li>
 <!--

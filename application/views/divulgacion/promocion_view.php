@@ -49,7 +49,14 @@
                             </a>
 						</article>
 
-						<article>
+						<?php foreach($slides as $slide){?>
+							<article>
+								<a href="#" class="image featured">
+									<img src="<?php echo base_url()."assets/uploads/promociones/".$slide->imagen_promocion.""; ?>" alt="" width="125%"/></a>
+							</article>
+						<?php } ?>
+
+						<!--<article>
 							<a href="#" class="image featured">
                                 <img src="<?php echo base_url(); ?>assets/img/arq_02.jpg" alt="" width="125%"/></a>
 							
@@ -77,7 +84,7 @@
 							<a href="#" class="image featured">
                                 <img src="<?php echo base_url(); ?>assets/img/arq_03.jpg" alt="" width="125%"/></a>
 							
-						</article>
+						</article>-->
 
 					</div>
 				</section>
@@ -91,33 +98,36 @@
                                     $widthImage=getimagesize(base_url()."assets/img/products/".$i.".jpg");
                           ?> 
                           
-                          <div class="col-md-4 sep-bottom-lg">
+                          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 sep-bottom-lg">
                            <figure itemprop="associatedMedia" itemscope>
                            
                                     <a class="product-image" href="<?php echo base_url(); ?>assets/img/products/<?php echo $i; ?>.jpg" itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>" data-index="<?php echo $i; ?>" data-informeichon="prueba <?php echo $i; ?>">
-                                        <span class="bullet">20%</span><img src="<?php echo base_url(); ?>assets/img/products/<?php echo $i; ?>.jpg" width="350">
+                                        <img src="<?php echo base_url(); ?>assets/img/products/<?php echo $i; ?>.jpg" width="350"><span class="bullet">20%</span></img>
                                     </a>
                             </figure>
                           </div>      
                           <?php } ?>
                       
-                      </div>
+					  <?php
+					  $i=0;
+					  foreach($promociones as $promocion){
 
-                      
-		<div class="col-md-3 sep-bottom-lg"><a href="shop-product.html" class="product-image outline-outward"><img src="<?php echo base_url();?>assets/img/products/1.jpg" alt="Sunny Tank Selected Femme" class="img-responsive"><span class="bullet">20%</span></a>
-             <div class="product-title"><span class="upper">woman</span>
-                <p>Sunny Tank Selected Femme</p>
-              </div>
-              <!--<div class="product-detail">
-                <div class="pull-right price-shop text-right">
-                  <del>$19.00</del><ins>$15.00</ins>
-                </div>
-                <div class="rate">
-                  <input type="number" name="" value="5" data-clearable="remove" data-max="5" data-min="1" data-icon-lib="fa" data-active-icon="fa-star" data-inactive-icon="fa-star-o" data-clearable-icon="fa-times" class="rating">
-                </div><a href="#">3 customer reviews</a>
-              </div>-->
-		</div>
-                      
+								$widthImage=getimagesize(base_url()."assets/uploads/productos/".$promocion->imagen);
+						?>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 sep-bottom-lg">
+                           <figure itemprop="associatedMedia" itemscope>
+
+                                    <a class="product-image" href="<?php echo base_url(); ?>assets/uploads/productos_baja_resolucion/<?php echo $promocion->imagen; ?>" itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>" data-index="<?php echo $i; ?>" data-informeichon="<?php echo $promocion->imagen; ?>">
+                                        <img src="<?php echo base_url(); ?>assets/uploads/productos_baja_resolucion/<?php echo $promocion->imagen; ?>" width="350"><span class="bullet"><?php echo $promocion->porcentaje; ?>%</span></img>
+                                    </a>
+                            </figure>
+                        </div>
+						<?php
+								$i++;
+							}
+						?>
+
+                      </div>
                     
                   </div>
                 </div>

@@ -248,6 +248,24 @@ body {
             <center> <img src="<?php echo base_url();?>assets/images/botones_carga.gif" style="width:25%"></center>
         </div>  
     </div>
+
+
+	<div>
+                    <!-- Carousel -->
+				<section class="carousel">
+
+					<div class="reel">
+
+						<article>
+							<a href="#" class="image featured">
+                                <img src="<?php echo base_url(); ?>assets/img/arq_01.jpg" alt="" width="125%"/>
+                            </a>
+						</article>
+
+
+					</div>
+				</section>
+	</div>
  
   
     <footer class="clase-general">

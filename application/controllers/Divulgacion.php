@@ -80,7 +80,8 @@ class Divulgacion extends CI_Controller {
 	public function promocion()
 	{
          $data['albums']=$this->Admin_models->trae_albums();
-         $data['slides']= $this->Admin_models->traeSlides();
+         $data['slides']= $this->Admin_models->traeSlides_promos();
+		 $data['promociones']=$this->Divulgacion_models->obtener_promociones();
          $data['slidesInteriorismo']= $this->Admin_models->traeSlidesInteriorismo();
         
 		

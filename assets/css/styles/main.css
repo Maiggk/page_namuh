@@ -1788,14 +1788,15 @@ dl.metadata dt {
 	  text-align: center;
 	  position: absolute;
 	  top: -1px;
-	  right: 145px;
+	  /*right: 145px;*/
+	  right: -15px;
 	  border-radius: 50%;
 	  font-size: 2em;
 	  z-index: 1;
 	}
 }
 
-@media screen and (max-height:660px) and (min-height:470px){
+@media screen and (max-height:660px) {
 	.product-image .bullet {
 	  width: 90px;
 	  height: 90px;
@@ -1810,6 +1811,19 @@ dl.metadata dt {
 	}
 }
 
+@media screen and (max-width:426px) {
+	.featured img{
+		width:90%;
+		height:70%;
+		padding: 0 0em 3em 0em;
+		margin: 0px 0em 0 0;
+	}
+
+	.reel article{
+		padding: 0 0em 0em 0em !important;
+		margin: 0 -6em 0 0 !important;
+	}
+}
 
 .product-image .bullet.out {
   font-size: 1em;
@@ -2422,6 +2436,7 @@ label.error {
 			transition: opacity 0.75s ease-in-out;
 		}
 
+
 			.carousel article.loading {
 				opacity: 0;
 			}
@@ -2441,3 +2456,8 @@ label.error {
 
 
 
+		.image.featured {
+			display: block;
+			width: 100%;
+			margin: 0 0 4em 0;
+		}

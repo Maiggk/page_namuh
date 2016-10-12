@@ -25,8 +25,15 @@
                             <br>
                             <div class="openSans" style="font-style: italic;font-size: 15px;text-align:center">
                             <label><?php echo $imagen->nombre;?></label><br>
+                                <?php if( $imagen->estado_promocion==0){ ?>
                             Precio:<span><?php echo '$'.decimales_ceros($imagen->precio,2);?></span><br>
-                            <span><?php echo $imagen->descripcion;?></span><br>
+                                <?php } ?>
+                                <?php if( $imagen->estado_promocion==1){ ?>
+                                 Precio:<span style="text-decoration: line-through;"><?php echo '$'.decimales_ceros($imagen->precio,2);?></span><br>
+                                <strong> Precio de promoción :<span><?php echo '$'.decimales_ceros($imagen->nuevo_precio,2);?></span></strong><br>
+
+                                <?php } ?>
+                                <span><?php echo $imagen->descripcion;?></span><br>
                              
                             </div>
                         </figure>

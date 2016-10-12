@@ -29,8 +29,14 @@ class Divulgacion_models extends CI_Model
         return $resultado;
     }
   
-    
-    
+    function obtener_promociones()
+ {
+	 $this->db->from('productos');
+	 $this->db->where('estado_promocion',1);
+	 $query=$this->db->get();
+	 $filas=$query->result();
+	 return $filas;
+ }
     
 }
 ?>

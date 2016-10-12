@@ -222,6 +222,15 @@ confirmaciones();
         $('#valor1').val(id);
         confirmacionesPermanente();
         //$('#aviso_guardar').show();
+
+    }
+    function ValidarEliminarPermanentementeGaleriaProductos(id)
+    {
+         $('#opc').val(3);
+        $('#valor').val(id);
+        $('#valor1').val(id);
+        confirmacionesPermanente();
+        //$('#aviso_guardar').show();
        
     }
       function ValidarEliminarPermanentementeArtista(id)
