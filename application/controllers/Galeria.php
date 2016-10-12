@@ -21,6 +21,7 @@ class Galeria extends CI_Controller {
 	{
      //    $this->output->enable_profiler(TRUE);
         $data['imagenes']=$this->Admin_models->galeriaInicial();
+        $data['fotos_carrusel']=$this->Admin_models->fotos_carrusel();
         $menuFinal=array();
         $categorias[]=array();
         $consultaCategorias=$this->Admin_models->consultaCategorias();
@@ -122,4 +123,19 @@ class Galeria extends CI_Controller {
         $data['Foto']=$this->Admin_models->consultaImgProducto($id);
          vista_datosGaleria('galeriaIMG_fancy_view',$data);
     }
+
+
+    function detalleProducto()
+    {
+        $id_producto=1;
+         $data['datosProducto']=$this->Admin_models->producto_insertado($id_producto);
+         $data['detallesProducto']=$this->Admin_models->consultaProductoDetalles($id_producto);
+          $this->load->view('detalle_producto_view',$data);
+    }
+
+
+
+
+
+
 }
