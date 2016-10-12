@@ -12,18 +12,20 @@
           <section class="wrapper site-min-height">
 
           <div class="row">
-              <center><h1 class="trn">Productos seleccionados para aplicar el descuento</h1></center>
+              <center><h1 class="trn">Productos seleccionados para quitar el descuento</h1></center>
              <div class="table-responsive">
 
             <table class="table table-bordered table-hover" >
             <thead>
             <tr>
 
-                <th ><center><font color="#909090">#</center></font></th>
+
                 <th ><center><font color="#909090">Código</center></font></th>
                 <th ><center><font color="#909090">Producto</center></font></th>
                 <th><center><font color="#909090">Descripción</center></font></th>
                 <th><center><font color="#909090">Precio</center></font></th>
+                <th><center><font color="#909090">Porcentaje</center></font></th>
+                <th><center><font color="#909090">Precio descuento</center></font></th>
 
             </tr>
             </thead>
@@ -36,9 +38,7 @@
             <tr id="row<?php echo($i) ?>">
                 <!-- Se un ciclo para poder mostrar los valores de las columnas de acuerdo a la consulta hecha en imprimibles-->
 
-                <td>
-                    <center><?php echo $producto['id_producto']; ?></center>
-                </td>
+
                 <td>
                     <center><?php echo $producto['codigo']; ?></center>
                 </td>
@@ -49,7 +49,13 @@
                     <center><?php echo $producto['descripcion']; ?></center>
                 </td>
                 <td>
-                    <center><?php echo $producto['precio']; ?></center>
+                    <center><?php echo '$'.decimales_ceros($producto['precio'],2); ?></center>
+                </td>
+                <td>
+                    <center><?php echo $producto['porcentaje'].'%'; ?></center>
+                </td>
+                <td>
+                    <center><?php echo '$'.decimales_ceros($producto['nuevo_precio'],2); ?></center>
                 </td>
 
                 <?php

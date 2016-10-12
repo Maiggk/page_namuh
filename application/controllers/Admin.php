@@ -305,13 +305,13 @@ class Admin extends CI_Controller {
     }
      function galeriasProductos($primary_key,$row){
 
-         return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/galeriasProductos1/'.$row->id_producto.'">Agregar Fotografias</a>';
+         return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/productos_detalle/'.$row->id_producto.'">Agregar Fotografias</a>';
     }
        function EliminarGaleriaProductos($value,$row)
     {
            return '<a onclick="ValidarEliminarPermanentementeGaleriaProductos('.$row->id_producto.')"  class="btn btn-danger">Eliminar</a>';
     }
-    function galeriasProductos1()
+    function productos_detalle()
     {
 
     try{
@@ -1370,7 +1370,7 @@ class Admin extends CI_Controller {
     }
       function galeriasArtista($primary_key,$row){
  
-         return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/galeria_artistas/'.$row->id_artista.'">Agregar Pinturas</a>';
+         return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/galeria_artistas/'.$row->id_artista.'">Agregar Obras</a>';
     }
       function EliminarArtista($value,$row)
     {
@@ -1400,7 +1400,7 @@ class Admin extends CI_Controller {
             $crud->unset_delete();
 
             $crud->required_fields('nombre_arribo');
-            $crud->columns('id_arribo','nombre_arribo');
+            $crud->columns('nombre_arribo');
 		   $crud->set_field_upload('nombre_arribo','assets/uploads/divulgacion_arribos');
 		   $crud->display_as('id_arribo','#');
 		   $crud->display_as('nombre_arribo','Imagen Arribo');
@@ -1431,7 +1431,7 @@ class Admin extends CI_Controller {
             $crud->required_fields('imagen_promocion');
             $crud->columns('id_promocion', 'imagen_promocion', 'descripcion');
 		   $crud->set_field_upload('imagen_promocion','assets/uploads/promociones');
-		   $crud->display_as('id_promocion','#');
+		   $crud->display_as('id_promocion','Posición');
 		   $crud->display_as('nombre_arribo','Imagen Promoción');
 		   $output = $crud->render();
 

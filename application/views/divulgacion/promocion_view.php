@@ -11,33 +11,6 @@
           </div>
         </div>
       </section>
-
-        
-
-      <!-- End Home Section-->
-  
-      <!-- End header Section-->
-      <!-- Start Shop Cart-->
-
-      <!-- End Shop Cart-->
-      
-      <!-- Start call to action section-->
-<!--
-       <section id="portfolio" class="sep-top-3x">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="section-title">
-                <h2 class="bordered-left upper wow flipInX">Septiembre</h2>
-              
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        </section>
--->
-
 			<!-- Carousel -->
 				<section class="carousel">
                     
@@ -49,42 +22,15 @@
                             </a>
 						</article>
 
-						<?php foreach($slides as $slide){?>
+						<?php
+                        if(isset($slides)!=""){
+                        foreach($slides as $slide){?>
 							<article>
 								<a href="#" class="image featured">
 									<img src="<?php echo base_url()."assets/uploads/promociones/".$slide->imagen_promocion.""; ?>" alt="" width="125%"/></a>
 							</article>
-						<?php } ?>
-
-						<!--<article>
-							<a href="#" class="image featured">
-                                <img src="<?php echo base_url(); ?>assets/img/arq_02.jpg" alt="" width="125%"/></a>
-							
-						</article>
-
-						<article>
-							<a href="#" class="image featured">
-                                <img src="<?php echo base_url(); ?>assets/img/arq_03.jpg" alt="" width="125%"/></a>
-							
-						</article>
-
-						<article>
-							<a href="#" class="image featured">
-                                <img src="<?php echo base_url(); ?>assets/img/arq_01.jpg" alt="" width="125%"/>
-                            </a>
-						</article>
-
-						<article>
-							<a href="#" class="image featured">
-                                <img src="<?php echo base_url(); ?>assets/img/arq_02.jpg" alt="" width="125%"/></a>
-							
-						</article>
-
-						<article>
-							<a href="#" class="image featured">
-                                <img src="<?php echo base_url(); ?>assets/img/arq_03.jpg" alt="" width="125%"/></a>
-							
-						</article>-->
+						<?php }
+                        } ?>
 
 					</div>
 				</section>
@@ -94,19 +40,7 @@
                 <div class="container">
                   <div class="row">
                       <div class="picture">
-                        <?php for($i=1;$i<=8;$i++){
-                                    $widthImage=getimagesize(base_url()."assets/img/products/".$i.".jpg");
-                          ?> 
-                          
-                          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 sep-bottom-lg">
-                           <figure itemprop="associatedMedia" itemscope>
-                           
-                                    <a class="product-image" href="<?php echo base_url(); ?>assets/img/products/<?php echo $i; ?>.jpg" itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>" data-index="<?php echo $i; ?>" data-informeichon="prueba <?php echo $i; ?>">
-                                        <img src="<?php echo base_url(); ?>assets/img/products/<?php echo $i; ?>.jpg" width="350"><span class="bullet">20%</span></img>
-                                    </a>
-                            </figure>
-                          </div>      
-                          <?php } ?>
+
                       
 					  <?php
 					  $i=0;
@@ -114,16 +48,19 @@
 
 								$widthImage=getimagesize(base_url()."assets/uploads/productos/".$promocion->imagen);
 						?>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 sep-bottom-lg">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sep-bottom-lg">
                            <figure itemprop="associatedMedia" itemscope>
 
-                                    <a class="product-image" href="<?php echo base_url(); ?>assets/uploads/productos_baja_resolucion/<?php echo $promocion->imagen; ?>" itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>" data-index="<?php echo $i; ?>" data-informeichon="<?php echo $promocion->imagen; ?>">
-                                        <img src="<?php echo base_url(); ?>assets/uploads/productos_baja_resolucion/<?php echo $promocion->imagen; ?>" width="350"><span class="bullet"><?php echo $promocion->porcentaje; ?>%</span></img>
+                                    <a class="product-image" href="<?php echo base_url(); ?>assets/uploads/productos/<?php echo $promocion->imagen; ?>" itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>" data-index="<?php echo $i; ?>" data-informeichon="<?php echo $promocion->imagen; ?>">
+                                        <img class="img-responsive" src="<?php echo base_url(); ?>assets/uploads/productos/<?php echo $promocion->imagen; ?>" width="350"><span class="bullet"><?php echo $promocion->porcentaje; ?>%</span></img>
                                     </a>
                             </figure>
                         </div>
 						<?php
 								$i++;
+								if($i%3==0){
+										echo '<div class="clearfix vivisible-lg" style="z-index:-1"></div>';
+								}
 							}
 						?>
 
@@ -245,5 +182,3 @@
       </script>
     
 <!-- fin Sección de scripts para photoswipe -->
-
-

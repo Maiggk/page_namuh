@@ -38,8 +38,9 @@ class Promociones extends CI_Controller {
             foreach($splitEspacios as $valor)
             {
               ///verificar que no contenga el, la, los, las, ellos, cuando,por, una,un, en,es,para,cuándo, qué, porque,porqué,de
+
                 if(strlen($valor)>2)
-                {
+                { /*
                 if(strcasecmp ($valor, 'el' )!=0 &&
                    strcasecmp ($valor, 'la' )!=0 &&
                    strcasecmp ($valor, 'los' )!=0 &&
@@ -59,8 +60,8 @@ class Promociones extends CI_Controller {
                    strcasecmp ($valor, 'y' )!=0 &&
                    strcasecmp ($valor, 'porqué' )!=0
                   )
-                {
-                   $like=' extra like "%'.$valor.'%" ';
+                {*/
+                   $like=' codigo like "%'.$valor.'%" ';
                    $or=' or ';
                     if($indice==0)
                     {
@@ -71,7 +72,7 @@ class Promociones extends CI_Controller {
                     {
                        $where=$where.' '.$or.' '.$like;
                     }
-                }
+             //   }
                 }
 
           }
@@ -120,7 +121,7 @@ echo $results;
                    strcasecmp ($valor, 'porqué' )!=0
                   )
                 {
-                   $like=' extra like "%'.$valor.'%" ';
+                   $like=' codigo like "%'.$valor.'%" ';
                    $or=' or ';
                     if($indice==0)
                     {
@@ -155,6 +156,7 @@ echo $results;
                 'nombre' =>$productosFiltrados->nombre,
                 'descripcion' =>$productosFiltrados->descripcion,
                 'precio' =>$productosFiltrados->precio
+
             );
         }
          $this->session->set_userdata('productoFiltro',$nuevos_datos_recibo);
@@ -240,7 +242,7 @@ echo $results;
                    strcasecmp ($valor, 'porqué' )!=0
                   )
                 {
-                   $like=' extra like "%'.$valor.'%" ';
+                   $like=' codigo like "%'.$valor.'%" ';
                    $or=' or ';
                     if($indice==0)
                     {
@@ -278,6 +280,7 @@ echo $results;
               ///verificar que no contenga el, la, los, las, ellos, cuando,por, una,un, en,es,para,cuándo, qué, porque,porqué,de
                 if(strlen($valor)>2)
                 {
+                    /*
                 if(strcasecmp ($valor, 'el' )!=0 &&
                    strcasecmp ($valor, 'la' )!=0 &&
                    strcasecmp ($valor, 'los' )!=0 &&
@@ -297,8 +300,8 @@ echo $results;
                    strcasecmp ($valor, 'y' )!=0 &&
                    strcasecmp ($valor, 'porqué' )!=0
                   )
-                {
-                   $like=' extra like "%'.$valor.'%" ';
+                {*/
+                   $like=' codigo like "%'.$valor.'%" ';
                    $or=' or ';
                     if($indice==0)
                     {
@@ -309,7 +312,7 @@ echo $results;
                     {
                        $where=$where.' '.$or.' '.$like;
                     }
-                }
+              //  }
                 }
 
           }
@@ -332,7 +335,9 @@ echo $results;
                 'codigo' =>$productosFiltrados->codigo,
                 'nombre' =>$productosFiltrados->nombre,
                 'descripcion' =>$productosFiltrados->descripcion,
-                'precio' =>$productosFiltrados->precio
+                'precio' =>$productosFiltrados->precio,
+                'nuevo_precio' =>$productosFiltrados->nuevo_precio,
+                'porcentaje' =>$productosFiltrados->porcentaje
             );
         }
          $this->session->set_userdata('productoFiltro1',$nuevos_datos_recibo);
@@ -366,6 +371,13 @@ echo $results;
         }
          $this->session->unset_userdata('productoFiltro1');
     }
+
+
+
+
+
+
+
 
 }
 

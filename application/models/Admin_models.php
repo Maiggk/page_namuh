@@ -35,9 +35,13 @@ class Admin_models extends CI_Model
  {
 
         $this->db->from('promociones_carrusel');
+		$this->db->where('imagen_promocion !=',' ');
          $q = $this->db->get();
         $resultado = $q->result();
-        return $resultado;
+
+            return $resultado;
+
+
 
  }
     function traeSlidesInteriorismo() /*funcion para traer el id del usuario que inteneta ingresar*/
@@ -233,7 +237,21 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
         $resultado = $q->result();
         return $resultado;
         
- } 
+ }
+ function fotos_carrusel() /*funcion para traer el id del usuario que inteneta ingresar*/
+ {
+        $this->db->select('*');
+        $this->db->from('productos_arribos');
+       //  $this->db->join('grupos g', 'g.id_grupo=t.id_grupo');
+        // $this->db->join('categorias c', 'c.id_categorias=g.id_categoria');
+    //    $this->db->where('t.id_tipo',$id);
+      //  $this->db->limit(1);
+     $this->db->where('nombre_arribo is not null');
+         $q = $this->db->get();
+        $resultado = $q->result();
+        return $resultado;
+
+ }
     function consultaCategorias() /*funcion para traer el id del usuario que inteneta ingresar*/
  {
         $this->db->select('*');
@@ -579,7 +597,18 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
         return $resultado;
         
  }  
+    function consultaProductoDetalles($idProducto)
+    {
+        $this->db->select('*');
+        $this->db->from('galeria_productos');
+        $this->db->where('id_producto',$idProducto);
+
+        $q = $this->db->get();
+        $resultado = $q->result();
+        return $resultado;
+    }
     
+
     
     
     

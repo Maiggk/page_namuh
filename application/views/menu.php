@@ -202,7 +202,7 @@
                           <li>
                               <a  href="<?php echo base_url().'index.php/admin/productosGaleria'; ?>">
                                   <i class="fa fa-barcode"></i>
-                                  <span>Galeria Productos</span>
+                                  <span>Productos Detalle</span>
                               </a>
                           </li>
                           <li>
@@ -343,25 +343,25 @@
                              <li class="">
                                   <a  href="<?php echo base_url().'index.php/Admin/albums_postales'; ?>">
                                 <i class="fa fa-file-image-o"></i>
-                                      <span class="trn">Postales Álbums</span>
+                                      <span class="trn">Blog Álbums</span>
                                   </a>
                              </li>
                               <li class="">
                                   <a  href="<?php echo base_url().'index.php/Admin/prensa_caratulas'; ?>">
                                 <i class="fa fa-book"></i>
-                                      <span class="trn">Portadas Prensa</span>
+                                      <span class="trn">Prensa</span>
                                   </a>
                               </li>
                              <li class="">
                                   <a  href="<?php echo base_url().'index.php/Admin/artistas'; ?>">
                                 <i class="fa fa-book"></i>
-                                      <span class="trn">Galeria Artistas</span>
+                                      <span class="trn">Galería Arte</span>
                                   </a>
                             </li>
 							<li class="">
                                   <a  href="<?php echo base_url().'index.php/Admin/promociones_carrusel'; ?>">
                                 <i class="fa fa-file-image-o"></i>
-                                      <span class="trn">Imagenes Promociones</span>
+                                      <span class="trn">Imágenes Promociones</span>
                                   </a>
                              </li>
                       </ul>

@@ -19,12 +19,12 @@ class Postales extends CI_Controller {
     
 	public function index()
 	{
-        /*
+
         $datos['albums']=$this->Admin_models->trae_albums();
-	vista_datos('postales_view',$datos);*/
-        echo '<script>
-            window.parent.location.href="'.base_url().'";
-            </script>';
+	vista_datos('postales_view',$datos);
+//        echo '<script>
+//            window.parent.location.href="'.base_url().'";
+//            </script>';
 	}
 	public function album()
 	{
@@ -32,7 +32,7 @@ class Postales extends CI_Controller {
       //  $idAlbum=0;
         if($this->uri->segment(3)==NULL){
          echo '<script>
-            window.parent.location.href="'.base_url().'#postales";
+            window.parent.location.href="'.base_url().'index.php/postales";
             </script>';
         }else{
             $idAlbum=$this->uri->segment(3);

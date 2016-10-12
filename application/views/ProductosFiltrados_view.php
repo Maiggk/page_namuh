@@ -19,7 +19,7 @@
             <thead>
             <tr>
 
-                <th ><center><font color="#909090">#</center></font></th>
+
                 <th ><center><font color="#909090">Código</center></font></th>
                 <th ><center><font color="#909090">Producto</center></font></th>
                 <th><center><font color="#909090">Descripción</center></font></th>
@@ -36,9 +36,7 @@
             <tr id="row<?php echo($i) ?>">
                 <!-- Se un ciclo para poder mostrar los valores de las columnas de acuerdo a la consulta hecha en imprimibles-->
 
-                <td>
-                    <center><?php echo $producto['id_producto']; ?></center>
-                </td>
+
                 <td>
                     <center><?php echo $producto['codigo']; ?></center>
                 </td>
@@ -49,7 +47,7 @@
                     <center><?php echo $producto['descripcion']; ?></center>
                 </td>
                 <td>
-                    <center><?php echo $producto['precio']; ?></center>
+                    <center><?php echo '$'.decimales_ceros($producto['precio'],2); ?></center>
                 </td>
 
                 <?php

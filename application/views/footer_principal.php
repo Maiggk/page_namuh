@@ -7,24 +7,16 @@
               <div class="col-md-12 col-sm-12" style="text-align:center">
                 <div class="widget sep-top-lg"><img src="<?php echo base_url(); ?>assets/img/logo_Main.png" alt="" class="logo">
                     <small class="sep-top-xs sep-bottom-md">Cada pieza es una historia </small>
-<!--                  <h6 class="upper widget-title">Mantente en contacto con nosostros</hs6>-->
                   <ul class="social-icon sep-top-xs">
                     <li><a href="https://es.pinterest.com/Namuhmex/" target="_blank" class="fa fa-pinterest fa-2x"></a></li>
                     <li><a href="https://www.facebook.com/Namuh-384417778289934/?fref=tsw" target="_blank" class="fa fa-facebook fa-2x"></a></li>
                     <li><a href="https://goo.gl/Cj84JC" target="_blank" class="fa fa-map-marker fa-2x"></a></li>
                     <li><a href="https://www.instagram.com/namuhmex/" target="_blank" class="fa fa-instagram fa-2x"></a></li>
-                  
-                     
-                      
                   </ul>
                 </div>
               </div>
                 <div class="col-md-12 col-sm-12 col-xs-12  " style="text-align:center">
-
-
                     <small class=""><br><a href="<?php echo base_url(); ?>index.php/unete">Únete a nuestro equipo</a></small><br>
-
-
                 </div>
                  </div>
               <div class="row" style="text-align:center">
@@ -35,10 +27,9 @@
                      <div class="col-md-4">
                          <small class=""><br><a href="<?php echo base_url(); ?>index.php/politicas">Políticas</a></small>
                      </div>
-                     <div class="col-md-4"><!-- href="<?php echo base_url(); ?>index.php/divulgacion/prensa"-->
-                         <small class=""><br><a>Prensa</a></small>
+                     <div class="col-md-4">
+                         <small class=""><br><a href="<?php echo base_url(); ?>index.php/divulgacion/prensa">Prensa</a></small>
                      </div>
-                        
                  </div>
               </div>
           </div>
@@ -56,4 +47,3 @@
     </div>
 </body>
   
-     

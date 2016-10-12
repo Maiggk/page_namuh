@@ -7,22 +7,7 @@
       <!-- Start Nav Section-->
       <nav id="main-navigation" role="navigation" class="navbar navbar-fixed-top navbar-standard" >
          
-         <!--Buscador Inteligente--> 
-  
-    <!--   <a href="javascript:void(0)" class="search_button"><i class="fa fa-search"></i></a>
-        <form action="search.html" method="get" role="search" class="h_search_form">
-          <div class="container">
-            <div class="h_search_form_wrapper">
-              <div class="input-group"><span class="input-group-btn">
-                  <button type="submit" class="btn btn-sm"><i class="fa fa-search fa-lg"></i></button></span>
-                
-                <input type="text" placeholder="Búsqueda Inteligente" class="form-control">
-              </div>
-              <div class="h_search_close"><a href="#"><i class="fa fa-times"></i></a></div>
-            </div>
-          </div>
-        </form>-->
-          
+
           
         <div class="container">
           <div class="navbar-header">
@@ -100,7 +85,11 @@
 					<li><a  title="Productos" id="productos_reg" title="Productos">Productos</a></li>
 				<?php } ?>
               <!--li><a href="#about" title="About us" data-ref="about">About us</a></li-->
-              <li><a href="<?php echo base_url(); ?>#pricing" title="Puntos de venta" data-ref="pricing">Puntos de venta</a></li>
+                <li><a href="<?php echo base_url(); ?>index.php/divulgacion/promocion" title="Promociones" data-ref="promociones">Promociones</a></li>
+                <li><a href="<?php echo base_url(); ?>#pricing" title="Puntos de venta" data-ref="pricing">Puntos de venta</a></li>
+                <li><a href="<?php echo base_url(); ?>index.php/postales" title="Namuh Travel" data-ref="travel">Travel</a></li>
+                <li><a href="<?php echo base_url(); ?>index.php/divulgacion/arte" title="Namuh Travel" data-ref="travel">Arte</a></li>
+
               <li><a href="<?php echo base_url(); ?>#portfolio" title="Interiorismo" data-ref="portfolio">Interiorismo</a></li>
                 
               <!--li><a href="#shop" title="Shop" data-ref="shop">Políticas</a></li-->
@@ -115,4 +104,3 @@
         </div>
       </nav>
       <!-- Start Home Section-->
-       

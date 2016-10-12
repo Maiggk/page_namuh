@@ -5,12 +5,13 @@
             <thead>
             <tr>
                 <th><center><font color="#909090"></center></font></th>
-                <th ><center><font color="#909090">#</center></font></th>
+
                 <th ><center><font color="#909090">Código</center></font></th>
                 <th ><center><font color="#909090">Producto</center></font></th>
                 <th><center><font color="#909090">Descripción</center></font></th>
                 <th><center><font color="#909090">Precio</center></font></th>
-                <th><center><font color="#909090">Campo de busqueda</center></font></th>
+                <th><center><font color="#909090">Porcentaje</center></font></th>
+                <th><center><font color="#909090">Precio descuento</center></font></th>
             </tr>
             </thead>
             <tbody>
@@ -31,9 +32,7 @@
                     </label>
 
                 </td>
-                <td>
-                    <center><?php echo $producto->id_producto; ?></center>
-                </td>
+
                 <td>
                     <center><?php echo $producto->codigo; ?></center>
                 </td>
@@ -44,11 +43,15 @@
                     <center><?php echo $producto->descripcion; ?></center>
                 </td>
                 <td>
-                    <center><?php echo $producto->precio; ?></center>
+                    <center><?php echo '$'.decimales_ceros($producto->precio,2); ?></center>
                 </td>
                 <td>
-                    <center><?php echo $producto->extra; ?></center>
+                    <center><?php echo $producto->porcentaje.'%'; ?></center>
                 </td>
+                <td>
+                    <center><?php echo '$'.decimales_ceros($producto->nuevo_precio,2); ?></center>
+                </td>
+
                 <?php
 
                 $i++;

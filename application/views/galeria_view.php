@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/main.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fotorama.css"/>
+
 <!--    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/sweetalert/sweetalert.css">-->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/main-responsive.css">
       
@@ -79,7 +81,8 @@ body {
           .color_icon:hover {
   color:#fff;
 }
-         
+
+
  </style>
   </head>
      
@@ -249,23 +252,17 @@ body {
         </div>  
     </div>
 
+	<div class="col-md-12" >
 
-	<div>
-                    <!-- Carousel -->
-				<section class="carousel">
+		  <div class="fotorama" data-width="100%"  data-ratio="800/600"  data-minheight="300" data-maxheight="60%" >
+			<?php foreach($fotos_carrusel as $carrusel){?>
+			  <img src="<?php echo base_url()."assets/uploads/divulgacion_arribos/".$carrusel->nombre_arribo; ?>">
+			<?php  } ?>
 
-					<div class="reel">
+			</div>
 
-						<article>
-							<a href="#" class="image featured">
-                                <img src="<?php echo base_url(); ?>assets/img/arq_01.jpg" alt="" width="125%"/>
-                            </a>
-						</article>
-
-
-					</div>
-				</section>
 	</div>
+
  
   
     <footer class="clase-general">
@@ -321,12 +318,15 @@ body {
  
 <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/photoswipe_master/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/fotorama.js"></script>
+
+
      
    <script src="<?php echo base_url(); ?>assets/css/menuNamuh/menu.js" type="text/javascript"></script> 
  <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/bootstrap.js"></script>
 <!--    <script src="<?php echo base_url(); ?>assets/js/photoswipe_master/script-min.js"></script>-->
- 
- 
+
+
         <!--menu movil-->
     <script class="include" type="text/javascript" src="<?php echo base_url(); ?>assets/galeria/assets/js/jquery.dcjqaccordion.2.7.js"></script>
    <script src="<?php echo base_url(); ?>assets/galeria/assets/js/jquery.scrollTo.min.js"></script>
@@ -334,6 +334,11 @@ body {
      
 <script type="text/javascript">
  
+	$('.menu').click(function(e){
+		e.preventDefault;
+		$('.fotorama').hide();
+	});
+
     $('#return1').click(function(event){
     //event.preventDefault();
     //$('.inputDisabled').removeAttr("disabled")
@@ -635,12 +640,4 @@ body {
                 });
      
     }
-     
-     
- 
-     
- 
-         
-  
-  
 </script>
