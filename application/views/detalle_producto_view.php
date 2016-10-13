@@ -134,7 +134,22 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
+
+
+
+                  <!--Seccion boton regresar -->
+                    <div class="row mt">
+                        <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
+                              <a id="regresar" href="<?php echo base_url(); ?>index.php/galeria" style="color: #ffffff; background-color: #909090; border-color: #dad7d7;" name="regresar" class="btn btn-primary">Regresar a productos</a>
+                        </div>
+                    </div>
+                    <!--End Seccion boton regresar -->
+
+
+
+
                 <!--Seccion de galeria -->
+
                  <?php $i=0; ?>
                 <div class="picture col-xs-12 col-sm-8  col-md-8 col-lg-8" id="imagenesdiv">
                     <figure itemprop="associatedMedia" itemscope>
@@ -174,14 +189,9 @@ body {
                 <!--seccion descripcion del producto -->
                 <div class="col-xs-12 col-sm-4  col-md-4 col-lg-4">
 
-                    <!--Seccion boton regresar -->
-                    <div class="row mt">
-                        <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
-                              <a id="regresar" href="<?php echo base_url(); ?>index.php/galeria" style="color: #ffffff; background-color: #909090; border-color: #dad7d7;" name="regresar" class="btn btn-primary">Regresar a productos</a>
-                        </div>
-                    </div>
-                    <!--End Seccion boton regresar -->
 
+                    <div class="row mt">
+                    </div>
                     <!--Seccion descripcion del producto -->
                      <div class="row mt">
                         <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12" style="border : solid 1px #dad7d7; height : 290px; overflow : auto; ">

@@ -134,10 +134,9 @@ class Galeria extends CI_Controller {
          $data['detallesProducto']=$this->Admin_models->consultaProductoDetalles($id_producto);
             if($valor>0){
           vista_datosGaleria('detalle_producto_view',$data);
-
             }else
             {
-              redirect('Galeria');
+              redirect('Galeria');   
             }
         }else
         {
