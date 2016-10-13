@@ -583,7 +583,16 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
         return $resultado;
         
  } 
-    
+    function verificarExistenciaProductos($id)
+ {
+        $this->db->select('count(*) as total ');
+        $this->db->from('productos');
+       $this->db->where('id_producto',$id);
+         $q = $this->db->get();
+        $resultado = $q->row()->total;
+        return $resultado;
+
+ }
     
     
       function producto_insertado($idGrupo)

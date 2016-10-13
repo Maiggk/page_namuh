@@ -127,10 +127,21 @@ class Galeria extends CI_Controller {
 
     function detalleProducto()
     {
-        $id_producto=1;
+         $id_producto=$this->input->get('id');
+        if($id_producto!=''){
+         $valor=$this->Admin_models->verificarExistenciaProductos($id_producto);
          $data['datosProducto']=$this->Admin_models->producto_insertado($id_producto);
          $data['detallesProducto']=$this->Admin_models->consultaProductoDetalles($id_producto);
+            if($valor>0){
           $this->load->view('detalle_producto_view',$data);
+            }else
+            {
+              redirect('Galeria');
+            }
+        }else
+        {
+                redirect('Galeria');
+        }
     }
 
 

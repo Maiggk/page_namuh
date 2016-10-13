@@ -99,7 +99,7 @@ body {
 
                 <div class="col-md-12">
 
-                    <a href="<?php echo base_url(); ?>" > <img src="<?php echo base_url();?>assets/img/logo_Main.png" width="15%"> </a>
+                    <a href="<?php echo base_url(); ?>index.php/galeria" > <img src="<?php echo base_url();?>assets/img/logo_Main.png" width="15%"> </a>
                     <div class="row"> </div>
                 </div>
             <div class="col-md-6">
@@ -177,7 +177,7 @@ body {
                     <!--Seccion boton regresar -->
                     <div class="row mt">
                         <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
-                              <a id="regresar" style="color: #ffffff; background-color: #909090; border-color: #dad7d7;" name="regresar" class="btn btn-primary">Regresar a productos</a>
+                              <a id="regresar" href="<?php echo base_url(); ?>index.php/galeria" style="color: #ffffff; background-color: #909090; border-color: #dad7d7;" name="regresar" class="btn btn-primary">Regresar a productos</a>
                         </div>
                     </div>
                     <!--End Seccion boton regresar -->
