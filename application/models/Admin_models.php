@@ -617,7 +617,17 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
         return $resultado;
     }
     
+/*inicio seccion datos detalle de productos*/
 
+           function traeNombreProducto($idProducto)
+    {
+            $this->db->from('productos');
+            $this->db->where('id_producto',$idProducto);
+            $q = $this->db->get()->row()->nombre;
+            return $q;
+    }
+
+/*fin seccion datos detalle de productos*/
     
     
     

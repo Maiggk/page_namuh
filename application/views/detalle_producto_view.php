@@ -295,10 +295,10 @@ body {
 
 
 
-  <!--
+
     <footer class="clase-general">
         <div class="col-md-12" style="text-align:center"><br>
-                <img src="< ?php echo base_url();?>assets/img/logo_Main.png" width="15%"><br>
+                <img src="<?php echo base_url();?>assets/img/logo_Main.png" width="15%"><br>
                 <label class="font_color_slogan">Cada Pieza es una Historia</label>
                 <h6 class="mantente_contacto">MANTENTE EN CONTACTO CON NOSOTROS</h6>
                     <ul class="social-icon sep-top-xs">
@@ -328,7 +328,7 @@ body {
 
             </div>
         </div>
-    </footer>   -->
+    </footer>
 
 </body>
 

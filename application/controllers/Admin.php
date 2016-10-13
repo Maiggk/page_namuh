@@ -305,7 +305,7 @@ class Admin extends CI_Controller {
     }
      function galeriasProductos($primary_key,$row){
 
-         return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/productos_detalle/'.$row->id_producto.'">Agregar Fotografias</a>';
+         return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/productos_detalle/'.$row->id_producto.'">Agregar Fotografías</a>';
     }
        function EliminarGaleriaProductos($value,$row)
     {
@@ -322,12 +322,15 @@ class Admin extends CI_Controller {
                     </script>';
               }else{
                      $idProducto=$this->uri->segment(3);
+
+
+            $nombre_producto=$this->Admin_models->traeNombreProducto($idProducto);
             $crud = new Grocery_CRUD();
             $crud->set_theme('bootstrap');
 
             $crud->where('id_producto',$idProducto);
             $crud->set_table('galeria_productos');
-            $crud->set_subject('Galeria Productos');
+            $crud->set_subject('Imágenes Detalle Producto: '.$nombre_producto);
             $crud->set_language('spanish');
 
             $crud->callback_column('eliminar',array($this,'EliminarGaleriaProductos'));
@@ -357,7 +360,7 @@ class Admin extends CI_Controller {
 
 
             $output->titulo ="Administración Catálogos";
-            $output->subtitulo ="Galeria Productos";
+            $output->subtitulo ="Galería Detalle Producto: ".$nombre_producto;
 		vista_crud_admin('principalAdmin',$output);
                      }
         }catch(Exception $e){

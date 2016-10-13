@@ -284,8 +284,8 @@ body {
                     <div class="col-md-4">
                         <small class=""><br><a  class="font_color" href="<?php echo base_url(); ?>index.php/politicas">Políticas</a></small>
                     </div>
-                    <div class="col-md-4"><!-- href="<?php echo base_url(); ?>index.php/divulgacion/prensa"-->
-                        <small class=""><br><a  class="font_color">Prensa</a></small>
+                    <div class="col-md-4">
+                        <small class=""><br><a  href="<?php echo base_url(); ?>index.php/divulgacion/prensa" class="font_color">Prensa</a></small>
                     </div>
 
                 </div>
