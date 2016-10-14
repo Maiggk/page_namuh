@@ -20,7 +20,7 @@ class Promociones extends CI_Controller {
 
     function Promocion()
     {
-       vista_admin('busqueda_view');
+       vista_admin_https('busqueda_view');
     }
 
      function verificarBusqueda()
@@ -39,7 +39,7 @@ class Promociones extends CI_Controller {
             {
               ///verificar que no contenga el, la, los, las, ellos, cuando,por, una,un, en,es,para,cuándo, qué, porque,porqué,de
 
-                if(strlen($valor)>2)
+                if(strlen($valor)>0)
                 { /*
                 if(strcasecmp ($valor, 'el' )!=0 &&
                    strcasecmp ($valor, 'la' )!=0 &&
@@ -100,8 +100,9 @@ echo $results;
             foreach($splitEspacios as $valor)
             {
               ///verificar que no contenga el, la, los, las, ellos, cuando,por, una,un, en,es,para,cuándo, qué, porque,porqué,de
-                if(strlen($valor)>2)
+                if(strlen($valor)>0)
                 {
+                    /*
                 if(strcasecmp ($valor, 'el' )!=0 &&
                    strcasecmp ($valor, 'la' )!=0 &&
                    strcasecmp ($valor, 'los' )!=0 &&
@@ -121,7 +122,7 @@ echo $results;
                    strcasecmp ($valor, 'y' )!=0 &&
                    strcasecmp ($valor, 'porqué' )!=0
                   )
-                {
+                {*/
                    $like=' codigo like "%'.$valor.'%" ';
                    $or=' or ';
                     if($indice==0)
@@ -133,7 +134,7 @@ echo $results;
                     {
                        $where=$where.' '.$or.' '.$like;
                     }
-                }
+               // }
                 }
 
           }
@@ -163,7 +164,7 @@ echo $results;
         }
          $this->session->set_userdata('productoFiltro',$nuevos_datos_recibo);
         $data['ProductosFiltrados'] = $nuevos_datos_recibo;
-        vista_crud_admin('ProductosFiltrados_view',$data);
+       vista_crud_admin_https('ProductosFiltrados_view',$data);
     }
 
     function PromocionVaciarSesion()
@@ -204,7 +205,7 @@ echo $results;
 
       function desactivarPromocion()
     {
-       vista_admin('desactivarBusqueda_view');
+       vista_admin_https('desactivarBusqueda_view');
     }
 
        function verificarBusquedaDesactivar()
@@ -222,8 +223,9 @@ echo $results;
             foreach($splitEspacios as $valor)
             {
               ///verificar que no contenga el, la, los, las, ellos, cuando,por, una,un, en,es,para,cuándo, qué, porque,porqué,de
-                if(strlen($valor)>2)
+                if(strlen($valor)>0)
                 {
+                    /*
                 if(strcasecmp ($valor, 'el' )!=0 &&
                    strcasecmp ($valor, 'la' )!=0 &&
                    strcasecmp ($valor, 'los' )!=0 &&
@@ -243,7 +245,7 @@ echo $results;
                    strcasecmp ($valor, 'y' )!=0 &&
                    strcasecmp ($valor, 'porqué' )!=0
                   )
-                {
+                {*/
                    $like=' codigo like "%'.$valor.'%" ';
                    $or=' or ';
                     if($indice==0)
@@ -255,7 +257,7 @@ echo $results;
                     {
                        $where=$where.' '.$or.' '.$like;
                     }
-                }
+               // }
                 }
 
           }
@@ -280,7 +282,7 @@ echo $results;
             foreach($splitEspacios as $valor)
             {
               ///verificar que no contenga el, la, los, las, ellos, cuando,por, una,un, en,es,para,cuándo, qué, porque,porqué,de
-                if(strlen($valor)>2)
+                if(strlen($valor)>0)
                 {
                     /*
                 if(strcasecmp ($valor, 'el' )!=0 &&
@@ -344,7 +346,7 @@ echo $results;
         }
          $this->session->set_userdata('productoFiltro1',$nuevos_datos_recibo);
         $data['ProductosFiltrados'] = $nuevos_datos_recibo;
-        vista_crud_admin('ProductosFiltrados_desactivar_view',$data);
+       vista_crud_admin_https('ProductosFiltrados_desactivar_view',$data);
     }
 
   function PromocionVaciarSesionDesactivar()
