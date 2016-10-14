@@ -13,17 +13,6 @@
       </section>
 			<!-- Carousel -->
 				<section class="carousel">
-                    
-
-
-<!--
-						<article>
-
-							<a href="#" class="image featured">
-                                <img src="<?php echo base_url(); ?>assets/img/arq_01.jpg" alt="" width="125%"/>
-                            </a>
-						</article>
--->
 
 						<?php
                         if(isset($slides)!=""){

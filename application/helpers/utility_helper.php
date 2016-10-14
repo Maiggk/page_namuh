@@ -114,8 +114,8 @@ function decimales_ceros($n, $n_decimals) //Funcion de transformacion a formato 
     }
 
 function vista_crud_admin($vista, $output){
-//remove_ssl();
-        force_ssl();
+remove_ssl();
+//       force_ssl();
     $CI = &get_instance();
     $CI->load->library('session');
 
@@ -132,8 +132,8 @@ function vista_crud_admin($vista, $output){
     }
 }
 function vista_admin($vista){
-  // remove_ssl();
-        force_ssl();
+ remove_ssl();
+//        force_ssl();
     $CI = &get_instance();
     $CI->load->library('session');
 
