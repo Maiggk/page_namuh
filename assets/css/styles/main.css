@@ -2462,6 +2462,14 @@ label.error {
 			margin: 0 0 4em 0;
 		}
 
-
-
-
+	.discount{
+		color:#83142E; 
+		font-style:italic; 
+		font-size:300%;
+	}
+	
+	.discountLetters{
+		color:#83142E; 
+		font-style:italic;
+		font-size:125%;
+	}

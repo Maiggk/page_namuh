@@ -39,10 +39,22 @@
 								$widthImage=getimagesize(base_url()."assets/uploads/productos/".$promocion->imagen);
 						?>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sep-bottom-lg">
+							<div class="product-title"><span class="upper" style=" font-style: italic;"><strong><?php echo $promocion->nombre; ?></strong></span>
+								<p style=" font-style: italic;" ><?php echo $promocion->codigo; ?></p>
+								<p style=" font-style: italic;" >Dimensiones <?php echo $promocion->descripcion; ?></p>
+							</div>
+							<div class="product-detail">
+								<div class="rate price-shop">
+									<del>Precio  $<?php echo decimales_ceros($promocion->precio,2); ?></del> <br/> <ins>Precio   $<?php echo decimales_ceros($promocion->nuevo_precio,2); ?></ins>
+									<div class="pull-right price-shop text-right">
+									  <span class="discount" ><?php echo $promocion->porcentaje; ?>%<br/></span><span class="discountLetters" >Descuento</span>
+									</div>
+								</div>
+							  </div>
                            <figure itemprop="associatedMedia" itemscope>
 
                                     <a class="product-image" href="<?php echo base_url(); ?>assets/uploads/productos/<?php echo $promocion->imagen; ?>" itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>" data-index="<?php echo $i; ?>" data-informeichon="<?php echo $promocion->imagen; ?>">
-                                        <img class="img-responsive" src="<?php echo base_url(); ?>assets/uploads/productos/<?php echo $promocion->imagen; ?>" width="350"><span class="bullet"><?php echo $promocion->porcentaje; ?>%</span></img>
+                                        <img class="img-responsive" src="<?php echo base_url(); ?>assets/uploads/productos/<?php echo $promocion->imagen; ?>" width="350"></img>
                                     </a>
                             </figure>
                         </div>
