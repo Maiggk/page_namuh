@@ -14,20 +14,15 @@
         </div>
       </section> 
 			<!-- Carousel -->
-				
-				<div class="col-md-12" >
-
-					  <div class="fotorama" data-nav="thumbs" data-width="100%"   data-width="100%" data-ratio="800/600" >
-						<?php 
-						if(isset($slides)!=""){
-						foreach($slides as $slide){?>
-						  <img src="<?php echo base_url()."assets/uploads/promociones/".$slide->imagen_promocion.""; ?>" alt="" width="125%"/>
-						<?php  } }  ?>
-
+					  <div class="fotorama" data-nav="thumbs" data-thumbwidth="120px" data-thumbheight="120px" data-width="100%"   data-width="100%" data-ratio="16/9" >
+							<?php 
+							if(isset($slides)!=""){
+							foreach($slides as $slide){?>
+							<a href="<?php echo base_url()."assets/uploads/promociones/".$slide->imagen_promocion.""; ?>">
+							  <img src="<?php echo base_url()."assets/uploads/promociones/".$slide->imagen_promocion.""; ?>" alt="" />
+							</a>
+							<?php  } }  ?>
 						</div>
-
-
-				</div>
 			<!---  End Carousel -->
 
 
