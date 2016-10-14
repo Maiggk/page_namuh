@@ -3,7 +3,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 if (!function_exists('force_ssl'))
 {
-    function force_ssl()
+   function force_ssl()
     {
         $CI =& get_instance();
         $CI->config->config['base_url'] = str_replace('http://', 'https://', $CI->config->config['base_url']);
@@ -85,7 +85,7 @@ function vista_datos($vista,$output){
 
 
 function vista_datosGaleria($vista,$output){
-    force_ssl();
+    // force_ssl();
     $CI = &get_instance();
     $CI->load->library('session');
      if($CI->session->userdata('admin_var') == 1 || $CI->session->userdata('us3r_cl1ent_v4r') >=1){

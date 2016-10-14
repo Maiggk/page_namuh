@@ -19,7 +19,7 @@ class Galeria extends CI_Controller {
     
 	 function index()
 	{
-     //    $this->output->enable_profiler(TRUE);
+        // $this->output->enable_profiler(TRUE);
         $data['imagenes']=$this->Admin_models->galeriaInicial();
         $data['fotos_carrusel']=$this->Admin_models->fotos_carrusel();
         $menuFinal=array();
