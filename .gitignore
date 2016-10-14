@@ -3,6 +3,20 @@
 .settings/
 .project
 .idea/
+<<<<<<< HEAD
+<<<<<<< Updated upstream
 assets/uploads/assets/images
 
 /assets/uploads/
+=======
+
+application/.htaccess
+assets/uploads/assets/images
+index.php
+license.txt
+/assets/uploads/
+>>>>>>> Stashed changes
+=======
+assets/uploads/assets/images
+/assets/uploads/
+>>>>>>> master

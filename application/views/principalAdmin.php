@@ -2,14 +2,14 @@
 //print_r($css_files);
 foreach($css_files as $file):
    //var_dump($css_files);
-     $Var_css_https=str_replace('http://', 'https://', $file) ?>
-	<link type="text/css" rel="stylesheet" href="<?php echo $Var_css_https; ?>" />
+    // $Var_css_https=str_replace('http://', 'https://', $file) ?>
+	<link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
 <?php endforeach; ?>
 <?php foreach($js_files as $file):
- $Var_js_https=str_replace('http://', 'https://', $file)
+ //$Var_js_https=str_replace('http://', 'https://', $file)
 ?>
 
-<script src="<?php echo $Var_js_https; ?>"></script>
+<script src="<?php echo $file; ?>"></script>
 <?php endforeach; ?>
 <style type='text/css'>
 body

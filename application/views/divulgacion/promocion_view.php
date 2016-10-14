@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fotorama.css"/>
 <link href="<?php echo base_url(); ?>assets/css/photoswipe_master/default-skin/default-skin.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/photoswipe.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fotorama.css"/>
@@ -11,8 +12,9 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> 
 			<!-- Carousel -->
+<<<<<<< HEAD
 				
 				<div class="col-md-12" >
 
@@ -24,6 +26,9 @@
 						<?php  } }  ?>
 
 						</div>
+=======
+				<section class="carousel">
+>>>>>>> master
 
 				</div>
 			<!---  End Carousel -->

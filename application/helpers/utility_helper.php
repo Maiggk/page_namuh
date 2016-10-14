@@ -3,7 +3,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 if (!function_exists('force_ssl'))
 {
-    function force_ssl()
+   function force_ssl()
     {
         $CI =& get_instance();
         $CI->config->config['base_url'] = str_replace('http://', 'https://', $CI->config->config['base_url']);
@@ -85,7 +85,7 @@ function vista_datos($vista,$output){
 
 
 function vista_datosGaleria($vista,$output){
-    force_ssl();
+    // force_ssl();
     $CI = &get_instance();
     $CI->load->library('session');
      if($CI->session->userdata('admin_var') == 1 || $CI->session->userdata('us3r_cl1ent_v4r') >=1){
@@ -114,8 +114,8 @@ function decimales_ceros($n, $n_decimals) //Funcion de transformacion a formato 
     }
 
 function vista_crud_admin($vista, $output){
-//remove_ssl();
-        force_ssl();
+remove_ssl();
+//       force_ssl();
     $CI = &get_instance();
     $CI->load->library('session');
 
@@ -132,8 +132,8 @@ function vista_crud_admin($vista, $output){
     }
 }
 function vista_admin($vista){
-  // remove_ssl();
-        force_ssl();
+ remove_ssl();
+//        force_ssl();
     $CI = &get_instance();
     $CI->load->library('session');
 
@@ -150,7 +150,43 @@ function vista_admin($vista){
     $CI->load->view('footerJS_admin');
     }
 }
+function vista_admin_https($vista){
 
+      force_ssl();
+    $CI = &get_instance();
+    $CI->load->library('session');
+
+
+    if($CI->session->userdata('admin_var') == ''){
+            echo '<script>
+            window.parent.location.href="'.base_url().'";
+            </script>';
+        }else{
+
+    $CI->load->view('headerCSS_admin');
+    $CI->load->view('menu');
+    $CI->load->view($vista);
+    $CI->load->view('footerJS_admin');
+    }
+}
+function vista_crud_admin_https($vista, $output){
+//remove_ssl();
+       force_ssl();
+    $CI = &get_instance();
+    $CI->load->library('session');
+
+   if( $CI->session->userdata('admin_var') == ''){
+            echo '<script>
+            window.parent.location.href="'.base_url().'";
+            </script>';
+        }else{
+
+    $CI->load->view('headerCSS_admin');
+    $CI->load->view('menu');
+    $CI->load->view($vista, $output);
+    $CI->load->view('footerJS_admin');
+    }
+}
 function vista_https_webcam($vista){
     force_ssl();
     $CI = &get_instance();
