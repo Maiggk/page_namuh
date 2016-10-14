@@ -331,7 +331,7 @@
                             {
 ?>
                                  swal({   
-                                title: "Bienvenido!!",   
+                                title: "Bienvenido <?php echo $this->session->userdata('nameUser'); ?>!!",
                                 text: "",   
                                 type: "success",   
                                 showCancelButton: false,   
