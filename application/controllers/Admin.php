@@ -466,7 +466,11 @@ class Admin extends CI_Controller {
        // $x=$var1-$contante;
         //$y=$var2-$contante;
         $resultado=($widthDefault*$widthImage[1])/$widthImage[0];
-        ini_set('memory_limit', '9000000');
+        ini_set('max_execution_time', '30');
+        ini_set('max_input_time', '30');
+        ini_set('memory_limit', '128M');
+
+
         $config['image_library'] = 'gd2';
         $config['source_image'] = './assets/uploads/productos/'.$producto->imagen;
         $config['new_image'] = './assets/uploads/productos_baja_resolucion/'.$producto->imagen;
