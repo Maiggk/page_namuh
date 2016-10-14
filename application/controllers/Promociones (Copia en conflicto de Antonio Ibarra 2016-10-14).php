@@ -25,7 +25,7 @@ class Promociones extends CI_Controller {
 
      function verificarBusqueda()
     {
-
+   //  $this->output->enable_profiler(TRUE);
         $cadena=$this->input->post('TextBuscar');
 
         $splitComas=explode(",",$cadena);
@@ -39,7 +39,7 @@ class Promociones extends CI_Controller {
             {
               ///verificar que no contenga el, la, los, las, ellos, cuando,por, una,un, en,es,para,cuándo, qué, porque,porqué,de
 
-                if(strlen($valor)>2)
+                if(strlen($valor)>0)
                 { /*
                 if(strcasecmp ($valor, 'el' )!=0 &&
                    strcasecmp ($valor, 'la' )!=0 &&
@@ -85,10 +85,10 @@ echo $results;
     }
 
 
-        function busqueda()
+        function busquedaProductos()
     {
+    //        $this->output->enable_profiler(TRUE);
         $cadena=$this->input->post('TextBuscar');
-
 
         $splitComas=explode(",",$cadena);
 
@@ -100,7 +100,7 @@ echo $results;
             foreach($splitEspacios as $valor)
             {
               ///verificar que no contenga el, la, los, las, ellos, cuando,por, una,un, en,es,para,cuándo, qué, porque,porqué,de
-                if(strlen($valor)>2)
+                if(strlen($valor)>0)
                 {
                 if(strcasecmp ($valor, 'el' )!=0 &&
                    strcasecmp ($valor, 'la' )!=0 &&
@@ -141,9 +141,8 @@ echo $results;
         if(strlen($where)>0)
         $data['results']=$this->Promociones_models->regresaBusqueda($where);
         else $data['results']='';
-//$CI->load->view($vista, $output);
+
         vista_tabla('tabla_promociones_detalle_view',$data);
-      //  $this->load->view('tabla_promociones_detalle_view',$data);
     }
 
     function crearFiltradoProductos()
@@ -210,7 +209,7 @@ echo $results;
        function verificarBusquedaDesactivar()
     {
 
-        $cadena=$this->input->post('TextBuscar');
+        //$cadena=$this->input->post('TextBuscar');
 
         $splitComas=explode(",",$cadena);
 
@@ -222,7 +221,7 @@ echo $results;
             foreach($splitEspacios as $valor)
             {
               ///verificar que no contenga el, la, los, las, ellos, cuando,por, una,un, en,es,para,cuándo, qué, porque,porqué,de
-                if(strlen($valor)>2)
+                if(strlen($valor)>0)
                 {
                 if(strcasecmp ($valor, 'el' )!=0 &&
                    strcasecmp ($valor, 'la' )!=0 &&
@@ -280,7 +279,7 @@ echo $results;
             foreach($splitEspacios as $valor)
             {
               ///verificar que no contenga el, la, los, las, ellos, cuando,por, una,un, en,es,para,cuándo, qué, porque,porqué,de
-                if(strlen($valor)>2)
+                if(strlen($valor)>0)
                 {
                     /*
                 if(strcasecmp ($valor, 'el' )!=0 &&
