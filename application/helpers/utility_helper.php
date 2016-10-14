@@ -150,7 +150,43 @@ function vista_admin($vista){
     $CI->load->view('footerJS_admin');
     }
 }
+function vista_admin_https($vista){
 
+      force_ssl();
+    $CI = &get_instance();
+    $CI->load->library('session');
+
+
+    if($CI->session->userdata('admin_var') == ''){
+            echo '<script>
+            window.parent.location.href="'.base_url().'";
+            </script>';
+        }else{
+
+    $CI->load->view('headerCSS_admin');
+    $CI->load->view('menu');
+    $CI->load->view($vista);
+    $CI->load->view('footerJS_admin');
+    }
+}
+function vista_crud_admin_https($vista, $output){
+//remove_ssl();
+       force_ssl();
+    $CI = &get_instance();
+    $CI->load->library('session');
+
+   if( $CI->session->userdata('admin_var') == ''){
+            echo '<script>
+            window.parent.location.href="'.base_url().'";
+            </script>';
+        }else{
+
+    $CI->load->view('headerCSS_admin');
+    $CI->load->view('menu');
+    $CI->load->view($vista, $output);
+    $CI->load->view('footerJS_admin');
+    }
+}
 function vista_https_webcam($vista){
     force_ssl();
     $CI = &get_instance();
