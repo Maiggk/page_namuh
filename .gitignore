@@ -4,20 +4,11 @@
 .project
 .idea/
 
-application/.htaccess
-application/cache/
-application/views/example2.php
-application/core/
-application/errors/
-application/helpers/
-application/hooks/
 application/index.html
-application/language/
 application/libraries/index.html
 application/libraries/grocery_crud_extended.php
 application/logs/
 assets/uploads/assets/images
-application/models/index.html
 application/third_party/
 application/views/index.html
 application/views/welcome_message.php
