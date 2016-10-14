@@ -407,7 +407,20 @@ class Admin extends CI_Controller {
             $crud->unset_delete();
              /*   $crud->display_as('acciones', 'Acciones');
                $crud->callback_column('acciones', array($this, 'EliminarCategoria'));*/
-            $crud->required_fields(
+            $crud->add_fields(
+              'codigo',
+              'nombre',
+              'descripcion',
+              'precio',
+              'extra',
+                'estado',
+              'imagen',
+                'porcentaje',
+                'estado_promocion'
+
+            );
+
+              $crud->required_fields(
               'codigo',
               'nombre',
               'descripcion',

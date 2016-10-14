@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fotorama.css"/>
 <link href="<?php echo base_url(); ?>assets/css/photoswipe_master/default-skin/default-skin.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/photoswipe.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fotorama.css"/>
       <!-- Start header Section-->
       <section class="header-section fading-title parallax">
         <div class="section-shade sep-top-5x sep-bottom-3x">
@@ -11,24 +12,18 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> 
 			<!-- Carousel -->
-				<section class="carousel">
-
-						<?php
-                        if(isset($slides)!=""){
-                        foreach($slides as $slide){?>
-                    <div class="reel">
-							<article>
-								<a href="#" class="image featured">
-									<img src="<?php echo base_url()."assets/uploads/promociones/".$slide->imagen_promocion.""; ?>" alt="" width="125%"/></a>
-							</article>
-                        </div>
-						<?php }
-                        } ?>
-
-
-				</section>
+					  <div class="fotorama" data-nav="thumbs" data-thumbwidth="120px" data-thumbheight="120px" data-width="100%"   data-width="100%" data-ratio="16/9" >
+							<?php 
+							if(isset($slides)!=""){
+							foreach($slides as $slide){?>
+							<a href="<?php echo base_url()."assets/uploads/promociones/".$slide->imagen_promocion.""; ?>">
+							  <img src="<?php echo base_url()."assets/uploads/promociones/".$slide->imagen_promocion.""; ?>" alt="" />
+							</a>
+							<?php  } }  ?>
+						</div>
+			<!---  End Carrusel -->
 
 
             <div class="sep-top-2x sep-bottom-md">
@@ -44,10 +39,22 @@
 								$widthImage=getimagesize(base_url()."assets/uploads/productos/".$promocion->imagen);
 						?>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sep-bottom-lg">
+							<div class="product-title"><span class="upper" style=" font-style: italic;"><strong><?php echo $promocion->nombre; ?></strong></span>
+								<p style=" font-style: italic;" ><?php echo $promocion->codigo; ?></p>
+								<p style=" font-style: italic;" >Dimensiones <?php echo $promocion->descripcion; ?></p>
+							</div>
+							<div class="product-detail">
+								<div class="rate price-shop">
+									<del>Precio  $<?php echo decimales_ceros($promocion->precio,2); ?></del> <br/> <ins>Precio   $<?php echo decimales_ceros($promocion->nuevo_precio,2); ?></ins>
+									<div class="pull-right price-shop text-right">
+									  <span class="discount" ><?php echo $promocion->porcentaje; ?>%<br/></span><span class="discountLetters" >Descuento</span>
+									</div>
+								</div>
+							  </div>
                            <figure itemprop="associatedMedia" itemscope>
 
                                     <a class="product-image" href="<?php echo base_url(); ?>assets/uploads/productos/<?php echo $promocion->imagen; ?>" itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>" data-index="<?php echo $i; ?>" data-informeichon="<?php echo $promocion->imagen; ?>">
-                                        <img class="img-responsive" src="<?php echo base_url(); ?>assets/uploads/productos/<?php echo $promocion->imagen; ?>" width="350"><span class="bullet"><?php echo $promocion->porcentaje; ?>%</span></img>
+                                        <img class="img-responsive" src="<?php echo base_url(); ?>assets/uploads/productos/<?php echo $promocion->imagen; ?>" width="350"></img>
                                     </a>
                             </figure>
                         </div>
