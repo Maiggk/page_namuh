@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fotorama.css"/>
 <link href="<?php echo base_url(); ?>assets/css/photoswipe_master/default-skin/default-skin.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/photoswipe.css" rel="stylesheet">
       <!-- Start header Section-->
@@ -118,7 +119,7 @@
 
 
 
-
+<script src="<?php echo base_url(); ?>assets/js/fotorama.js"></script>
 
 
 <!-- inicio Sección de scripts para photoswipe -->
