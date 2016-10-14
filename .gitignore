@@ -6,10 +6,6 @@
 
 application/.htaccess
 application/cache/
-application/controllers/index.html
-application/controllers/examples2.php
-application/controllers/build.php
-application/controllers/welcome.php
 application/views/example2.php
 application/core/
 application/errors/
