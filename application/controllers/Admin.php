@@ -467,7 +467,7 @@ class Admin extends CI_Controller {
         //$y=$var2-$contante;
         $resultado=($widthDefault*$widthImage[1])/$widthImage[0];
         ini_set('max_execution_time', '30');
-        ini_set('max_input_time', '30');
+       // ini_set('max_input_time', '30');
         ini_set('memory_limit', '128M');
 
 
