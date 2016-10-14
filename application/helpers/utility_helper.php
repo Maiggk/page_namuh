@@ -85,7 +85,7 @@ function vista_datos($vista,$output){
 
 
 function vista_datosGaleria($vista,$output){
-    // force_ssl();
+     force_ssl();
     $CI = &get_instance();
     $CI->load->library('session');
      if($CI->session->userdata('admin_var') == 1 || $CI->session->userdata('us3r_cl1ent_v4r') >=1){
