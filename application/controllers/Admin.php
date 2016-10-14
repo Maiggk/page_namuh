@@ -442,6 +442,7 @@ class Admin extends CI_Controller {
     }
     function crear_imagen_baja_resolucion($post_array,$primary_key)
     {
+        $this->output->enable_profiler(TRUE);
         $producto=$this->Admin_models->producto_insertado($primary_key);
 
          $widthImage=getimagesize(base_url()."assets/uploads/productos/".$producto->imagen);
