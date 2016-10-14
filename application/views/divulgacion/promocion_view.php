@@ -23,7 +23,7 @@
 							</a>
 							<?php  } }  ?>
 						</div>
-			<!---  End Carousel -->
+			<!---  End Carrusel -->
 
 
             <div class="sep-top-2x sep-bottom-md">
