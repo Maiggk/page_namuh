@@ -1,5 +1,6 @@
 <link href="<?php echo base_url(); ?>assets/css/photoswipe_master/default-skin/default-skin.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/photoswipe.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fotorama.css"/>
       <!-- Start header Section-->
       <section class="header-section fading-title parallax">
         <div class="section-shade sep-top-5x sep-bottom-3x">
@@ -12,33 +13,20 @@
         </div>
       </section>
 			<!-- Carousel -->
-				<section class="carousel">
-                    
+				
+				<div class="col-md-12" >
 
+					  <div class="fotorama" data-nav="thumbs" data-width="100%"   data-width="100%" data-ratio="800/600" >
+						<?php 
+						if(isset($slides)!=""){
+						foreach($slides as $slide){?>
+						  <img src="<?php echo base_url()."assets/uploads/promociones/".$slide->imagen_promocion.""; ?>" alt="" width="125%"/>
+						<?php  } }  ?>
 
-<!--
-						<article>
+						</div>
 
-							<a href="#" class="image featured">
-                                <img src="<?php echo base_url(); ?>assets/img/arq_01.jpg" alt="" width="125%"/>
-                            </a>
-						</article>
--->
-
-						<?php
-                        if(isset($slides)!=""){
-                        foreach($slides as $slide){?>
-                    <div class="reel">
-							<article>
-								<a href="#" class="image featured">
-									<img src="<?php echo base_url()."assets/uploads/promociones/".$slide->imagen_promocion.""; ?>" alt="" width="125%"/></a>
-							</article>
-                        </div>
-						<?php }
-                        } ?>
-
-
-				</section>
+				</div>
+			<!---  End Carousel -->
 
 
             <div class="sep-top-2x sep-bottom-md">
@@ -129,7 +117,7 @@
 
 
 
-
+<script src="<?php echo base_url(); ?>assets/js/fotorama.js"></script>
 
 
 <!-- inicio Sección de scripts para photoswipe -->

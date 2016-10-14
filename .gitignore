@@ -3,16 +3,6 @@
 .settings/
 .project
 .idea/
-
-application/index.html
-application/libraries/index.html
-application/libraries/grocery_crud_extended.php
-application/logs/
 assets/uploads/assets/images
-application/third_party/
-application/views/index.html
-application/views/welcome_message.php
-application/views/errors/*
-index.php
-license.txt
+
 /assets/uploads/
