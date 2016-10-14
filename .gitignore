@@ -3,8 +3,7 @@
 .settings/
 .project
 .idea/
-system/
-assets/grocery_crud/themes/bootstrap
+
 application/.htaccess
 application/cache/
 application/config/migration.php

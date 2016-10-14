@@ -50,17 +50,23 @@
 				TextBuscar: $("#TextBuscar").val()
 
 				},
-				url:"<?= site_url('Promociones/verificarBusqueda') ?>",
+				url:"<?php echo base_url().'index.php/Promociones/verificarBusqueda'; ?>",
 				async: true,
 				success: function(response)
 				{
+
                     if(response==0)
                     {
-                         sweetAlert('Error', 'Sin coincidencias', 'error');
+
+                          sweetAlert('Error', 'Sin coincidencias', 'error');
+
+
                     }
                     else
                     {
-                       construirTabla();
+                         construirTabla();
+
+
                     }
              },
 				error: function (obj, error, objError){
@@ -71,26 +77,28 @@
             }
             else
             {
+    sweetAlert('Error', 'Necesitas ingresar un codigo', 'error');
 
             }
         }
+
+
       function construirTabla()
       {
            $.ajax({
-				type: "POST", //envia la posicion por metodo post de ajax
-				data:{
-				TextBuscar: $("#TextBuscar").val()
-
-				},
-				url:"<?= site_url('Promociones/busqueda') ?>",
-				async: true,
-				success: function(response)
-				{
-                 $('#results').html(response);
-                },
-				error: function (obj, error, objError){
-				alert("Error: " + objError);
-				}
+                    type: "POST", //envia la posicion por metodo post de ajax
+                    data:{
+                        TextBuscar: $("#TextBuscar").val()
+                    },
+                    url:"<?php echo base_url().'index.php/Promociones/busqueda'; ?>",
+                    async: true,
+                    success: function(response)
+                    {
+                        $('#results').html(response);
+                    },
+                    error: function (obj, error, objError){
+                        alert("Error: " + objError);
+                    }
 				});
       }
 /*
