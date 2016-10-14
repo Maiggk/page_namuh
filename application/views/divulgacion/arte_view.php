@@ -11,7 +11,17 @@
         <div class="section-shade sep-top-5x sep-bottom-3x">
           <div class="container">
             <div class="section-title upper light">
-              <h2 class="small-space">Arte</h2>
+           <div class="row">
+                <div class="col-md-9" >
+                   <img class="small-space" src="<?php echo base_url(); ?>assets/img/Logo_Galeria.png" width="10%">   <h2 class="" style="vertical-align: middle;">Arte</h2>
+               </div>
+                <div class="col-md-3"  style="float:right;">
+                    <div class="ajusta_imagen_centro">
+
+                    </div>
+                </div>
+            </div>
+
               <!-- p class="lead">View your product</p -->
             </div>
           </div>
