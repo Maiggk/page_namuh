@@ -14,7 +14,6 @@
         </div>
       </section> 
 			<!-- Carousel -->
-<<<<<<< HEAD
 				
 				<div class="col-md-12" >
 
@@ -26,9 +25,7 @@
 						<?php  } }  ?>
 
 						</div>
-=======
-				<section class="carousel">
->>>>>>> master
+
 
 				</div>
 			<!---  End Carousel -->
