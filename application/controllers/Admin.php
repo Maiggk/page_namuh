@@ -455,6 +455,7 @@ class Admin extends CI_Controller {
     }
     function crear_imagen_baja_resolucion($post_array,$primary_key)
     {
+        //$this->output->enable_profiler(TRUE);
         $producto=$this->Admin_models->producto_insertado($primary_key);
 
          $widthImage=getimagesize(base_url()."assets/uploads/productos/".$producto->imagen);
@@ -465,7 +466,11 @@ class Admin extends CI_Controller {
        // $x=$var1-$contante;
         //$y=$var2-$contante;
         $resultado=($widthDefault*$widthImage[1])/$widthImage[0];
-        ini_set('memory_limit', '30M');
+        ini_set('max_execution_time', '30');
+       // ini_set('max_input_time', '30');
+        ini_set('memory_limit', '128M');
+
+
         $config['image_library'] = 'gd2';
         $config['source_image'] = './assets/uploads/productos/'.$producto->imagen;
         $config['new_image'] = './assets/uploads/productos_baja_resolucion/'.$producto->imagen;
