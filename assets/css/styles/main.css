@@ -1836,6 +1836,8 @@ dl.metadata dt {
 }
 .product-title {
   margin-top: 15px;
+  margin-left:7%;/*Estilo agregado*/
+  border-top-style: solid;
 }
 .product-title p {
   font-size: 1.1em;
@@ -1844,6 +1846,7 @@ dl.metadata dt {
 }
 .product-detail {
   margin-top: 18px;
+  margin-left: 7%;/*Estilo agregado*/
 }
 .product-detail a {
   font-size: 0.9em;
@@ -2473,4 +2476,26 @@ label.error {
 		font-style:italic;
 		font-size:125%;
 		/*custom class*/
+	}
+	
+@media screen and (max-width:767px){
+	.discount{
+		color: #83142E;
+		font-style: italic;
+		font-size: 2em;
+		float:right;
+	}
+	
+	.discountLetters{
+		color: #83142E;
+		font-style: italic;
+		font-size: 0.8em;
+		float:right;
+	}
+	
+
+}
+	
+	.product_small {
+		text-align:left;
 	}
