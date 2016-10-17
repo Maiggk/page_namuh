@@ -22,7 +22,9 @@ class Unete extends CI_Controller {
 	}
     
     
-/*  azu@namuhmex.com */
+/*  azu@namuhmex.com
+recursoshumanos@namuhmex.com
+*/
 function send_mail(){
     
     $nombre=$this->input->post('Nombre');
@@ -62,11 +64,11 @@ function send_mail(){
             );*/
                 $this->load->library('email', $config);
 
-                $this->email->to('azu@namuhmex.com','Namuh Mail Test');
+                $this->email->to('recursoshumanos@namuhmex.com','Namuh Mail Test');
                 $this->email->from($correo);
 
                 $this->email->subject($asunto);
-                $this->email->message('Nombre: '.$nombre.'<br><br>Puestos de Interes: <br>'.$message.'<br><br> Tel:'.$telefono.'<br> Correo: '.$correo);	
+                $this->email->message('Nombre: '.$nombre.'<br><br>Puestos de Interés: <br>'.$message.'<br><br> Tel:'.$telefono.'<br> Correo: '.$correo);
                 //$this->email->attach("assets/pedidos.pdf");
 
                 if($this->email->send())

@@ -35,6 +35,7 @@
 					  <?php
 					  $i=0;
 					  foreach($promociones as $promocion){
+                       //   if(isset($promocion)!=""){
 
 								$widthImage=getimagesize(base_url()."assets/uploads/productos/".$promocion->imagen);
 						?>
@@ -59,11 +60,12 @@
                                     </a>
                             </figure>
                         </div>
-						<?php
-								$i++;
-								if($i%3==0){
-										echo '<div class="clearfix vivisible-lg" style="z-index:-1"></div>';
-								}
+						          <?php
+								    $i++;
+								        if($i%3==0){
+										  echo '<div class="clearfix vivisible-lg" style="z-index:-1"></div>';
+								        }
+                          //      }
 							}
 						?>
 
