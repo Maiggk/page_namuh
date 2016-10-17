@@ -157,7 +157,11 @@ body {
 
                     <div class="row">
                         <div class=" col-xs-12 col-sm-12  col-md-12 col-lg-12">
-                             <a onclick="IMGindex(<?php echo $i; ?>)"  href="<?php echo base_url();?>assets/uploads/productos/<?php echo $datosProducto->imagen; ?>"  itemprop="contentUrl" data-size="1000x667" data-index="<?php echo $i; ?>">
+                            <?php    $widthImageGRande=getimagesize(base_url()."assets/uploads/productos/".$datosProducto->imagen);
+                           // echo '$w'.$widthImageGRande[0];
+
+                            ?>
+                             <a onclick="IMGindex(<?php echo $i; ?>)"  href="<?php echo base_url();?>assets/uploads/productos/<?php echo $datosProducto->imagen; ?>"  itemprop="contentUrl" data-size="<?php echo $widthImageGRande[0].'x'.$widthImageGRande[1]; ?>" data-index="<?php echo $i; ?>">
     <img src="<?php echo base_url();?>assets/uploads/productos_baja_resolucion/<?php echo $datosProducto->imagen; ?>" class="sep-top-sm img-responsive" itemprop="thumbnail" alt="">
                             </a>
 
@@ -169,10 +173,12 @@ body {
                     <div class="row">
                         <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
                             <?php $i=1; ?>
-                            <?php foreach ($detallesProducto as $detalleProducto){ ?>
+                            <?php foreach ($detallesProducto as $detalleProducto){
+                            $widthImage=getimagesize(base_url()."assets/uploads/galeria_productos/".$detalleProducto->ruta_foto);
+                            ?>
                             <div class="col-xs-4 col-sm-2  col-md-2 col-lg-2">
 
-                                  <a onclick="IMGindex(<?php echo $i; ?>)" href="<?php echo base_url();?>assets/uploads/galeria_productos/<?php echo $detalleProducto->ruta_foto; ?>"  itemprop="contentUrl" data-size="1000x667" data-index="<?php echo $i; ?>">
+                                  <a onclick="IMGindex(<?php echo $i; ?>)" href="<?php echo base_url();?>assets/uploads/galeria_productos/<?php echo $detalleProducto->ruta_foto; ?>"  itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>" data-index="<?php echo $i; ?>">
                                         <img src="<?php echo base_url();?>assets/uploads/galeria_productos/<?php echo $detalleProducto->ruta_foto; ?>" class="sep-top-sm img-responsive" itemprop="thumbnail" alt="">
                                 </a>
                             </div>
