@@ -13,7 +13,8 @@
             <div class="section-title upper light">
            <div class="row">
                 <div class="col-md-9" >
-                   <img class="small-space" src="<?php echo base_url(); ?>assets/img/Logo_Galeria.png" width="10%">   <h2 class="" style="vertical-align: middle;">Arte</h2>
+<!--                   <img class="small-space" src="<?php echo base_url(); ?>assets/img/Logo_Galeria.png" width="10%"> -->
+                    <h2 class="" style="vertical-align: middle;">Arte</h2>
                </div>
                 <div class="col-md-3"  style="float:right;">
                     <div class="ajusta_imagen_centro">
@@ -78,10 +79,9 @@
                  <div class=" picture">
                    <div class="col-md-4 col-sm-4 col-lg-4  sep-bottom-lg">
                         <figure itemprop="associatedMedia" itemscope>
-                           
                             <a href="<?php echo base_url(); ?>assets/uploads/galeria_artistas/<?php echo $galeria['foto']; ?>"
                                itemprop="contentUrl" data-size="<?php echo $widthImage[0].'x'.$widthImage[1]; ?>"
-                               data-index="<?php echo $galeria['foto']; ?>" data-informeichon="prueba <?php echo $galeria['foto']; ?>">
+                               data-index="<?php echo $galeria['foto']; ?>" data-informeichon="">
                                         <img class="portada" src="<?php echo base_url(); ?>assets/uploads/galeria_artistas/<?php echo $galeria['foto']; ?>" width="100">
                             </a>
                         </figure>
