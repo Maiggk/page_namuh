@@ -40,11 +40,11 @@
 								$widthImage=getimagesize(base_url()."assets/uploads/productos/".$promocion->imagen);
 						?>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sep-bottom-lg product_small">
-							<div class="product-title-promo"><span class="upper" style=" font-style: italic;"><strong><?php echo $promocion->nombre; ?></strong></span>
+							<div class="product-title" style="margin-left:7%;border-top-style: solid;"><span class="upper" style=" font-style: italic;"><strong><?php echo $promocion->nombre; ?></strong></span>
 								<p style=" font-style: italic;" ><?php echo $promocion->codigo; ?></p>
 								<p style=" font-style: italic;" >Dimensiones <?php echo $promocion->descripcion; ?></p>
 							</div>
-							<div class="product-detail-promo">
+							<div class="product-detail" >
 								<div class="rate price-shop">
 									<del>Precio  $<?php echo decimales_ceros($promocion->precio,2); ?></del> <br/> <ins>Precio   $<?php echo decimales_ceros($promocion->nuevo_precio,2); ?></ins>
 									<div class="pull-right price-shop text-right">
