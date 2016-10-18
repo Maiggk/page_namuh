@@ -1272,8 +1272,8 @@ class Admin extends CI_Controller {
                $crud->callback_column('acciones', array($this, 'EliminarCategoria'));*/
             $crud->required_fields(
               'nombreCompleto',
-              'nombre_galeria',
-              'biografia'
+              'nombre_galeria'/*,
+              'biografia'*/
   
             );
             $crud->columns(

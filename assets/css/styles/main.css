@@ -1836,6 +1836,11 @@ dl.metadata dt {
 }
 .product-title {
   margin-top: 15px;
+  /*margin-left:7%;/*Estilo agregado*/
+  /*border-top-style: solid;*/
+}
+.product-title-promo {
+  margin-top: 15px;
   margin-left:7%;/*Estilo agregado*/
   border-top-style: solid;
 }
@@ -1844,9 +1849,13 @@ dl.metadata dt {
   font-weight: 600;
   margin: 0;
 }
-.product-detail {
+.product-detail-promo {
   margin-top: 18px;
   margin-left: 7%;/*Estilo agregado*/
+}
+.product-detail {
+  margin-top: 18px;
+ /* margin-left: 7%;/*Estilo agregado*/
 }
 .product-detail a {
   font-size: 0.9em;
