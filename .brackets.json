@@ -1,5 +1,6 @@
 {
     "jscodehints.detectedExclusions": [
-        "C:/wamp/www/Dropbox/DESARROLLO/PROYECTOS/NAMUH/page2/assets/js/www-embed-player.js"
+        "C:/wamp/www/Dropbox/DESARROLLO/PROYECTOS/NAMUH/page2/assets/js/www-embed-player.js",
+        "C:/xampp/htdocs/Dropbox/DESARROLLO/PROYECTOS/NAMUH/page2/assets/js/www-embed-player.js"
     ]
 }

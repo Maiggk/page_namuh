@@ -6,14 +6,14 @@
 }
 .titulos
 {
-	font-family: GillSans;
-    font-style: italic;
-    font-weight: bold;
+	font-family: 'GillSans';
+    font-style: normal;
+    font-weight: lighter;
 }
 .cuerpo
 {
-	font-family: GillSans;
-    font-style: italic;
+	font-family: 'GillSans';
+    font-style: normal;
   /*  font-weight: bold;*/
 }
 
