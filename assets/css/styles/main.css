@@ -2482,12 +2482,14 @@ label.error {
 		color:#83142E; 
 		font-style:italic; 
 		font-size:300%;
+        margin-right: 40%;
 	}
 	
 	.discountLetters{
 		color:#83142E; 
 		font-style:italic;
 		font-size:125%;
+        margin-right: 40%;
 		/*custom class*/
 	}
 	
