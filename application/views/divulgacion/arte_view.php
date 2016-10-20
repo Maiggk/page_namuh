@@ -14,7 +14,9 @@
            <div class="row">
                 <div class="col-md-9" >
 <!--                   <img class="small-space" src="<?php echo base_url(); ?>assets/img/Logo_Galeria.png" width="10%"> -->
-                    <h2 class="" style="vertical-align: middle;">Arte</h2>
+                    <h2 class="" style="vertical-align: middle;">
+                        <img class="small-space" src="<?php echo base_url(); ?>assets/img/Logo_Galeria.png" width="20%">
+                    </h2>
                </div>
                 <div class="col-md-3"  style="float:right;">
                     <div class="ajusta_imagen_centro">
@@ -51,13 +53,13 @@
              
           
               <div class="col-md-12">
-                <label class="titulos" style="text-align : justify;">
+                <label class="titulos" style="text-align : justify;font-size: 15px;">
                     <?php echo $Artista['nombre_galeria'];?>
                     
                    
                   </label>
                   <br/>
-             <label class="cuerpo" style="text-align : justify;"><?php echo 'Muestra Fotográfica por: '.$Artista['nombreCompleto'];?></label>
+             <label class="cuerpo" style="text-align : justify;"><?php echo ''.$Artista['nombreCompleto'];?></label>
              <br/>
                     <br/>
               <div class="row mt"> </div>
