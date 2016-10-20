@@ -5,14 +5,14 @@ if (!function_exists('force_ssl'))
 {
    function force_ssl()
     {
-       /*
+       
         $CI =& get_instance();
         $CI->config->config['base_url'] = str_replace('http://', 'https://', $CI->config->config['base_url']);
         if ($_SERVER['SERVER_PORT'] != 443)
         {
             redirect($CI->uri->uri_string());
         }
-        */
+        
     }
 }
 
@@ -198,6 +198,17 @@ function vista_https_webcam($vista){
     $CI->load->view($vista);
 //$CI->load->view('footer_principal_https');
 //$CI->load->view('footerJS_https');
+}
+
+function vista_simple($vista){
+    force_ssl();
+    $CI = &get_instance();
+
+   $CI->load->view('headerCSS');
+   $CI->load->view('menu_principal');
+    $CI->load->view($vista);
+	$CI->load->view('footer_principal');
+	$CI->load->view('footerJS');
 }
 
 ?>
