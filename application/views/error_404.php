@@ -10,9 +10,11 @@
             <div class="col-md-6 col-md-push-3 text-center">
               <p class="lead">The page you were looking for cannot be found. Try our site search:</p>
               <!-- start search form-->
+<!--
               <div class="input-group theme-form-group"><span class="input-group-btn">
                   </span>
               </div>
+-->
               <!-- end search form-->
             </div>
           </div>

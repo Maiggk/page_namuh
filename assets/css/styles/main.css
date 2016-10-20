@@ -2298,7 +2298,7 @@ label.error {
   z-index: 0;
 }
 .error-404:before {
-  content: "404";
+/*  content: "404";*/
 }
 .error-500:before {
   content: "500";
