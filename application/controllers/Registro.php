@@ -487,6 +487,7 @@ class Registro extends CI_Controller {
         {
             $data=array('estado_usuario'=>'1');
             $this->Admin_models->actualizarUser($idUsuario,$data);
+            $this->enviarCorreoBienvenida($idCliente);
            // $datosContacto=$this->User_models->consultarCorreoUsuario($idUsuario);
         //    $correo=$datosContacto->correo;
           //  $Existe=1;
@@ -498,6 +499,59 @@ class Registro extends CI_Controller {
       </script>";
     }
     
+    function enviarCorreoBienvenida($idCliente)
+    {
+
+             $config = array(
+                'protocol' 	=> 'smtp',
+                'smtp_host' => 'a2plcpnl0536.prod.iad2.secureserver.net',
+                'smtp_port' => 465,
+                'smtp_user' => 'paginacontacto@namuhmex.com',
+                'smtp_pass' => 'N4MUHM3X.',
+                'smtp_crypto'   => 'ssl',
+                'mailtype'  	=> 'html',
+                'charset'   	=> 'utf-8',
+                'crlf' 		  	=> "\r\n",
+                'newline'   	=> "\r\n",
+            );
+                ///mandar correo
+            $this->load->library('email', $config);
+
+
+            $filename =base_url().'assets/img/correoBienvenida/CORREO_BIENVENIDA _9.jpg';
+
+           $sa= $this->email->attach($filename);
+              /* */
+            $cid = $this->email->attachment_cid($filename);
+
+        $datos=$this->Admin_models->consultarUsuarioDatosGeneral($idCliente);
+
+        $asunto="namuhmex.com Estimado ".$datos->nombre." ".$datos->ap_paterno." Gracias por su registro ";
+        $message="<a href='https://namuhmex.com/index.php'><img src='cid:".$cid."' align='center'/></a>";
+
+                $this->email->to($datos->correo,'namuhmex Mail Test');
+                $this->email->from('paginacontacto@namuhmex.com');
+
+                $this->email->subject($asunto);
+                $this->email->message($message);
+
+                if($this->email->send())
+             {
+                     //$this->session->set_userdata('error_envio',2);//2 exitoso
+              //echo '1';
+
+                    //var_dump($this->email->print_debugger());
+             }
+             else
+            {
+                  //$this->session->set_userdata('error_envio',1);//1 error
+                //echo '0';
+
+                 //var_dump($this->email->print_debugger());
+            }
+
+    }
+
 
 }
 
