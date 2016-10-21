@@ -198,4 +198,15 @@ function vista_https_webcam($vista){
 //$CI->load->view('footerJS_https');
 }
 
+function vista_simple($vista){
+    force_ssl();
+    $CI = &get_instance();
+
+   $CI->load->view('headerCSS');
+   $CI->load->view('menu_principal');
+    $CI->load->view($vista);
+	$CI->load->view('footer_principal');
+	$CI->load->view('footerJS');
+}
+
 ?>

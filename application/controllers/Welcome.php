@@ -28,5 +28,12 @@ class Welcome extends CI_Controller {
 		vista_datos('principal',$data);
 
 	}
+	
+	public function _404()
+	{
+		$data['title']="404";
+       vista_simple('error_404'); 
+	}
+	
 }
 ?>

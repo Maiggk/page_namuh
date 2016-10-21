@@ -77,7 +77,7 @@ class Divulgacion extends CI_Controller {
         vista_datos('divulgacion/prensa_view',$datos);
 	}
     
-	public function promocion()
+	 function promocion()
 	{
 
          $data['slides']= $this->Admin_models->traeSlides_promos();
@@ -88,17 +88,22 @@ class Divulgacion extends CI_Controller {
         vista_datos('divulgacion/promocion_view',$data);
 	}
     
-	public function blog()
+	 function blog()
 	{
         $datos['prueba']="datos";
         vista_datos('divulgacion/blog_principal',$datos);
 	}
     
-	public function blog_detalle()
+	 function blog_detalle()
 	{
         $datos['prueba']="datos";
         vista_datos('divulgacion/blog_detalle',$datos);
 	}
+
+    /* function none(){
+     //   $this->output->enable_profiler('TRUE');
+        echo '<script></script>';
+    }*/
    
 }
 
