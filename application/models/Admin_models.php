@@ -434,6 +434,19 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
         $resultado = $q->row()->total;
         return $resultado;
 	 }
+
+     function consultarUsuarioDatosGeneral($idusuario)
+	 {
+		 $this->db->select('*');
+	   $this->db->from('namuhdb_usuarios');
+	   $this->db->where('id_usuario',$idusuario);
+	   //$this->db->limit(1);
+
+        $q = $this->db->get();
+        $resultado = $q->row()->total;
+        return $resultado;
+	 }
+
  function actualizarUser($idUsuario,$data)
     {
          $this->db->where('id_usuario',$idUsuario);

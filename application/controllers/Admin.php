@@ -466,9 +466,9 @@ class Admin extends CI_Controller {
        // $x=$var1-$contante;
         //$y=$var2-$contante;
         $resultado=($widthDefault*$widthImage[1])/$widthImage[0];
-        ini_set('max_execution_time', '30');
+       // ini_set('max_execution_time', '30');
        // ini_set('max_input_time', '30');
-        ini_set('memory_limit', '128M');
+       // ini_set('memory_limit', '128M');
 
 
         $config['image_library'] = 'gd2';
@@ -486,7 +486,7 @@ class Admin extends CI_Controller {
             echo $this->image_lib->display_errors('', '');
         }
         
- 
+ //$this->image_lib->clear();
         return true;
     }
     function categoria()
