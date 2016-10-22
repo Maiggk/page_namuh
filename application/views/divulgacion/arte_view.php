@@ -12,9 +12,9 @@
           <div class="container">
             <div class="section-title upper light">
            <div class="row">
-                <div class="col-md-9" >
+                <div class="col-md-12" >
 <!--                   <img class="small-space" src="<?php echo base_url(); ?>assets/img/Logo_Galeria.png" width="10%"> -->
-                    <h2 class="" style="vertical-align: middle;">
+                    <h2 class="" style="text-align:center">
                         <img class="small-space" src="<?php echo base_url(); ?>assets/img/Logo_Galeria.png" width="20%">
                     </h2>
                </div>
