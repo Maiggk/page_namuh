@@ -12,11 +12,11 @@
           <div class="container">
             <div class="section-title upper light">
            <div class="row">
-                <div class="col-md-12" >
+                <div class="col-md-12" style="text-align:center">
 <!--                   <img class="small-space" src="<?php echo base_url(); ?>assets/img/Logo_Galeria.png" width="10%"> -->
-                    <h2 class="" style="text-align:center">
-                        <img class="small-space" src="<?php echo base_url(); ?>assets/img/Logo_Galeria.png" width="20%">
-                    </h2>
+<!--                //    <h2 class="" style="text-align:center">  small-space-->
+                        <img class="" src="<?php echo base_url(); ?>assets/img/Logo_Galeria.png" width="15%">
+<!--                    </h2>-->
                </div>
                 <div class="col-md-3"  style="float:right;">
                     <div class="ajusta_imagen_centro">
