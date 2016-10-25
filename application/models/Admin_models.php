@@ -443,7 +443,7 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
 	   //$this->db->limit(1);
 
         $q = $this->db->get();
-        $resultado = $q->row()->total;
+        $resultado = $q->row();
         return $resultado;
 	 }
 
