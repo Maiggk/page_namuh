@@ -722,45 +722,20 @@ class Admin extends CI_Controller {
           try{           
             $crud = new Grocery_CRUD();
             $crud->set_theme('bootstrap');
-            
-           // $crud->where('estado',1);
             $crud->set_table('slides_home');
             $crud->set_subject('Slides');
             $crud->set_language('spanish');
-           $crud->set_relation('estado','estados','estado');
-           $crud->callback_before_delete(array($this,'eliminar_imagen_slide'));
-            //$crud->set_relation('id_grupo','grupos','Grupo');
-              /*
-            $crud->display_as('descripcion', 'Descripción');
-            $crud->display_as('correo', 'E-mail');
-            $crud->display_as('foto', 'Foto');
-             $crud->field_type('estado', 'hidden', 1);*/
-            //$crud->display_as('estado', 'Estado');
-  
-            $crud->unset_delete();
-             /*   $crud->display_as('acciones', 'Acciones');
-               $crud->callback_column('acciones', array($this, 'EliminarCategoria'));*/
-            $crud->required_fields(
-              'foto',
-             /* 'descripcion',*/
-              'estado'
-            );
-            $crud->columns(
-             'foto',
-              'descripcion',
-              'estado'
-            );
-              
+			$crud->set_relation('estado','estados','estado');
+			$crud->callback_before_delete(array($this,'eliminar_imagen_slide'));
 			
-            
-               $state = $crud->getState(); //obtener el estado
-				$state_info=$crud->getStateInfo();	
-              
-              
-               $crud->set_field_upload('foto','assets/uploads/slides');
-               $output = $crud->render();
-	         
-               
+            $crud->unset_delete();
+            $crud->required_fields('foto','estado');
+            $crud->columns('foto','descripcion','estado','acciones');
+			$crud->callback_column('acciones', array($this, 'columna_eliminar_slides'));
+            $state = $crud->getState(); //obtener el estado
+			$state_info=$crud->getStateInfo();	
+            $crud->set_field_upload('foto','assets/uploads/slides');
+            $output = $crud->render();
             $output->titulo ="Administración Catálogos";
             $output->subtitulo ="Slides <br><br>(Se recomienda subir archivos con resolución 2800x1565 aprox.)"; 
 		vista_crud_admin('principalAdmin',$output);
@@ -769,7 +744,25 @@ class Admin extends CI_Controller {
         }
 
 
-    }   
+    }
+	
+	function columna_eliminar_slides($value,$row){
+       return '<a onclick="ValidarEliminarSlides('.$row->id_slides_home.')"  class="btn btn-danger">Eliminar</a>';
+	}
+	
+	function eliminarSlides(){
+			$primary_key=$this->input->post('id_slide');
+        	$this->db->where('id_slides_home',$primary_key);
+			$slide_img = $this->db->get('slides_home')->row();
+			
+			if(empty($slide_img)){
+				return true;
+			}else{
+				unlink("assets/uploads/slides/".$slide_img->foto);
+				$this->db->delete('slides_home',array('id_slides_home'=>$primary_key));
+				return true;
+			}
+    }
     
     function slidesInteriorismo()
     {
@@ -778,42 +771,22 @@ class Admin extends CI_Controller {
             $crud = new Grocery_CRUD();
             $crud->set_theme('bootstrap');
             
-           // $crud->where('estado',1);
             $crud->set_table('slides_interiorismo');
             $crud->set_subject('Slide Interiorismo');
-            $crud->set_language('spanish');
-           $crud->set_relation('estado','estados','estado');
-           $crud->callback_before_delete(array($this,'eliminar_imagen_slide_interiorismo'));
-            //$crud->set_relation('id_grupo','grupos','Grupo');
-              /*
-            $crud->display_as('descripcion', 'Descripción');
-            $crud->display_as('correo', 'E-mail');
-            $crud->display_as('foto', 'Foto');
-             $crud->field_type('estado', 'hidden', 1);*/
-            //$crud->display_as('estado', 'Estado');
-  
+			$crud->set_language('spanish');
+			$crud->set_relation('estado','estados','estado');
+            $crud->columns('foto','estado','Acciones');
+			$crud->callback_before_delete(array($this,'eliminar_imagen_slide_interiorismo'));
+			$crud->callback_column('Acciones',array($this,'columna_eliminar_slides_interiorismo'));
             $crud->unset_delete();
-             /*   $crud->display_as('acciones', 'Acciones');
-               $crud->callback_column('acciones', array($this, 'EliminarCategoria'));*/
             $crud->required_fields(
               'foto',
-//              'descripcion',
               'estado'
             );
-            $crud->columns(
-             'foto',
-//              'descripcion',
-              'estado'
-            );
-              
-			
-            
-               $state = $crud->getState(); //obtener el estado
-				$state_info=$crud->getStateInfo();	
-              
-              
-               $crud->set_field_upload('foto','assets/uploads/slides_interiorismo');
-               $output = $crud->render();
+			$state = $crud->getState(); //obtener el estado
+			$state_info=$crud->getStateInfo();	
+			$crud->set_field_upload('foto','assets/uploads/slides_interiorismo');
+			$output = $crud->render();
 	         
                
             $output->titulo ="Administración Catálogos";
@@ -824,21 +797,14 @@ class Admin extends CI_Controller {
         }
 
 
-    }   
-    
-    function eliminar_imagen_slide($primary_key){
-        	$this->db->where('id_slides_home',$primary_key);
-			$slide_img = $this->db->get('slides_home')->row();
-			
-			if(empty($slide_img)){
-				return true;
-			}else{
-				unlink("assets/uploads/slides/".$slide_img->foto);
-				return true;
-			}
     }
+	
+	function columna_eliminar_slides_interiorismo($value,$row){
+       return '<center><a onclick="ValidarEliminarSlidesInteriorismo('.$row->id_slides_interiorismo.')"  class="btn btn-danger">Eliminar</a></center>';
+	}
     
-    function eliminar_imagen_slide_interiorismo($primary_key){
+    function eliminar_slide_interiorismo(){
+			$primary_key=$this->input->post('id_slide');
         	$this->db->where('id_slides_interiorismo',$primary_key);
 			$slide_img = $this->db->get('slides_interiorismo')->row();
 			
@@ -846,6 +812,7 @@ class Admin extends CI_Controller {
 				return true;
 			}else{
 				unlink("assets/uploads/slides_interiorismo/".$slide_img->foto);
+				$this->db->delete('slides_interiorismo',array('id_slides_interiorismo'=>$primary_key));
 				return true;
 			}
     }

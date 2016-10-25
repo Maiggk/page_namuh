@@ -317,6 +317,133 @@ confirmaciones();
 				});
                 
     }
+	  function ValidarEliminarSlides(id)
+    {
+	   swal({   
+			title: "¿Está seguro que desea eliminar?",   
+			text: "Esta acción borrara el registro.",   
+			type: "warning",   
+			showCancelButton: true,   
+			confirmButtonColor: "#DD6B55",   
+			confirmButtonText: "Aceptar",   
+			cancelButtonText: "Cancelar",  
+			closeOnConfirm: false,   
+			closeOnCancel: true }, 
+			 function(isConfirm)
+			{
+				if (isConfirm) 
+				{
+				   // swal("Deleted!", "Your imaginary file has been deleted.", "success");  
+					 swal({   
+						title: "Está accion no se puede deshacer si continua ¿Esta seguro?",
+						text: "La siguiente acción eliminara permanentemente el elemento seleccionado.",   
+						type: "warning",   
+						showCancelButton: true,   
+						confirmButtonColor: "#DD6B55",   
+						confirmButtonText: "Aceptar",   
+						cancelButtonText: "Cancelar",  
+						closeOnConfirm: false,   
+						closeOnCancel: true }, 
+						  function(isConfirm)
+						{   
+							if (isConfirm) 
+							{     
+								$.ajax({
+									url:"<?= site_url('Admin/eliminarSlides') ?>",
+									type: "POST", //envia la posicion por metodo post de ajax
+									data:{
+											// id:$('#valor').val(),
+											id_slide:id,
+									},
+									async: true,	 
+									success: function(response)
+										{
+											swal("Deleted!", "El registro ha sido eliminado correctamente", "success");  
+											 parent.location.reload(true);
+									
+										},
+									error: function (obj, error, objError){
+										alert("Error: " + objError);
+										}
+								});
+							} else 
+							{     
+						  
+							} 
+						}
+					);
+				} else 
+				{     
+				   
+				} 
+			}
+		);
+       
+    }
+	
+	function ValidarEliminarSlidesInteriorismo(id)
+    {
+	   swal({   
+			title: "¿Está seguro que desea eliminar?",   
+			text: "Esta acción borrara el registro.",   
+			type: "warning",   
+			showCancelButton: true,   
+			confirmButtonColor: "#DD6B55",   
+			confirmButtonText: "Aceptar",   
+			cancelButtonText: "Cancelar",  
+			closeOnConfirm: false,   
+			closeOnCancel: true }, 
+			 function(isConfirm)
+			{
+				if (isConfirm) 
+				{
+				   // swal("Deleted!", "Your imaginary file has been deleted.", "success");  
+					 swal({   
+						title: "Está accion no se puede deshacer si continua ¿Esta seguro?",
+						text: "La siguiente acción eliminara permanentemente el elemento seleccionado.",   
+						type: "warning",   
+						showCancelButton: true,   
+						confirmButtonColor: "#DD6B55",   
+						confirmButtonText: "Aceptar",   
+						cancelButtonText: "Cancelar",  
+						closeOnConfirm: false,   
+						closeOnCancel: true }, 
+						  function(isConfirm)
+						{   
+							if (isConfirm) 
+							{     
+								$.ajax({
+									url:"<?= site_url('Admin/eliminar_slide_interiorismo') ?>",
+									type: "POST", //envia la posicion por metodo post de ajax
+									data:{
+											// id:$('#valor').val(),
+											id_slide:id,
+									},
+									async: true,	 
+									success: function(response)
+										{
+											swal("Deleted!", "El registro ha sido eliminado correctamente", "success");  
+											 parent.location.reload(true);
+									
+										},
+									error: function (obj, error, objError){
+										alert("Error: " + objError);
+										}
+								});
+							} else 
+							{     
+						  
+							} 
+						}
+					);
+				} else 
+				{     
+				   
+				} 
+			}
+		);
+       
+    }
     
 </script>
 
