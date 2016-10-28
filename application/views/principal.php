@@ -1,5 +1,4 @@
-
-        
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fotorama.css"/>        
       <section id="principal" class="demo-1" style="text-align:center">
        		<div class="slider">
 			<ul class="rslides" id="slider1">
@@ -12,10 +11,6 @@
 					</div>
 				</li>
                 <?php } ?>
-			
-					
-              
-				
 			</ul>
 		</div>
       </section>
@@ -32,80 +27,24 @@
                 <h2 class="bordered-left upper wow flipInX">PROYECTOS INTEGRALES </h2>
                 <p class="lead wow flipInX">
                     ¿Algún proyecto en mente? En Namuh contamos con un equipo especializado para asesorarte y diseñar tu espacio. Ofrecemos productos exclusivos para tus proyectos. ¿Deseas más información? 
-                     <a href="#contacts" title="Contacts" data-ref="contacts">CONTÁCTANOS</a>.</p>
+                     <a href="#contacts" title="Contacts" data-ref="contacts">CONTÁCTANOS</a>.</p><br/>
               </div>
             </div>
-            <div class="col-md-12">
-              <div class="device-content">
-                <div data-device="ipad" data-orientation="landscape" data-color="white" class="device-mockup">
-                  <div class="device">
-                    <div class="screen">
-                      <div data-navitagion="false" data-slide-speed="300" data-pagination-speed="400" data-single-item="true" data-auto-height="true" data-auto-play="true" class="owl-carousel owl-theme">
-                        <!-- Start Item Slide-->
-                          <?php $i=1; 
-                          foreach($slidesInteriorismo as $slideInteriorismo){ ?>
-                            <div class="item">
-                                <a href="<?php echo base_url(); ?>index.php/registro<?php echo $i; ?>">
-                                    <img src="<?php echo base_url(); ?>assets/uploads/slides_interiorismo/<?php echo $slideInteriorismo->foto; ?>" alt="" class="img-responsive">
-                                </a>
-                          </div>
-                            <?php $i=$i+1; }?>
-                       
-                      <!--  <div class="item"><img src="assets/img/arq_01.jpg" alt="" class="img-responsive"></div>
-                        <div class="item"><img src="assets/img/arq_02.jpg" alt="" class="img-responsive"></div>
-                        <div class="item"><img src="assets/img/arq_03.jpg" alt="" class="img-responsive"></div>-->
-                        <!-- End Item Slide-->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+			<div class="fotorama" data-nav="thumbs" data-thumbmargin="10" data-thumbborderwidth="6" data-autoplay="true" data-stopautoplayontouch="false" data-thumbwidth="120px" data-thumbheight="120px" data-width="100%"  data-ratio="16/9" >
+				<?php 
+				if(isset($slidesInteriorismo)!=""){
+					$i=1;
+					foreach($slidesInteriorismo as $slideInteriorismo){?>
+						<a href="<?php echo base_url(); ?>index.php/registro<?php echo $i; ?>">
+						  <img src="<?php echo base_url().'assets/uploads/slides_interiorismo/'.$slideInteriorismo->foto; ?>" alt="<?php echo $slideInteriorismo->foto; ?>" />
+						</a>
+				<?php $i=$i+1; } }  ?>
+			</div>
+		  </div>
+		</div>		
         </section>
         
-        <!--<section id="postales" class="sep-top-3x">
 
-
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="section-title">
-                <h2 class="bordered-left upper wow flipInX">Viajes Namuh</h2>
-            
-              </div>
-            </div>
-            <div class="col-md-12">
-                <div class="device-content">
-                    <div data-device="ipad" data-orientation="landscape" data-color="white" class="device-mockup">
-                      <div class="device">
-                        <div class="screen">
-                          <div data-navitagion="false" data-slide-speed="300" data-pagination-speed="400" data-single-item="true" data-auto-height="true" data-auto-play="true" class="owl-carousel owl-theme">
-                            
-                              <?php $i=1; 
-                              foreach($albums as $album){ ?>
-                                <div class="item">
-                                     <a href="<?php echo base_url();?>index.php/postales/album/<?php echo $album->id_albums_postales; ?>">
-                                        <img src="<?php echo base_url(); ?>assets/uploads/postales/album_caratulas/<?php echo $album->caratula_album; ?>" alt="" class="img-responsive">
-                                    </a>
-                                    <p class="upper" style="text-align:center"><?php echo $album->nombre_album; ?></p>
-                              </div>
-                                
-                                <?php $i=$i+1; }?>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-          </div>
-        </div>
-        </section>
--->
-
-        
- 
       <!-- Start Parallax section-->
       <section id="pricing" style="background-image: url(assets/img/intro-home6.jpg);" class="parallax">
         <div class="section-shade sep-top-5x sep-bottom-4x">
@@ -273,4 +212,4 @@
         </div>
       </section>
       <!-- End Contact section-->
-     
+<script src="<?php echo base_url(); ?>assets/js/fotorama.js"></script>
