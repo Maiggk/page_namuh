@@ -596,11 +596,11 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
         return $resultado;
         
  }
-    function ConsultaGaleriaProductos($idProducto)
+    function ConsultaGaleriaProductos($id_galeriaproductos)
  {
         $this->db->select('*');
         $this->db->from('galeria_productos');
-       $this->db->where('id_producto',$idProducto);
+       $this->db->where('id_galeriaproductos',$id_galeriaproductos);
          $q = $this->db->get();
         $resultado = $q->row();
         return $resultado;

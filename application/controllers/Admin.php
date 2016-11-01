@@ -309,7 +309,7 @@ class Admin extends CI_Controller {
     }
        function EliminarGaleriaProductos($value,$row)
     {
-           return '<a onclick="ValidarEliminarPermanentementeGaleriaProductos('.$row->id_producto.')"  class="btn btn-danger">Eliminar</a>';
+           return '<a onclick="ValidarEliminarPermanentementeGaleriaProductos('.$row->id_galeriaproductos.')"  class="btn btn-danger">Eliminar</a>';
     }
     function productos_detalle()
     {
@@ -1358,7 +1358,8 @@ class Admin extends CI_Controller {
              $galeriaProducto=$this->Admin_models->ConsultaGaleriaProductos($id);
             $ruta='assets/uploads/galeria_productos/'.$galeriaProducto->ruta_foto;
 		    unlink($ruta);
-             $this->db->delete('galeria_productos', array('id_producto' => $id));
+             $this->db->where('id_galeriaproductos',$id);
+             $this->db->delete('galeria_productos');
             //$this->db->delete('galeria_artistas', array('id_artista' => $id));
         }
     }
