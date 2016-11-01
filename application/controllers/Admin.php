@@ -1352,7 +1352,10 @@ class Admin extends CI_Controller {
         }
         if($opcion==3)
         {
-             $this->db->delete('galeria_productos', array('id_galeriaproductos' => $id));
+             $galeriaProducto=$this->Admin_models->ConsultaGaleriaProductos($id);
+            $ruta='assets/uploads/galeria_productos/'.$galeriaProducto->ruta_foto;
+		    unlink($ruta);
+             $this->db->delete('galeria_productos', array('id_producto' => $id));
             //$this->db->delete('galeria_artistas', array('id_artista' => $id));
         }
     }

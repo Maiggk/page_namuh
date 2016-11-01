@@ -595,6 +595,16 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
         $resultado = $q->row();
         return $resultado;
         
+ }
+    function ConsultaGaleriaProductos($idProducto)
+ {
+        $this->db->select('*');
+        $this->db->from('galeria_productos');
+       $this->db->where('id_producto',$idProducto);
+         $q = $this->db->get();
+        $resultado = $q->row();
+        return $resultado;
+
  } 
     function verificarExistenciaProductos($id)
  {
