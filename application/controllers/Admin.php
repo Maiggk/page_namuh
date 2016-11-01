@@ -725,12 +725,15 @@ class Admin extends CI_Controller {
             $crud->set_table('slides_home');
             $crud->set_subject('Slides');
             $crud->set_language('spanish');
-			$crud->set_relation('estado','estados','estado');
+			// $crud->set_relation('estado','estados','estado');
 			$crud->callback_before_delete(array($this,'eliminar_imagen_slide'));
 			
             $crud->unset_delete();
-            $crud->required_fields('foto','estado');
-            $crud->columns('foto','descripcion','estado','acciones');
+            $crud->required_fields('foto');
+            $crud->columns('foto','descripcion','acciones');
+			$crud->field_type('estado','hidden',2);
+			$crud->add_fields('foto','descripcion','estado');
+			$crud->edit_fields('foto','descripcion','estado');
 			$crud->callback_column('acciones', array($this, 'columna_eliminar_slides'));
             $state = $crud->getState(); //obtener el estado
 			$state_info=$crud->getStateInfo();	

@@ -1,7 +1,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fotorama.css"/>
 <link href="<?php echo base_url(); ?>assets/css/photoswipe_master/default-skin/default-skin.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/photoswipe.css" rel="stylesheet">
-<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/fotorama.css"/>-->
       <!-- Start header Section-->
       <section class="header-section fading-title parallax">
         <div class="section-shade sep-top-5x sep-bottom-3x">
