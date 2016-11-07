@@ -431,7 +431,7 @@ body {
                                 text: "No se encontraron coincidencias",   
                                 type: "warning",   
                                 showCancelButton: false,   
-                                confirmButtonColor: "#DD6B55",   
+                                confirmButtonColor: "#656668",
                                 confirmButtonText: "Aceptar",   
                                   
                                 closeOnConfirm: true,   
@@ -509,7 +509,7 @@ body {
                                 text: "No se encontraron coincidencias",   
                                 type: "warning",   
                                 showCancelButton: false,   
-                                confirmButtonColor: "#DD6B55",   
+                                confirmButtonColor: "#656668",
                                 confirmButtonText: "Aceptar",   
                                  
                                 closeOnConfirm: true,   
@@ -613,7 +613,7 @@ body {
                                 text: "No se encontraron coincidencias",   
                                 type: "warning",   
                                 showCancelButton: false,   
-                                confirmButtonColor: "#DD6B55",   
+                                confirmButtonColor: "#656668",
                                 confirmButtonText: "Aceptar",   
                                  
                                 closeOnConfirm: true,   

@@ -335,7 +335,7 @@
                                 text: "<?php echo $this->session->userdata('nameUser'); ?>",
 //                                type: "success",
                                 showCancelButton: false,   
-                                confirmButtonColor: "#817d7c",
+                                confirmButtonColor: "#656668",
                                 confirmButtonText: "Aceptar",   
                                 cancelButtonText: "Cancelar",  
                                 closeOnConfirm: true,   

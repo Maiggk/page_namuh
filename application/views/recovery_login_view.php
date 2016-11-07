@@ -286,7 +286,7 @@
                                 text: "Ahora puede iniciar sesion con su nueva contraseña",   
                                 type: "success",   
                                 showCancelButton: false,   
-                                confirmButtonColor: "#DD6B55",   
+                                confirmButtonColor: "#656668",
                                 confirmButtonText: "Aceptar",   
                                 cancelButtonText: "Cancelar",  
                                 closeOnConfirm: true,   
@@ -517,7 +517,7 @@
                                 text: "Nota: No olvides checar tu bandeja de correo no deseado",   
                                 type: "success",   
                                 showCancelButton: false,   
-                                confirmButtonColor: "#DD6B55",   
+                                confirmButtonColor: "#656668",
                                 confirmButtonText: "Aceptar",   
                                 cancelButtonText: "Cancelar",  
                                 closeOnConfirm: false,   
@@ -550,7 +550,7 @@
                                 text: "Vuelve a intentarlo mas tarde o contacta al administrador",   
                                 type: "error",   
                                 showCancelButton: true,   
-                                confirmButtonColor: "#DD6B55",   
+                                confirmButtonColor: "#656668",
                                 confirmButtonText: "Aceptar",   
                                 cancelButtonText: "Cancelar",  
                                 closeOnConfirm: false,   
@@ -577,4 +577,3 @@
             }
 		</script>
 
-		

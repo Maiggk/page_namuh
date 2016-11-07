@@ -59,8 +59,8 @@ body.stop-scrolling {
       left: 15px;
       right: 15px; } }
   .sweet-alert h2 {
-    color: #575757;
-    font-size: 30px;
+    color: #adafb2;
+    font-size: 47px;
 	     font-family: 'GillSans';
     font-style: italic;
     letter-spacing: 0.2em;
@@ -195,7 +195,7 @@ body.stop-scrolling {
     opacity: 0;
     visibility: hidden; }
   .sweet-alert button {
-    background-color: #8CD4F5;
+    background-color: #656668;
 	font-family: 'GillSans';
     letter-spacing: 0.2em;
     text-transform: uppercase;
