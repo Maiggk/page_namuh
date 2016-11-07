@@ -518,7 +518,9 @@ class Registro extends CI_Controller {
             $this->load->library('email', $config);
 
 
-            $filename =base_url().'assets/img/correoBienvenida/CORREO_BIENVENIDA_9.jpg';
+
+            $filename =base_url().'assets/img/correoBienvenida/bienvenido.jpg';
+
 
            $sa= $this->email->attach($filename);
               /* */
