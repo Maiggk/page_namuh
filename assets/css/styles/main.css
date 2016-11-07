@@ -50,7 +50,8 @@ dl.metadata dt,
 .contact-form label,
 .price-shop,
 blockquote .bold-quote {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Gill Sans', sans-serif;
+/*  font-family: 'Open Sans', sans-serif;*/
 }
 h1 {
   font-size: 4em;

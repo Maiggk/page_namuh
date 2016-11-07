@@ -333,9 +333,9 @@
                                  swal({   
                                 title: "¡Bienvenido!",
                                 text: "<?php echo $this->session->userdata('nameUser'); ?>",
-                                type: "success",   
+//                                type: "success",
                                 showCancelButton: false,   
-                                confirmButtonColor: "#DD6B55",   
+                                confirmButtonColor: "#817d7c",
                                 confirmButtonText: "Aceptar",   
                                 cancelButtonText: "Cancelar",  
                                 closeOnConfirm: true,   
