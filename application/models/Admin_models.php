@@ -443,7 +443,7 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
 	   //$this->db->limit(1);
 
         $q = $this->db->get();
-        $resultado = $q->row()->total;
+        $resultado = $q->row();
         return $resultado;
 	 }
 
@@ -606,6 +606,7 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
         return $resultado;
 
  }
+
     
     
       function producto_insertado($idGrupo)
@@ -645,5 +646,47 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
     
     
     
+
+
+function countVerificarValorOrdenamiento($numOrdenamiento)
+ {
+        $this->db->select('count(*) as total ');
+        $this->db->from('orden_apariciones');
+       $this->db->where('numero_aparicion',$numOrdenamiento);
+         $q = $this->db->get();
+        $resultado = $q->row()->total;
+        return $resultado;
+
+ }
+    function saveNuevoOrdenamiento($form)
+    {
+        $this->db->insert('orden_apariciones',$form);
+	    return $this->db->insert_id();
+    }
+
+    function consultarOrdenamiento($id)
+    {
+        $this->db->select('*');
+        $this->db->from('orden_apariciones');
+        $this->db->where('id_orden_aparicion',$id);
+
+        $q = $this->db->get();
+        $resultado = $q->row();
+        return $resultado;
+    }
+
+
+
+    function updateOrdenamiento($form,$idor)
+    {
+             $this->db->where('id_orden_aparicion',$idor);
+        $this->db->update('orden_apariciones',$form);
+    }
+    function updateOrdenamientoProductos($form,$idor)
+    {
+             $this->db->where('id_aparicion',$idor);
+        $this->db->update('productos',$form);
+    }
+
 }
 ?>

@@ -206,6 +206,12 @@
                               </a>
                           </li>
                           <li>
+                              <a  href="<?php echo base_url().'index.php/admin/ordenAparicion'; ?>">
+                                  <i class="fa fa-sort-alpha-asc"></i>
+                                  <span>Orden Aparición</span>
+                              </a>
+                          </li>
+                          <li>
                               <a  href="<?php echo base_url().'index.php/admin/clasificacion'; ?>">
                                 <i class="fa fa-gears"></i>
                                 <span class="trn">Clasificación</span>

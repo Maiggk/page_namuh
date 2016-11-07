@@ -1464,6 +1464,238 @@ class Admin extends CI_Controller {
             show_error($e->getMessage().' --- '.$e->getTraceAsString());
         }
     }
+
+    /////vista principal para agregar
+    /////vista principal para agregar
+    /////vista principal para agregar
+
+    function ordenAparicion()
+    {
+                          try{
+            $crud = new Grocery_CRUD();
+            $crud->set_theme('bootstrap');
+
+           // $crud->where('estado_artista',1);
+            $crud->set_table('orden_apariciones');
+            $crud->set_subject('Orden aparición');
+            $crud->set_language('spanish');
+
+            $crud->callback_column('Agregar', array($this, 'agregarProductosBoton'));
+            $crud->callback_column('Quitar',array($this,'quitarProductosBoton'));
+              //
+            $crud->display_as('orden', 'Titulo de orden');
+            $crud->display_as('descripcion', 'Descripción');
+            $crud->display_as('numero_aparicion', 'Orden de aparición');
+
+
+            $crud->unset_delete();
+
+            $crud->required_fields(
+              'numero_aparicion',
+                'orden',
+              'descripcion'
+
+
+            );
+            $crud->columns(
+                'numero_aparicion',
+                'orden',
+              'descripcion',
+              'Agregar',
+              'Quitar'
+
+            );
+
+
+
+               $state = $crud->getState(); //obtener el estado
+				$state_info=$crud->getStateInfo();
+
+
+              // $crud->set_field_upload('foto_prensa_caratula','assets/uploads/prensa/caratulas_revistas');
+               $output = $crud->render();
+	          if($state == 'edit')
+				{
+
+						$primary_key = $state_info->primary_key;
+						redirect('Admin/ordenAparicionEdit/'.$primary_key);
+				}
+               if($state == 'add')
+				{
+						redirect('Admin/ordenAparicionAdd');
+				}
+
+            $output->titulo ="Administración Catálogos";
+            $output->subtitulo ="Orden de aparición de productos";
+		vista_crud_admin('principalAdmin',$output);
+        }catch(Exception $e){
+            show_error($e->getMessage().' --- '.$e->getTraceAsString());
+        }
+    }
+     function agregarProductosBoton($primary_key,$row){
+
+         return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/agregarProductos/'.$row->numero_aparicion.'">Agregar productos</a>';
+    }
+    function agregarProductos()
+    {
+        if($this->uri->segment(3)==NULL)
+        {
+            echo '<script>
+            window.parent.location.href="'.base_url().'index.php/Admin/artistas";
+            </script>';
+        }else
+        {
+            $idOrden=$this->uri->segment(3);
+            $data['tit'] ="Administración Catálogos";
+            $data['sub'] ="Agregar productos a orden de aparición";
+            $data['id'] =$idOrden;
+            $this->session->set_userdata('Id_0rd3n4',$idOrden);
+            //vista_crud_admin('ordenamiento/add_Productos_ordenamiento_view',$data);
+            vista_crud_admin_https('ordenamiento/add_Productos_ordenamiento_view',$data);
+        }
+
+    }
+     function quitarProductosBoton($primary_key,$row){
+
+         return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/quitarProductos/'.$row->numero_aparicion.'">Quitar productos</a>';
+    }
+    function quitarProductos()
+    {
+        if($this->uri->segment(3)==NULL)
+        {
+            echo '<script>
+            window.parent.location.href="'.base_url().'index.php/Admin/artistas";
+            </script>';
+        }else
+        {
+            $idOrden=$this->uri->segment(3);
+            $data['tit'] ="Administración Catálogos";
+            $data['sub'] ="Agregar productos a orden de aparición";
+            $data['id'] =$idOrden;
+            $this->session->set_userdata('Id_0rd3n4',$idOrden);
+            //vista_crud_admin('ordenamiento/quit_Productos_ordenamiento_view',$data);
+            vista_crud_admin_https('ordenamiento/quit_Productos_ordenamiento_view',$data);
+        }
+
+    }
+
+    //////funciones para agregar
+    //////funciones para agregar
+    //////funciones para agregar
+    //////funciones para agregar
+    function ordenAparicionAdd()
+    {
+        $data['tit'] ="Administración Catálogos";
+        $data['sub'] ="Agregar nuevo orden de aparición de productos";
+        vista_crud_admin('ordenamiento/add_ordenamiento_view',$data);
+    }
+    function verificarValorOrdenamiento()
+    {
+        $ordenAparicion=$this->input->post('ordenAparicion');
+        $resp = $this->Admin_models->countVerificarValorOrdenamiento($ordenAparicion);
+        echo $resp;
+    }
+    function AddOrdenamiento()
+    {
+       $ordenAparicion=$this->input->post('ordenAparicion');
+       $descripcion=$this->input->post('descripcion');
+       $titulo=$this->input->post('titulo');
+           $form=array(
+
+            'orden'=>$titulo,
+            'descripcion'=>$descripcion,
+            'numero_aparicion'=>$ordenAparicion
+
+                   );
+
+        $this->Admin_models->saveNuevoOrdenamiento($form);
+
+    }
+
+
+
+    ///////////////editar ordenamiento
+    ///////////////editar ordenamiento
+    ///////////////editar ordenamiento
+
+
+    function ordenAparicionEdit($id)
+    {
+        if($id!='')
+        {
+            if(is_numeric($id))
+            {
+                if($id>0)
+                {
+                    $data['tit'] ="Administración Catálogos";
+                    $data['sub'] ="Editar orden de aparición de productos";
+
+                     $resultado= $this->Admin_models->consultarOrdenamiento($id);
+                    $data['infoOrdenamiento'] = $resultado;
+                    $this->session->set_userdata('Id_0rd3n4',base64_encode($id));
+                    $this->session->set_userdata('num_0rd3n4',base64_encode($resultado->numero_aparicion));
+                    vista_crud_admin('ordenamiento/edit_ordenamiento_view',$data);
+                }else
+                {
+                     redirect('Admin/ordenAparicion');
+                }
+
+            }else
+            {
+               redirect('Admin/ordenAparicion');
+            }
+
+        }else
+        {
+            redirect('Admin/ordenAparicion');
+        }
+    }
+    function verificarValorOrdenamientoEdit()
+    {
+
+        $numOrd=base64_decode($this->session->userdata('num_0rd3n4'));
+
+        $ordenAparicion=$this->input->post('ordenAparicion');
+        if($numOrd!=$ordenAparicion){
+            $resp = $this->Admin_models->countVerificarValorOrdenamiento($ordenAparicion);
+            echo $resp;
+        }else
+        {
+            echo 0;
+        }
+    }
+    function UpdateOrdenamiento()
+    {
+       $ordenAparicion=$this->input->post('ordenAparicion');
+       $descripcion=$this->input->post('descripcion');
+       $titulo=$this->input->post('titulo');
+           $form=array(
+
+            'orden'=>$titulo,
+            'descripcion'=>$descripcion,
+            'numero_aparicion'=>$ordenAparicion
+
+                   );
+
+        $idor=base64_decode($this->session->userdata('Id_0rd3n4'));
+
+         $formProductos=array(
+            'id_aparicion'=>$ordenAparicion
+                   );
+        $this->Admin_models->updateOrdenamiento($form,$idor);
+        $this->Admin_models->updateOrdenamientoProductos($formProductos, $this->session->userdata('num_0rd3n4'));
+
+        $this->session->unset_userdata('Id_0rd3n4');
+        $this->session->unset_userdata('num_0rd3n4');
+
+    }
+    function quitarVariablesSesion()
+    {
+        $this->session->unset_userdata('Id_0rd3n4');
+        $this->session->unset_userdata('num_0rd3n4');
+        redirect('Admin/ordenAparicion');
+    }
+
 }
 
 ?>

@@ -487,7 +487,7 @@ class Registro extends CI_Controller {
         {
             $data=array('estado_usuario'=>'1');
             $this->Admin_models->actualizarUser($idUsuario,$data);
-            $this->enviarCorreoBienvenida($idCliente);
+            $this->enviarCorreoBienvenida($idUsuario);
            // $datosContacto=$this->User_models->consultarCorreoUsuario($idUsuario);
         //    $correo=$datosContacto->correo;
           //  $Existe=1;
@@ -518,7 +518,7 @@ class Registro extends CI_Controller {
             $this->load->library('email', $config);
 
 
-            $filename =base_url().'assets/img/correoBienvenida/CORREO_BIENVENIDA _9.jpg';
+            $filename =base_url().'assets/img/correoBienvenida/CORREO_BIENVENIDA_9.jpg';
 
            $sa= $this->email->attach($filename);
               /* */
