@@ -20,3 +20,4 @@ license.txt
 assets/uploads/assets/images
 /assets/uploads/
 >>>>>>> master
+/application/helpers/utility_helper.php
