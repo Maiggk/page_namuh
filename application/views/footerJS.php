@@ -55,6 +55,7 @@
 		swal({title: '<span style="color:#FF0000">  </span>', 
 				text: '<span style="color:#FF0000">Para acceder a esta sección registrate.</span>', 
 				imageUrl: "<?php echo base_url(); ?>assets/img/logo-dark.png",
+              confirmButtonColor:"#656668",
 				imageSize:"250x100",
 				html: true });
 	});
