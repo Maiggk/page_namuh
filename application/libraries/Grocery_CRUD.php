@@ -3110,6 +3110,7 @@ class grocery_CRUD_States extends grocery_CRUD_Layout
                 {
                     $state_info->order_by = $_POST['order_by'];
                 }
+
                 if(!empty($_POST['search_text']))
                 {
                     if(empty($_POST['search_field']))

@@ -233,6 +233,7 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
       //  $this->db->limit(1);
      $this->db->where('imagen is not null');
          $this->db->where('estado',2);
+    $this->db->order_by('id_aparicion', 'ASC');
          $q = $this->db->get();
         $resultado = $q->result();
         return $resultado;
@@ -318,6 +319,7 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
        $this->db->where('p.imagen is not null');
          $this->db->where('p.estado',2);
          $this->db->where('u.estado_union',1);
+         $this->db->order_by('p.id_aparicion', 'ASC');
          $q = $this->db->get();
         $resultado = $q->result();
         return $resultado;
@@ -332,6 +334,7 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
         $this->db->where('p.imagen is not null');
          $this->db->where('p.estado',2);
           $this->db->where('u.estado_union',1);
+       $this->db->order_by('p.id_aparicion', 'ASC');
          $q = $this->db->get();
         $resultado = $q->result();
         return $resultado;
@@ -348,6 +351,7 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
        $this->db->where('u.id_grupo',$grupo);
        $this->db->where('u.id_tipo',$tipo);
           $this->db->where('u.estado_union',1);
+         $this->db->order_by('p.id_aparicion', 'ASC');
          $q = $this->db->get();
         $resultado = $q->result();
         return $resultado;
@@ -376,6 +380,7 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
        $this->db->where('u.id_categoria',$idcategoria);
        $this->db->where('u.id_grupo',$idgrupo);
              $this->db->where('u.estado_union',1);
+
          $q = $this->db->get();
         $resultado = $q->row()->total;
         return $resultado;

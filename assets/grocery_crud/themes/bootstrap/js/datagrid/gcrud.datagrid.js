@@ -292,6 +292,7 @@
             },
             error: function () {
                 gcrud_container.removeClass(Datagrid.CLASS_LOADING);
+
             },
             data: data_to_send,
             dataType: 'json',
