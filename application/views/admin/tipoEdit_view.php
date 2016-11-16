@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="<?php echo base_url().'assets/sweetalert-master/dist/sweetalert.css'; ?>">
-<script text="text/javascript" src="<?php echo base_url().'assets/sweetalert-master/dist/sweetalert.min.js'; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url().'assets/css/sweetalertAdmin/sweetalert.css'; ?>">
+<script text="text/javascript" src="<?php echo base_url().'assets/js/sweetalert/sweetalert.min.js'; ?>"></script>
 <style type='text/css'>
 body
 {
@@ -282,7 +282,7 @@ function verificarDatos()
 		
 	
 
-		/* Apply fancybox to multiple items */
+		/* Apply fancybox to multiple items
 		
 	  $('.fancybox').fancybox({
 			width		: '95%',
