@@ -1454,6 +1454,7 @@ class Admin extends CI_Controller {
             $crud->set_subject('Orden aparición');
             $crud->set_language('spanish');
 
+            $crud->callback_column('Lista', array($this, 'viewListBoton'));
             $crud->callback_column('Agregar', array($this, 'agregarProductosBoton'));
             $crud->callback_column('Quitar',array($this,'quitarProductosBoton'));
               //
@@ -1475,6 +1476,7 @@ class Admin extends CI_Controller {
                 'numero_aparicion',
                 'orden',
               'descripcion',
+              'Lista',
               'Agregar',
               'Quitar'
 
@@ -1510,6 +1512,11 @@ class Admin extends CI_Controller {
 
          return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/agregarProductos/'.$row->numero_aparicion.'">Agregar productos</a>';
     }
+    function viewListBoton($primary_key,$row){
+
+         return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/listProductos/'.$row->numero_aparicion.'">Lista de productos agregados</a>';
+    }
+
     function agregarProductos()
     {
         if($this->uri->segment(3)==NULL)
@@ -1526,6 +1533,59 @@ class Admin extends CI_Controller {
             $this->session->set_userdata('Id_0rd3n4',$idOrden);
             //vista_crud_admin('ordenamiento/add_Productos_ordenamiento_view',$data);
             vista_crud_admin_https('ordenamiento/add_Productos_ordenamiento_view',$data);
+        }
+
+    }
+    function listProductos()
+    {
+        if($this->uri->segment(3)==NULL)
+        {
+            echo '<script>
+            window.parent.location.href="'.base_url().'index.php/Admin/artistas";
+            </script>';
+        }else
+        {
+            $idOrden=$this->uri->segment(3);
+            $data['tit'] ="Administración Catálogos";
+            $data['sub'] ="Lista de productos agregados";
+         try{
+            $crud = new Grocery_CRUD();
+            $crud->set_theme('bootstrap');
+
+            $crud->where('id_aparicion',$idOrden);
+            $crud->set_table('productos');
+            $crud->set_subject('Lista productos agregados a la lista numero '.$idOrden);
+            $crud->set_language('spanish');
+
+            $crud->display_as('codigo', 'Código');
+            $crud->display_as('imagen', 'Foto');
+            $crud->display_as('nombre', 'Producto');
+            $crud->display_as('descripcion', 'Descripción');
+            $crud->display_as('precio', 'Precio');
+
+            $crud->columns(
+                'codigo',
+                'imagen',
+                'nombre',
+              'descripcion',
+              'precio'
+            );
+            $crud->unset_delete();
+            $crud->unset_add();
+            $crud->unset_edit();
+
+
+       $crud->set_field_upload('imagen','assets/uploads/productos');
+		    $output = $crud->render();
+
+
+            $output->titulo ="Administración Productos";
+            $output->subtitulo ="Lista de productos agregados";
+		    vista_crud_admin('principalAdmin',$output);
+        }catch(Exception $e){
+            show_error($e->getMessage().' --- '.$e->getTraceAsString());
+        }
+
         }
 
     }
