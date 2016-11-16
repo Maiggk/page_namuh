@@ -75,7 +75,7 @@ function updateProductosPromocion($id,$form)
 	   $this->db->select('*');
 	   $this->db->from('productos');
 	   $this->db->where($where);
-        $this->db->where('id_aparicion !=',1);
+        $this->db->where('id_aparicion !=',0);
         $this->db->where('estado',2);
 	   //$this->db->limit(1);
 
