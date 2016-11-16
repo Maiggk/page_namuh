@@ -13,7 +13,7 @@ a:focus,
 a:hover,
 a.light:hover,
 a.dark:hover {
-  color: #fff;
+  color: #000000;
 }
 .text-primary,
 .text-primary:hover {

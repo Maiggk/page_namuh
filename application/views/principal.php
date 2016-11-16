@@ -27,10 +27,13 @@
                 <h2 class="bordered-left upper wow flipInX">PROYECTOS INTEGRALES </h2>
                 <p class="lead wow flipInX">
                     ¿Algún proyecto en mente? En Namuh contamos con un equipo especializado para asesorarte y diseñar tu espacio. Ofrecemos productos exclusivos para tus proyectos. ¿Deseas más información? 
-                     <a href="#contacts" title="Contacts" data-ref="contacts">CONTÁCTANOS</a>.</p><br/>
+                     <a href="#contacts" title="Contacts" data-ref="contacts">CONTÁCTANOS</a>.<br/>
+					<a href="<?php echo base_url();?>assets/uploads/proyectos_integrales/book_proyectos_.pdf" download="Proyectos Namuh" ><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> &nbsp;Descarga book de proyectos </a>
+				</p>
+					 <br/>
               </div>
             </div>
-			<div class="fotorama" data-nav="thumbs" data-thumbmargin="10" data-thumbborderwidth="6" data-autoplay="true" data-stopautoplayontouch="false" data-thumbwidth="120px" data-thumbheight="120px" data-width="100%"  data-ratio="16/9" >
+			<div class="fotorama" data-nav="thumbs" data-thumbmargin="10" data-thumbborderwidth="6" data-autoplay="4000" data-stopautoplayontouch="false" data-thumbwidth="120px" data-thumbheight="120px" data-width="100%"  data-ratio="16/9" >
 				<?php
 				if(isset($slidesInteriorismo)!=""){
 					$i=1;
@@ -40,6 +43,8 @@
 						</a>
 				<?php $i=$i+1; } }  ?>
 			</div>
+			<br/>
+			<br/>
 		  </div>
 		</div>
         </section>

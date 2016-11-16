@@ -96,7 +96,7 @@
 <!-- Form Name -->
 <legend>
       <label class="  control-label"  style="    text-align: justify;
-    color: #909090;" for="textinput"> Paso 2: Ingresa tu correo para solicitar un código para recuperar tu contraseña.</label>
+    color: #909090;" for="textinput"> Paso 2: Ingresa el código que llego a tu correo y completa el siguiente formulario.</label>
     
     </legend>
 
@@ -513,8 +513,8 @@
                    
                            // swal("Deleted!", "Your imaginary file has been deleted.", "success");  
                              swal({   
-                                title: "Se ha enviado un correo con instrucciones para restaurar su password",   
-                                text: "Nota: No olvides checar tu bandeja de correo no deseado",   
+                                title: "Se ha enviado un código a tu correo",
+                                text: "Este contiene instrucciones para restaurar su password. Nota: No olvides checar tu bandeja de correo no deseado",
                                 type: "success",   
                                 showCancelButton: false,   
                                 confirmButtonColor: "#656668",
