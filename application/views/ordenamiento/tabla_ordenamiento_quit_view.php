@@ -59,7 +59,7 @@
 
          $('#productosFiltro').click(function() {
                     if ($('input[type="checkbox"]').is(':checked')) {
-                        $('#productosPromocion').attr("action","<?php echo base_url();?>index.php/ordenamiento/Ordenamiento/crearFiltradoProductosQuitOrdenamiento");
+                        $('#productosPromocion').attr("action","<?php echo base_url();?>index.php/Ordenamiento/crearFiltradoProductosQuitOrdenamiento");
                     }
                     else {
                      //  alert('vacio');

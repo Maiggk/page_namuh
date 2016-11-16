@@ -232,7 +232,7 @@ class Ordenamiento extends CI_Controller {
         }
          $this->session->set_userdata('productoFiltro1',$nuevos_datos_recibo);
         $data['ProductosFiltrados'] = $nuevos_datos_recibo;
-       vista_crud_admin_https('productosOrdenamientoQuit_view',$data);
+       vista_crud_admin_https('ordenamiento/productosOrdenamientoQuit_view',$data);
     }
 
   function PromocionVaciarSesionDesactivar()
