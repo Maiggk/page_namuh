@@ -33,6 +33,7 @@ class Divulgacion_models extends CI_Model
  {
 	 $this->db->from('productos');
 	 $this->db->where('estado_promocion',1);
+	 $this->db->where('estado',2);
 	 $query=$this->db->get();
 	 $filas=$query->result();
 	 return $filas;
