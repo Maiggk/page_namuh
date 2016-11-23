@@ -39,7 +39,7 @@ body.stop-scrolling {
   background-color: white;
   font-family: 'GillSans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  width: 478px;
+  width: 350px;
   padding: 17px;
  /* border-radius: 5px;*/
   text-align: center;
@@ -60,10 +60,10 @@ body.stop-scrolling {
       right: 15px; } }
   .sweet-alert h2 {
     color: #adafb2;
-    font-size: 47px;
+    font-size: 41px;
 	     font-family: 'GillSans';
     font-style: italic;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     text-align: center;
     font-weight: 600;
@@ -74,10 +74,10 @@ body.stop-scrolling {
     line-height: 40px;
     display: block; }
   .sweet-alert p {
-    color: #797979;
+    color: #adafb2;
     font-size: 16px;
     text-align: center;
-	letter-spacing: 0.25em;
+	letter-spacing: 0.09em;
     font-weight: lighter;
     position: relative;
     text-align: inherit;

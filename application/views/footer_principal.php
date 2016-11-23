@@ -15,20 +15,23 @@
                   </ul>
                 </div>
               </div>
-                <div class="col-md-12 col-sm-12 col-xs-12  " style="text-align:center">
-                    <small class=""><br><a href="<?php echo base_url(); ?>index.php/unete">Únete a nuestro equipo</a></small><br>
-                </div>
+               <!-- <div class="col-md-12 col-sm-12 col-xs-12  " style="text-align:center">
+                    <small class=""><br><a href="< ?php echo base_url(); ?>index.php/unete">Únete a nuestro equipo</a></small><br>
+                </div>-->
                  </div>
               <div class="row" style="text-align:center">
                  <div class="col-md-4 col-md-offset-4">
-                     <div class="col-md-4">
+                     <div class="col-md-2">
                          <small class=""><br><a href="<?php echo base_url(); ?>index.php/nosotros">Nosotros</a></small>
                      </div>
-                     <div class="col-md-4">
+                     <div class="col-md-2">
                          <small class=""><br><a href="<?php echo base_url(); ?>index.php/politicas">Políticas</a></small>
                      </div>
-                     <div class="col-md-4">
+                     <div class="col-md-2">
                          <small class=""><br><a href="<?php echo base_url(); ?>index.php/divulgacion/prensa">Prensa</a></small>
+                     </div>
+                     <div class="col-md-6">
+                        <small class=""><br><a href="<?php echo base_url(); ?>index.php/unete">Únete a nuestro equipo</a></small><br>
                      </div>
                  </div>
               </div>
