@@ -361,7 +361,7 @@ body {
           
         if ($('#return1').html().is(':hidden'))
         {
-           alert('sda');
+          // alert('sda');
             //$('#return1').val('ocultar menu');
             $('#menuMovil').show(); 
         }
@@ -395,6 +395,18 @@ body {
    
                     $('#buscar').hide();
                     $('#resp').html(response);
+                    <?php
+                      if($this->session->userdata('produc')!='')
+                    {
+                    $productoFocus=$this->session->userdata('produc');
+                          $this->session->unset_userdata('produc');
+                    ?>
+                                   $("#img-<?php echo $productoFocus;?>").click();
+
+                    <?php
+
+                    }
+                   ?>
                  // parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
              },
                 error: function (obj, error, objError){
@@ -472,6 +484,18 @@ body {
                 {
                     $('#buscar').hide();
                    $('#resp').html(response);
+                    <?php
+                      if($this->session->userdata('produc')!='')
+                    {
+                    $productoFocus=$this->session->userdata('produc');
+                          $this->session->unset_userdata('produc');
+                    ?>
+                                   $("#img-<?php echo $productoFocus;?>").click();
+
+                    <?php
+
+                    }
+                   ?>
                   //parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
              },
                 error: function (obj, error, objError){
@@ -549,6 +573,18 @@ body {
                 {
    $('#buscar').hide();
                    $('#resp').html(response);
+                    <?php
+                      if($this->session->userdata('produc')!='')
+                    {
+                    $productoFocus=$this->session->userdata('produc');
+                           $this->session->unset_userdata('produc');
+                    ?>
+                                   $("#img-<?php echo $productoFocus;?>").click();
+
+                    <?php
+
+                    }
+                   ?>
                   //parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
              },
                 error: function (obj, error, objError){
@@ -573,8 +609,21 @@ body {
                 async: true,     
                 success: function(response)
                 {
-   $('#buscar').hide();
+                    $('#buscar').hide();
                    $('#resp').html(response);
+                   <?php
+                    if($this->session->userdata('produc')!='')
+                    {
+                    $productoFocus=$this->session->userdata('produc');
+                        $this->session->unset_userdata('produc');
+                    ?>
+                                   $("#img-<?php echo $productoFocus;?>").click();
+
+                    <?php
+
+                    }
+                   ?>
+
                   //parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
              },
                 error: function (obj, error, objError){
@@ -640,4 +689,63 @@ body {
                 });
      
     }
+    $(document).ready(function(){
+    <?php
+        if($this->session->userdata('operacion')!='')
+        {
+            if($this->session->userdata('operacion')==1)
+            {
+                $c=$this->session->userdata('caregoria');
+                $this->session->unset_userdata('operacion');
+                $this->session->unset_userdata('caregoria');
+                ?>
+                    filtroCategorias1(<?php echo $c; ?>);
+                <?php
+
+
+            }
+            if($this->session->userdata('operacion')==2)
+            {
+               $c=$this->session->userdata('caregoria');
+                $g=$this->session->userdata('grupo');
+
+                 $this->session->unset_userdata('operacion');
+                 $this->session->unset_userdata('caregoria');
+                $this->session->unset_userdata('grupo');
+                ?>
+                    filtroGrupos1(<?php echo $g; ?>,<?php echo $c; ?>);
+                <?php
+
+
+            }
+            if($this->session->userdata('operacion')==3)
+            {
+                 $this->session->unset_userdata('operacion');
+                ?>
+                filtroNinguno();
+                <?php
+
+
+            }
+            if($this->session->userdata('operacion')==4)
+            {
+                $c=$this->session->userdata('caregoria');
+                $g=$this->session->userdata('grupo');
+                $t=$this->session->userdata('tipo');
+
+                  $this->session->unset_userdata('operacion');
+                $this->session->unset_userdata('caregoria');
+                $this->session->unset_userdata('grupo');
+                $this->session->unset_userdata('tipo');
+                ?>
+                    filtroTipo1(<?php echo $t; ?>,<?php echo $g; ?>,<?php echo $c; ?>);
+                <?php
+
+            }
+        }
+
+
+        ?>
+   });
+
 </script>

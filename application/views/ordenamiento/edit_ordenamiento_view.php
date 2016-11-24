@@ -234,7 +234,7 @@ input:checked + .slider:before {
                {
                     swal({
                     title: "El numero de ordenamiento ya esta en uso ¿Desea continuar? ",
-                    text: "Si desea continuar, modifique el ",
+                    text: "Si desea continuar, modifique el otro número de aparición para que nuevo ordenamieno se respete, de lo contrario se combinarán las listas de productos",
                     type: "success",
                     showCancelButton: true,
                     confirmButtonColor: "#656668",

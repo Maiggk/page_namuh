@@ -76,7 +76,29 @@ class Admin_models extends CI_Model
         $resultado = $q->result();
         return $resultado;
         
+ }
+    function listasAparicion() /*funcion para traer el id del usuario que inteneta ingresar*/
+ {
+        $this->db->select('*');
+        $this->db->from('orden_apariciones');
+         $q = $this->db->get();
+        $resultado = $q->result();
+        return $resultado;
+
+ }
+    function listaAparicionProducto($id) /*funcion para traer el id del usuario que inteneta ingresar*/
+ {
+        $this->db->select('*');
+        $this->db->from('orden_apariciones');
+
+        $this->db->where('numero_aparicion',$id);
+         $this->db->limit(1);
+         $q = $this->db->get();
+        $resultado = $q->row();
+        return $resultado;
+
  }   
+
     function clasificacionDatos($id) /*funcion para traer el id del usuario que inteneta ingresar*/
  {
         $this->db->select('u.id_grupo');
@@ -209,6 +231,13 @@ class Admin_models extends CI_Model
         $this->db->update('tipos',$form); 
         
  }   
+       function updateProductosClasificacion($producto,$form) /*funcion para traer el id del usuario que inteneta ingresar*/
+ {
+         $this->db->where('id_producto',$producto);
+
+        $this->db->update('productos',$form);
+
+ }
     function updateClasificacion($class,$form) /*funcion para traer el id del usuario que inteneta ingresar*/
  {
          $this->db->where('id_union_grupo_categoria',$class);

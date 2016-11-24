@@ -141,7 +141,7 @@ input:checked + .slider:before {
 							     <label class="col-md-4 control-label" style="    text-align:right;" for="textinput">Producto</label>
                                  <div class="col-md-5"> 
 							         <select id="producto" name="producto"  class="form-control ">
-								        <option selected value="">Seleccionar</option>
+								        <option selected value="0">Seleccionar</option>
 								                <?php foreach($productos as $producto){ ?>
 								                    <option value="<?php echo $producto->id_producto; ?>">
 									                       <?php echo $producto->nombre; ?>
@@ -149,6 +149,20 @@ input:checked + .slider:before {
 								                <?php } ?>
 							         </select>
                                     <span class="help-block" id="alertProducto" style="display:none;color: red;">Seleccionar un producto</span>  
+                                 </div>
+						     </div>
+                            <div class="form-group">
+							     <label class="col-md-4 control-label" style="    text-align:right;" for="textinput">Agregar a lista de aparición</label>
+                                 <div class="col-md-5">
+							         <select id="Lista" name="Lista"  class="form-control ">
+								        <option selected value="0">Seleccionar</option>
+								                <?php foreach($listasAp as $listaAp){ ?>
+								                    <option value="<?php echo $listaAp->numero_aparicion; ?>">
+									                       <?php echo $listaAp->orden; ?>
+								                    </option>
+								                <?php } ?>
+							         </select>
+                                    <span class="help-block" id="alertLista" style="display:none;color: red;">Seleccionar un orden de aparición</span>
                                  </div>
 						     </div>
                             
@@ -257,7 +271,8 @@ input:checked + .slider:before {
 				tipo: $("#tipo").val(),
 				grupo: $("#grupo").val(),
 				categoria: $("#categoria").val(),
-				producto: $("#producto").val()
+				producto: $("#producto").val(),
+				Lista: $("#Lista").val()
 				
 				},
 				url:"<?= site_url('Admin/guardarClasificacion') ?>", 
@@ -281,6 +296,7 @@ function verificarDatos()
         if($('#categoria').val()==0 ){indicador=1;$("#alertCategoria").show();}
        // if($("#tipo").val()==''){indicador=1;$("#alertTipo").show();}
         if($("#producto").val()==0){indicador=1;$("#alertProducto").show();}
+        if($("#Lista").val()==0){indicador=1;$("#alertLista").show();}
             
         if(indicador==0)
         {
@@ -292,6 +308,7 @@ function verificarDatos()
              $("#categoria").focus(function(){$("#alertCategoria").css("display", "none").fadeOut(2000);});
              $("#tipo").focus(function(){$("#alertTipo").css("display", "none").fadeOut(2000);});
              $("#producto").focus(function(){$("#alertProducto").css("display", "none").fadeOut(2000);});
+             $("#Lista").focus(function(){$("#alertLista").css("display", "none").fadeOut(2000);});
 
         
  
@@ -299,12 +316,13 @@ function verificarDatos()
 </script>
 
   <script type="text/javascript">
+      /*
   $(document).ready(function() {
 	 // $("a#single_image").fancybox();
 		
 	
 
-		/* Apply fancybox to multiple items */
+		/* Apply fancybox to multiple items
 		
 	  $('.fancybox').fancybox({
 			width		: '95%',
@@ -319,5 +337,5 @@ function verificarDatos()
       });
 
 	  //$(".fancybox").fancybox();
-  });
+  });*/
   </script>

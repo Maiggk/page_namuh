@@ -12,7 +12,7 @@
           <section class="wrapper site-min-height">
 
           <div class="row">
-              <center><h1 class="trn">Productos seleccionados para agregar a la lista de ordenamiento <?php echo $this->session->userdata('Id_0rd3n4'); ?></h1></center>
+              <center><h1 class="trn">Productos seleccionados para quitar a la lista de ordenamiento <?php echo $this->session->userdata('Id_0rd3n4'); ?></h1></center>
              <div class="table-responsive">
 
             <table class="table table-bordered table-hover" >

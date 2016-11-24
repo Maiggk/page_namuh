@@ -17,14 +17,14 @@
                 // echo 'ddd: '.$widthImage[1];
                     ?>
              <div class=" col-lg-4 col-md-4 col-sm-4" style="text-align:center" id="imagenesdiv">
-                        <figure itemprop="associatedMedia" itemscope>
+                        <figure itemprop="associatedMedia" itemscope onclick="buscar(<?php echo $imagen->id_producto; ?>)" id="img-<?php echo $imagen->id_producto; ?>">
                             <a href="<?php echo base_url();?>index.php/Galeria/detalleProducto/?id=<?php echo $imagen->id_producto;?>"  itemprop="contentUrl" data-size="1000x667" data-index="<?php echo $i; ?>">
-    <img class="img-responsive" src="<?php echo base_url();?>assets/uploads/productos/<?php echo $imagen->imagen;?>"  itemprop="thumbnail" alt="">
+    <img  class="img-responsive" src="<?php echo base_url();?>assets/uploads/productos/<?php echo $imagen->imagen;?>"  itemprop="thumbnail" alt="">
                             </a>
                              
                             <br>
-                            <div class="openSans" style="font-style: italic;font-size: 15px;text-align:center">
-                            <label><?php echo $imagen->nombre;?></label><br>
+                            <div  class="openSans" style="font-style: italic;font-size: 15px;text-align:center">
+                            <label ><?php echo $imagen->nombre;?></label><br>
                                 <?php if( $imagen->estado_promocion==0){ ?>
                             Precio:<span><?php echo '$'.decimales_ceros($imagen->precio,2);?></span><br>
                                 <?php } ?>
@@ -171,4 +171,11 @@
                         $('#navbar').removeClass('in');
                     },
                 }); */
+    function buscar(id)
+    {
+
+         $('html,body').animate({
+    scrollTop: $('#img-'+id).offset().top
+        }, 2000);
+    }
     </script>

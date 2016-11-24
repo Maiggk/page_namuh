@@ -189,8 +189,13 @@ class Admin extends CI_Controller {
        $data['sub'] = 'Clasificación';
  
       //$data['product']=$this->Admin_models->clasificacionDatos($id);
-      $data['product']=$this->Admin_models->clasificacionDatosCategoria($id);
+      //$data['product']=$this->Admin_models->clasificacionDatosCategoria($id);
+       $productos=$this->Admin_models->clasificacionDatosCategoria($id);
+      $data['product']=$productos;
+        ;
       $data['grupo']=$this->Admin_models->clasificacionDatosGrupo($id);
+      $data['lista']=$this->Admin_models->listaAparicionProducto($productos->id_aparicion);
+      $data['listasAp']=$this->Admin_models->listasAparicion();
       $data['tipo']=$this->Admin_models->clasificacionDatosTipo($id);
         //print_r($data['product']);
         //echo $id;
@@ -202,6 +207,7 @@ class Admin extends CI_Controller {
        $data['sub'] = 'Clasificación';
          $data['categorias'] = $this->Admin_models->categorias();
          $data['productos'] = $this->Admin_models->productos();
+         $data['listasAp'] = $this->Admin_models->listasAparicion();
 		vista_crud_admin('admin/clasificacionAdd_view',$data);
     }
     function regresarTipos()
@@ -217,6 +223,7 @@ class Admin extends CI_Controller {
          $grupo=$this->input->post('grupo');
          $categoria=$this->input->post('categoria');
          $producto=$this->input->post('producto');
+         $Lista=$this->input->post('Lista');
          $form=array(
 
                         'id_tipo'=>$tipo, 
@@ -225,6 +232,11 @@ class Admin extends CI_Controller {
 			            'id_producto'=> $producto
                     );
         $resp=$this->Admin_models->GuardarClasificacion($form);
+        $formLista=array(
+
+                        'id_aparicion'=>$Lista
+                    );
+        $this->Admin_models->updateProductosClasificacion($producto,$formLista);
     } 
     function updateClasificacion()
     {
@@ -234,6 +246,7 @@ class Admin extends CI_Controller {
          $categoria=$this->input->post('categoria');
          $producto=$this->input->post('producto');
          $idClasi=$this->input->post('iDclass');
+         $Lista=$this->input->post('Lista');
          $form=array(
 
                         'id_tipo'=>$tipo, 
@@ -242,6 +255,11 @@ class Admin extends CI_Controller {
 			            'id_producto'=> $producto
                     );
         $resp=$this->Admin_models->updateClasificacion($idClasi,$form);
+         $formLista=array(
+
+                        'id_aparicion'=>$Lista
+                    );
+        $this->Admin_models->updateProductosClasificacion($producto,$formLista);
     }
     
     
@@ -1717,7 +1735,7 @@ class Admin extends CI_Controller {
             'id_aparicion'=>$ordenAparicion
                    );
         $this->Admin_models->updateOrdenamiento($form,$idor);
-        $this->Admin_models->updateOrdenamientoProductos($formProductos, $this->session->userdata('num_0rd3n4'));
+        $this->Admin_models->updateOrdenamientoProductos($formProductos,base64_decode($this->session->userdata('num_0rd3n4')));
 
         $this->session->unset_userdata('Id_0rd3n4');
         $this->session->unset_userdata('num_0rd3n4');
