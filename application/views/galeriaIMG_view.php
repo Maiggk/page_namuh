@@ -176,6 +176,6 @@
 
          $('html,body').animate({
     scrollTop: $('#img-'+id).offset().top
-        }, 2000);
+        }, 0);
     }
     </script>

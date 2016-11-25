@@ -62,8 +62,15 @@ class Galeria extends CI_Controller {
 
          $categorias=$this->input->post('categoria');
 
-         $this->session->set_userdata('operacion',1);
+        $this->session->unset_userdata('operacion');
+        $this->session->unset_userdata('caregoria');
+         $this->session->unset_userdata('grupo');
+         $this->session->unset_userdata('tipo');
+
+        $this->session->set_userdata('operacion',1);
          $this->session->set_userdata('caregoria',$categorias);
+
+
 
          $data['IMG']=$this->Admin_models->consultaImgCategorias($categorias);
      vista_datosGaleria('galeriaIMG_view',$data);
@@ -73,9 +80,15 @@ class Galeria extends CI_Controller {
          $grupo=$this->input->post('grupo');
          $categoria=$this->input->post('categoria');
 
-         $this->session->set_userdata('operacion',2);
+        $this->session->unset_userdata('operacion');
+        $this->session->unset_userdata('caregoria');
+         $this->session->unset_userdata('grupo');
+         $this->session->unset_userdata('tipo');
+
+           $this->session->set_userdata('operacion',2);
          $this->session->set_userdata('caregoria',$categoria);
          $this->session->set_userdata('grupo',$grupo);
+
 
          $data['IMG']=$this->Admin_models->consultaImgGrupo($categoria,$grupo);
           vista_datosGaleria('galeriaIMG_view',$data);
@@ -83,7 +96,14 @@ class Galeria extends CI_Controller {
     }  
     function filtroNinguno()
     {
-         $this->session->set_userdata('operacion',3);
+              $this->session->unset_userdata('operacion');
+        $this->session->unset_userdata('caregoria');
+         $this->session->unset_userdata('grupo');
+         $this->session->unset_userdata('tipo');
+
+
+
+           $this->session->set_userdata('operacion',3);
          $data['IMG']=$this->Admin_models->galeriaInicial();
           vista_datosGaleria('galeriaIMG_view',$data);
          
@@ -95,12 +115,10 @@ class Galeria extends CI_Controller {
          $grupo=$this->input->post('grupo');
          $categoria=$this->input->post('categoria');
 
-
-
-          $this->session->set_userdata('operacion',4);
-         $this->session->set_userdata('caregoria',$categoria);
-         $this->session->set_userdata('grupo',$grupo);
-         $this->session->set_userdata('tipo',$tipo);
+             $this->session->set_userdata('operacion',4);
+             $this->session->set_userdata('caregoria',$categoria);
+             $this->session->set_userdata('grupo',$grupo);
+             $this->session->set_userdata('tipo',$tipo);
 
          $data['IMG']=$this->Admin_models->consultaImgTipo($tipo,$grupo,$categoria);
           vista_datosGaleria('galeriaIMG_view',$data);
@@ -151,9 +169,15 @@ class Galeria extends CI_Controller {
          $valor=$this->Admin_models->verificarExistenciaProductos($id_producto);
          $data['datosProducto']=$this->Admin_models->producto_insertado($id_producto);
          $data['detallesProducto']=$this->Admin_models->consultaProductoDetalles($id_producto);
-            if($valor>0){
+            if($valor>0)
+            {
+
+                 $this->session->unset_userdata('produc');
                  $this->session->set_userdata('produc',$id_producto);
-          vista_datosGaleria('detalle_producto_view',$data);
+
+            //    $this->session->unset_userdata('proceso');
+              //   $this->session->set_userdata('proceso',1);
+                 vista_datosGaleria('detalle_producto_view',$data);
 
             }else
             {

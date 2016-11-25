@@ -21,6 +21,13 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 
+        if($this->session->unset_userdata('operacion')!='')
+        {
+         $this->session->unset_userdata('operacion');
+         $this->session->unset_userdata('caregoria');
+         $this->session->unset_userdata('grupo');
+         $this->session->unset_userdata('tipo');
+        }
         $data['albums']=$this->Admin_models->trae_albums();
          $data['slides']= $this->Admin_models->traeSlides();
          $data['slidesInteriorismo']= $this->Admin_models->traeSlidesInteriorismo();

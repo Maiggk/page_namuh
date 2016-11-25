@@ -46,7 +46,8 @@ body.stop-scrolling {
   position: fixed;
   left: 50%;
   top: 50%;
-  margin-left: -256px;
+  margin-left: -156px;
+ /* margin-left: -256px;*/
   margin-top: -200px;
   overflow: hidden;
   display: none;
@@ -60,7 +61,7 @@ body.stop-scrolling {
       right: 15px; } }
   .sweet-alert h2 {
     color: #adafb2;
-    font-size: 41px;
+    font-size: 36px;
 	     font-family: 'GillSans';
     font-style: italic;
     letter-spacing: 0.15em;

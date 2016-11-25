@@ -262,7 +262,60 @@ body {
 			</div>
 
 	</div>
+    <?php
+    $op='';
+    $cat='';
+    $gru='';
+    $tip='';
+    $prod='';
+    if($this->session->userdata('operacion')!='')
+    {
+        $op=$this->session->userdata('operacion');
+        if($op==1)
+        {
+            $cat=$this->session->userdata('caregoria');
+        }
+        if($op==2)
+        {
+            $cat=$this->session->userdata('caregoria');
+            $gru=$this->session->userdata('grupo');
+        }
+        if($op==3)
+        {
 
+        }
+        if($op==4)
+        {
+            $cat=$this->session->userdata('caregoria');
+            $gru=$this->session->userdata('grupo');
+            $tip=$this->session->userdata('tipo');
+        }
+    }
+    if($this->session->userdata('produc')!='')
+    {
+        $prod=$this->session->userdata('produc');
+    }
+
+
+
+    ?>
+    <div class="col-md-4" style="display:none;" >
+        <div class="col-md-12">
+            <input id="opcion" name="opcion" type="text" value="<?php echo $op; ?>" class="form-control input-md">
+        </div>
+        <div class="col-md-12">
+            <input id="cat" name="cat" type="text" value="<?php echo $cat; ?>" class="form-control input-md">
+        </div>
+        <div class="col-md-12">
+            <input id="gru" name="gru" type="text" value="<?php echo $gru; ?>" class="form-control input-md">
+        </div>
+        <div class="col-md-12">
+            <input id="tip" name="tip" type="text" value="<?php echo $tip; ?>" class="form-control input-md">
+        </div>
+        <div class="col-md-12">
+            <input id="prod" name="prod" type="text" value="<?php echo $prod; ?>" class="form-control input-md">
+        </div>
+    </div>
  
   
     <footer class="clase-general">
@@ -374,6 +427,7 @@ body {
     }
     function ocultar()
     {
+
          $('#menuMovil').hide(); 
        $('#return1').show(); 
        $('#return2').hide(); 
@@ -395,18 +449,11 @@ body {
    
                     $('#buscar').hide();
                     $('#resp').html(response);
-                    <?php
-                      if($this->session->userdata('produc')!='')
-                    {
-                    $productoFocus=$this->session->userdata('produc');
-                          $this->session->unset_userdata('produc');
-                    ?>
-                                   $("#img-<?php echo $productoFocus;?>").click();
-
-                    <?php
-
+                    if($('#prod').val()!='')
+                   {
+                        if($.isNumeric($('#prod').val()))
+                        darClicImg($('#prod').val());
                     }
-                   ?>
                  // parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
              },
                 error: function (obj, error, objError){
@@ -484,18 +531,11 @@ body {
                 {
                     $('#buscar').hide();
                    $('#resp').html(response);
-                    <?php
-                      if($this->session->userdata('produc')!='')
-                    {
-                    $productoFocus=$this->session->userdata('produc');
-                          $this->session->unset_userdata('produc');
-                    ?>
-                                   $("#img-<?php echo $productoFocus;?>").click();
-
-                    <?php
-
+                   if($('#prod').val()!='')
+                   {
+                        if($.isNumeric($('#prod').val()))
+                        darClicImg($('#prod').val());
                     }
-                   ?>
                   //parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
              },
                 error: function (obj, error, objError){
@@ -571,20 +611,15 @@ body {
                 async: true,     
                 success: function(response)
                 {
-   $('#buscar').hide();
+                   $('#buscar').hide();
                    $('#resp').html(response);
-                    <?php
-                      if($this->session->userdata('produc')!='')
-                    {
-                    $productoFocus=$this->session->userdata('produc');
-                           $this->session->unset_userdata('produc');
-                    ?>
-                                   $("#img-<?php echo $productoFocus;?>").click();
 
-                    <?php
-
+                   if($('#prod').val()!='')
+                   {
+                        if($.isNumeric($('#prod').val()))
+                        darClicImg($('#prod').val());
                     }
-                   ?>
+
                   //parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
              },
                 error: function (obj, error, objError){
@@ -611,18 +646,11 @@ body {
                 {
                     $('#buscar').hide();
                    $('#resp').html(response);
-                   <?php
-                    if($this->session->userdata('produc')!='')
-                    {
-                    $productoFocus=$this->session->userdata('produc');
-                        $this->session->unset_userdata('produc');
-                    ?>
-                                   $("#img-<?php echo $productoFocus;?>").click();
-
-                    <?php
-
+                 if($('#prod').val()!='')
+                   {
+                        if($.isNumeric($('#prod').val()))
+                        darClicImg($('#prod').val());
                     }
-                   ?>
 
                   //parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
              },
@@ -689,63 +717,33 @@ body {
                 });
      
     }
+
+    function darClicImg(id)
+    {
+        $("#img-"+id).click();
+    }
     $(document).ready(function(){
-    <?php
-        if($this->session->userdata('operacion')!='')
+
+        if($('#opcion').val()!='')
         {
-            if($this->session->userdata('operacion')==1)
+            if($('#opcion').val()==1)
             {
-                $c=$this->session->userdata('caregoria');
-                $this->session->unset_userdata('operacion');
-                $this->session->unset_userdata('caregoria');
-                ?>
-                    filtroCategorias1(<?php echo $c; ?>);
-                <?php
-
-
+                filtroCategorias1($('#cat').val());
             }
-            if($this->session->userdata('operacion')==2)
+            if($('#opcion').val()==2)
             {
-               $c=$this->session->userdata('caregoria');
-                $g=$this->session->userdata('grupo');
-
-                 $this->session->unset_userdata('operacion');
-                 $this->session->unset_userdata('caregoria');
-                $this->session->unset_userdata('grupo');
-                ?>
-                    filtroGrupos1(<?php echo $g; ?>,<?php echo $c; ?>);
-                <?php
-
-
+                 filtroGrupos1($('#gru').val(),$('#cat').val());
             }
-            if($this->session->userdata('operacion')==3)
+            if($('#opcion').val()==3)
             {
-                 $this->session->unset_userdata('operacion');
-                ?>
-                filtroNinguno();
-                <?php
-
-
+                 filtroNinguno();
             }
-            if($this->session->userdata('operacion')==4)
+            if($('#opcion').val()==4)
             {
-                $c=$this->session->userdata('caregoria');
-                $g=$this->session->userdata('grupo');
-                $t=$this->session->userdata('tipo');
-
-                  $this->session->unset_userdata('operacion');
-                $this->session->unset_userdata('caregoria');
-                $this->session->unset_userdata('grupo');
-                $this->session->unset_userdata('tipo');
-                ?>
-                    filtroTipo1(<?php echo $t; ?>,<?php echo $g; ?>,<?php echo $c; ?>);
-                <?php
-
+                 filtroTipo1($('#tip').val(),$('#gru').val(),$('#cat').val());
             }
         }
-
-
-        ?>
    });
 
 </script>
+
