@@ -718,18 +718,22 @@ body {
             if($('#opcion').val()==1)
             {
                 filtroCategorias1($('#cat').val());
+                $('.fotorama').hide();
             }
             if($('#opcion').val()==2)
             {
                  filtroGrupos1($('#gru').val(),$('#cat').val());
+                $('.fotorama').hide();
             }
             if($('#opcion').val()==3)
             {
                  filtroNinguno();
+                $('.fotorama').hide();
             }
             if($('#opcion').val()==4)
             {
                  filtroTipo1($('#tip').val(),$('#gru').val(),$('#cat').val());
+                $('.fotorama').hide();
             }
         }
    });
