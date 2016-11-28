@@ -174,8 +174,13 @@
     function buscar(id)
     {
 
-         $('html,body').animate({
-    scrollTop: $('#img-'+id).offset().top
-        }, 0);
+
+        document.getElementById('img-'+id).scrollIntoView();
+
+//         $('html,body').animate({
+//    scrollTop: $('#img-'+id).offset().top
+//        }, 0);
+
+
     }
     </script>
