@@ -315,15 +315,18 @@ body {
                     </ul>
             <div class="row" style="text-align:center">
                 <div class="col-md-4 col-md-offset-4">
-                    <div class="col-md-4">
-                        <small class=""><br><a class="font_color" href="< ?php echo base_url(); ?>index.php/nosotros">Nosotros</a></small>
+                    <div class="col-md-2">
+                        <small class=""><br><a class="font_color" href="<?php echo base_url(); ?>index.php/nosotros">Nosotros</a></small>
                     </div>
-                    <div class="col-md-4">
-                        <small class=""><br><a  class="font_color" href="< ?php echo base_url(); ?>index.php/politicas">Políticas</a></small>
+                    <div class="col-md-2">
+                        <small class=""><br><a  class="font_color" href="<?php echo base_url(); ?>index.php/politicas">Políticas</a></small>
                     </div>
-                    <div class="col-md-4">
-                        <small class=""><br><a  class="font_color">Prensa</a></small>
+                    <div class="col-md-2">
+                          <small class=""><br><a  href="<?php echo base_url(); ?>index.php/divulgacion/prensa" class="font_color">Prensa</a></small>
                     </div>
+                     <div class="col-md-6">
+                        <small class=""><br><a class="font_color" href="<?php echo base_url(); ?>index.php/unete">Únete a nuestro equipo</a></small><br>
+                     </div>
 
                 </div>
             </div>

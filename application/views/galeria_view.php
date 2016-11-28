@@ -331,15 +331,18 @@ body {
                     </ul>
             <div class="row" style="text-align:center">
                 <div class="col-md-4 col-md-offset-4">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <small class=""><br><a class="font_color" href="<?php echo base_url(); ?>index.php/nosotros">Nosotros</a></small>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <small class=""><br><a  class="font_color" href="<?php echo base_url(); ?>index.php/politicas">Políticas</a></small>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <small class=""><br><a  href="<?php echo base_url(); ?>index.php/divulgacion/prensa" class="font_color">Prensa</a></small>
                     </div>
+                    <div class="col-md-6">
+                        <small class=""><br><a class="font_color" href="<?php echo base_url(); ?>index.php/unete">Únete a nuestro equipo</a></small><br>
+                     </div>
 
                 </div>
             </div>
@@ -384,6 +387,10 @@ body {
     <script class="include" type="text/javascript" src="<?php echo base_url(); ?>assets/galeria/assets/js/jquery.dcjqaccordion.2.7.js"></script>
    <script src="<?php echo base_url(); ?>assets/galeria/assets/js/jquery.scrollTo.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/galeria/assets/js/common-scripts.js"></script>
+   <script src="<?php echo base_url(); ?>assets/css/wait/libs/jquery-loader.js"></script>
+   <script src="<?php echo base_url(); ?>assets/css/wait/libs/qunit/qunit.js"></script>
+    <script src="<?php echo base_url(); ?>assets/css/wait/libs/jquery.waitforimages.js"></script>
+
      
 <script type="text/javascript">
  
@@ -392,9 +399,9 @@ body {
 		$('.fotorama').hide();
 	});
 
-    $('#return1').click(function(event){
-    //event.preventDefault();
-    //$('.inputDisabled').removeAttr("disabled")
+    $('#return1').click(function(event)
+    {
+
         if($('#return1').html()=='Menu')
         {
             $('#return1').html('Ocultar Menu');
@@ -404,63 +411,52 @@ body {
                  $('#return1').html('Menu');
                 $('#menuMovil').hide(); 
             }
-});
+    });
    function ver()
     {
-      //$('#menuMovil').show(); 
-       //$('#return1').hide(); 
-       //$('#return2').show(); 
-       //$('#nav-accordion').show();
-          
         if ($('#return1').html().is(':hidden'))
         {
-          // alert('sda');
-            //$('#return1').val('ocultar menu');
             $('#menuMovil').show(); 
         }
         else
         {
-           // $('#return1').val('Menu');
             $('#menuMovil').hide(); 
         }
-         
     }
     function ocultar()
     {
-
-         $('#menuMovil').hide(); 
+       $('#menuMovil').hide();
        $('#return1').show(); 
        $('#return2').hide(); 
     }
  
     function filtroCategorias(idCategoria)
     {
-            $('#buscar').show();
-               $.ajax({
-                type: "POST", //envia la posicion por metodo post de ajax
-                data:{
-                categoria: idCategoria
-                 
-                },
-                url:"<?= site_url('Galeria/filtroCategorias') ?>", 
-                async: true,     
-                success: function(response)
+        $('#buscar').show();
+        $.ajax({
+        type: "POST", //envia la posicion por metodo post de ajax
+        data:{
+        categoria: idCategoria
+        },
+        url:"<?= site_url('Galeria/filtroCategorias') ?>",
+        async: true,
+        success: function(response)
+        {
+            $('#buscar').hide();
+            $('#resp').html(response);
+            $('#resp').waitForImages(function()
+            {
+                if($('#prod').val()!='')
                 {
-   
-                    $('#buscar').hide();
-                    $('#resp').html(response);
-                    if($('#prod').val()!='')
-                   {
-                        if($.isNumeric($('#prod').val()))
-                        darClicImg($('#prod').val());
-                    }
-                 // parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
-             },
-                error: function (obj, error, objError){
-                alert("Error: " + objError);
+                    if($.isNumeric($('#prod').val()))
+                    darClicImg($('#prod').val());
                 }
-                });
-     
+            });
+        },
+        error: function (obj, error, objError){
+            alert("Error: " + objError);
+            }
+        });
     }  
     function filtroCategorias1(idCategoria)
     {
@@ -517,32 +513,31 @@ body {
     }  
     function filtroGrupos(idGrupo,idCategoria)
     {
- $('#buscar').show();
-               $.ajax({
-                type: "POST", //envia la posicion por metodo post de ajax
-                data:{
-                grupo: idGrupo,
-                categoria: idCategoria
-                 
-                },
-                url:"<?= site_url('Galeria/filtroGrupos') ?>", 
-                async: true,     
-                success: function(response)
-                {
-                    $('#buscar').hide();
-                   $('#resp').html(response);
-                   if($('#prod').val()!='')
-                   {
-                        if($.isNumeric($('#prod').val()))
-                        darClicImg($('#prod').val());
-                    }
-                  //parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
-             },
-                error: function (obj, error, objError){
-                alert("Error: " + objError);
-                }
-                });
-     
+        $('#buscar').show();
+        $.ajax({
+        type: "POST", //envia la posicion por metodo post de ajax
+        data:{
+        grupo: idGrupo,
+        categoria: idCategoria
+        },
+        url:"<?= site_url('Galeria/filtroGrupos') ?>",
+        async: true,
+        success: function(response)
+        {
+            $('#buscar').hide();
+            $('#resp').html(response);
+            $('#resp').waitForImages(function() {
+            if($('#prod').val()!='')
+            {
+                if($.isNumeric($('#prod').val()))
+                darClicImg($('#prod').val());
+            }
+            });
+        },
+        error: function (obj, error, objError){
+        alert("Error: " + objError);
+        }
+        });
     }  
     function filtroGrupos1(idGrupo,idCategoria)
     {
@@ -600,65 +595,59 @@ body {
     }  
     function filtroNinguno()
     {
- $('#buscar').show();
-               $.ajax({
-                type: "POST", //envia la posicion por metodo post de ajax
-                data:{
- 
-                 
-                },
-                url:"<?= site_url('Galeria/filtroNinguno') ?>", 
-                async: true,     
-                success: function(response)
+        $('#buscar').show();
+        $.ajax({
+        type: "POST", //envia la posicion por metodo post de ajax
+        data:{
+        },
+        url:"<?= site_url('Galeria/filtroNinguno') ?>",
+        async: true,
+        success: function(response)
+        {
+            $('#buscar').hide();
+            $('#resp').html(response);
+            $('#resp').waitForImages(function()
+            {
+                if($('#prod').val()!='')
                 {
-                   $('#buscar').hide();
-                   $('#resp').html(response);
-
-                   if($('#prod').val()!='')
-                   {
-                        if($.isNumeric($('#prod').val()))
-                        darClicImg($('#prod').val());
-                    }
-
-                  //parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
-             },
-                error: function (obj, error, objError){
-                alert("Error: " + objError);
+                    if($.isNumeric($('#prod').val()))
+                    darClicImg($('#prod').val());
                 }
-                });
-     
+            });
+        },
+        error: function (obj, error, objError){
+            alert("Error: " + objError);
+            }
+        });
     }
     function filtroTipo(id_tipo,id_grupo,id_categoria)
     {
-         
- $('#buscar').show();
-               $.ajax({
-                type: "POST", //envia la posicion por metodo post de ajax
-                data:{
-                tipo: id_tipo,
-                grupo: id_grupo,
-                categoria: id_categoria
-                 
-                },
-                url:"<?= site_url('Galeria/filtroTipo') ?>", 
-                async: true,     
-                success: function(response)
+        $('#buscar').show();
+        $.ajax({
+        type: "POST", //envia la posicion por metodo post de ajax
+        data:{
+        tipo: id_tipo,
+        grupo: id_grupo,
+        categoria: id_categoria
+        },
+        url:"<?= site_url('Galeria/filtroTipo') ?>",
+        async: true,
+        success: function(response)
+        {
+            $('#buscar').hide();
+            $('#resp').html(response);
+            $('#resp').waitForImages(function() {
+                if($('#prod').val()!='')
                 {
-                    $('#buscar').hide();
-                   $('#resp').html(response);
-                 if($('#prod').val()!='')
-                   {
-                        if($.isNumeric($('#prod').val()))
-                        darClicImg($('#prod').val());
-                    }
-
-                  //parent.location.href="<?php echo base_url();?>index.php/Admin/tipo";
-             },
-                error: function (obj, error, objError){
+                    if($.isNumeric($('#prod').val()))
+                    darClicImg($('#prod').val());
+                }
+            });
+        },
+        error: function (obj, error, objError){
                 alert("Error: " + objError);
                 }
-                });
-     
+        });
     }  
     function filtroTipo1(id_tipo,id_grupo,id_categoria)
     {

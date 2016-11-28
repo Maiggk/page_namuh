@@ -158,14 +158,14 @@ padding:0;
 font-weight:normal;
 display:block;
 color:#797979;
-border-left:3px solid #5f5d5d;
+border-left:0px solid #5f5d5d;
 background:#ffffff;}
 
 .menu ul li a:hover, .menu ul li:hover > a{
 /*background:#f0f0f0;*/
 background: #d8d3d3;
 /*border-left:3px solid #9CA3DA;*/
-   border-left:9px solid #5f5d5d;
+   border-left:0px solid #5f5d5d;
 color:#797979;
 }
 
