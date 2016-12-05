@@ -1,4 +1,5 @@
- <link href="<?php echo base_url(); ?>assets/css/sweetalertAdmin/sweetalert.css" rel="stylesheet">
+<?php  error_reporting(0);?>
+<link href="<?php echo base_url(); ?>assets/css/sweetalertAdmin/sweetalert.css" rel="stylesheet">
 <script text="text/javascript" src="<?php echo base_url().'assets/js/sweetalert/sweetalert.min.js'; ?>"></script>
 <style type='text/css'>
 body

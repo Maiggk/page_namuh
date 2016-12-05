@@ -120,7 +120,7 @@ input:checked + .slider:before {
                               <div class="col-md-4">
                               <input id="ordenAparicion" type="number" step="1" value="<?php echo $infoOrdenamiento->numero_aparicion; ?>"  name="ordenAparicion" class="form-control input-md">
                               <span id="alertOrdenAparicion" style="color:red;display:none;" class="help-block">Completar el campo orden de aparición</span>
-                              <span id="alertOrdenAparicionError" style="color:red;display:none;" class="help-block">El valor deber mayor o igual a 0</span>
+                              <span id="alertOrdenAparicionError" style="color:red;display:none;" class="help-block">El valor debe ser mayor a 0</span>
                               </div>
                             </div>
 
@@ -161,7 +161,7 @@ input:checked + .slider:before {
 
     function cancelarAdd()
     {
-        parent.location.href="<?php echo base_url();?>index.php/Admin/quitarVariablesSesion";
+        parent.location.href="<?php echo base_url();?>index.php/OrdenProductos/quitarVariablesSesionHijo";
     }
     function validarDatos()
     {
@@ -170,11 +170,12 @@ input:checked + .slider:before {
          if($('#titulo').val()==''){indicador=1;$("#alertTitulo").show();}
          if($('#descripcion').val()==''){indicador=1;$("#alertDescripcion").show();}
          if($('#ordenAparicion').val()==''){indicador=1; bandera=1;$("#alertOrdenAparicion").show();}
+
         if(bandera==0)
         {
             if($.isNumeric( $('#ordenAparicion').val() ))
             {
-                if($('#ordenAparicion').val()<0)
+                if($('#ordenAparicion').val()<=0)
                 {
                     /*
 
@@ -223,7 +224,7 @@ input:checked + .slider:before {
            {
                ordenAparicion: $("#ordenAparicion").val()
            },
-           url:"<?= site_url('Admin/verificarValorOrdenamientoEdit') ?>",
+           url:"<?= site_url('OrdenProductos/verificarValorOrdenamientoEditHijo') ?>",
            async: true,
            success: function(response)
            {
@@ -235,7 +236,7 @@ input:checked + .slider:before {
                {
                     swal({
                     title: "El numero de ordenamiento ya esta en uso ¿Desea continuar? ",
-                    text: "Si desea continuar, modifique el otro número de aparición para que nuevo ordenamieno se respete, de lo contrario se combinarán las listas de productos",
+                    text: "",
                     type: "success",
                     showCancelButton: true,
                     confirmButtonColor: "#656668",
@@ -271,11 +272,11 @@ input:checked + .slider:before {
                descripcion: $("#descripcion").val(),
                ordenAparicion: $("#ordenAparicion").val()
            },
-           url:"<?= site_url('Admin/UpdateOrdenamiento') ?>",
+           url:"<?= site_url('OrdenProductos/UpdateOrdenamientoHijo') ?>",
            async: true,
            success: function(response)
            {
-                  parent.location.href="<?php echo base_url();?>index.php/Admin/ordenAparicion";
+                  parent.location.href="<?php echo base_url();?>index.php/OrdenProductos/addSubOrdenProductos/<?php echo $id_padre; ?>";
             },
             error: function (obj, error, objError){
 				alert("Error: " + objError);

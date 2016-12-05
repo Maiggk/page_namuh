@@ -1,5 +1,6 @@
 
 <?php
+error_reporting(E_ALL ^ E_WARNING);
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Ordenamiento extends CI_Controller {
@@ -108,7 +109,12 @@ class Ordenamiento extends CI_Controller {
     function PromocionVaciarSesion()
     {
        	 $this->session->unset_userdata('productoFiltro');
-         redirect('Admin/agregarProductos/'.$this->session->userdata('Id_0rd3n4'));
+        // redirect('Admin/agregarProductos/'.$this->session->userdata('Id_0rd3n4'));
+        $id=$this->session->userdata('Id_0rd3n4_hijo_final');
+          $this->session->unset_userdata('Id_0rd3n4_hijo_final');
+          echo '<script>
+            window.parent.location.href="'.base_url().'index.php/Admin/agregarProductos/'.$id.'";
+            </script>';
     }
     function guardarCambiosProductos()
     {
@@ -121,14 +127,15 @@ class Ordenamiento extends CI_Controller {
              //$nuevoPrecio=$producto['precio']-($producto['precio']*$Porcentaje);
 
              $actualizarDatos=array(
-                'id_aparicion' =>$this->session->userdata('Id_0rd3n4')
+                'id_aparicion' =>$this->session->userdata('num3ro_padre_0rd3n'),
+                'id_sub_aparicion' =>$this->session->userdata('Id_0rd3n4_hijo_final')
 
             );
              $this->Ordenamiento_models->updateProductosPromocion($producto['id_producto'],$actualizarDatos);
 
         }
          $this->session->unset_userdata('productoFiltro');
-         $this->session->unset_userdata('Id_0rd3n4');
+        // $this->session->unset_userdata('Id_0rd3n4');
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -238,7 +245,12 @@ class Ordenamiento extends CI_Controller {
   function PromocionVaciarSesionDesactivar()
     {
        	 $this->session->unset_userdata('productoFiltro1');
-          redirect('Admin/agregarProductos/'.$this->session->userdata('Id_0rd3n4'));
+          //redirect('Admin/agregarProductos/'.$this->session->userdata('Id_0rd3n4'));
+     // $id=$this->session->userdata('Id_0rd3n4');
+    //   $this->session->unset_userdata('Id_0rd3n4');
+       echo '<script>
+            window.parent.location.href="'.base_url().'index.php/Admin/quitarProductos";
+            </script>';
     }
     function guardarCambiosProductosQuitOrdenamiento()
     {
@@ -249,7 +261,8 @@ class Ordenamiento extends CI_Controller {
          foreach($this->session->userdata('productoFiltro1') as $producto)
         {
               $actualizarDatos=array(
-                'id_aparicion' =>0
+                'id_aparicion' =>0,
+                'id_sub_aparicion' =>0
 
             );
              $this->Ordenamiento_models->updateProductosPromocion($producto['id_producto'],$actualizarDatos);

@@ -206,7 +206,13 @@
                               </a>
                           </li>
                           <li>
-                              <a  href="<?php echo base_url().'index.php/admin/ordenAparicion'; ?>">
+                              <a  href="<?php echo base_url().'index.php/admin/quitarProductos'; ?>">
+                                  <i class="fa fa-sort-alpha-asc"></i>
+                                  <span>Quitar Orden Aparición</span>
+                              </a>
+                          </li>
+                          <li>
+                              <a  href="<?php echo base_url().'index.php/OrdenProductos/ordenAparicionPadre'; ?>">
                                   <i class="fa fa-sort-alpha-asc"></i>
                                   <span>Orden Aparición</span>
                               </a>

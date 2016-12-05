@@ -259,11 +259,11 @@ input:checked + .slider:before {
                             <div class="form-group">
 							     <label class="col-md-4 control-label" style="    text-align:right;" for="textinput">Agregar a lista de aparición</label>
                                  <div class="col-md-5">
-							         <select id="Lista" name="Lista"  class="form-control ">
+							         <select id="Lista" name="Lista" onchange="showlistaHijo()"  class="form-control ">
 								        <option selected value="<?php
 
                                                                  if(count($lista)>0)
-                                                                    echo $lista->numero_aparicion;
+                                                                    echo $lista->id_orden_aparicion;
                                                                     else
                                                                         echo '0';
                                                                 ?>"><?php
@@ -281,7 +281,7 @@ input:checked + .slider:before {
 
                                          </option>
 								                <?php foreach($listasAp as $listaAp){ ?>
-								                    <option value="<?php echo $listaAp->numero_aparicion; ?>">
+								                    <option value="<?php echo $listaAp->id_orden_aparicion; ?>">
 									                       <?php echo $listaAp->orden; ?>
 								                    </option>
 								                <?php } ?>
@@ -290,6 +290,38 @@ input:checked + .slider:before {
                                  </div>
 						     </div>
                             
+
+                                   <!-- Select Basic -->
+                            <div class="form-group"  >
+                                <label class="col-md-4 control-label" style="text-align:right;" for="ListaHijo">Seleccionar un orden de aparición hijo</label>
+                                    <div class="col-md-5 ">
+                                        <select id="ListaHijo" name="ListaHijo" class="form-control">
+                                              <option selected value="<?php
+
+                                                                 if(count($listaHijo)>0)
+                                                                    echo $listaHijo->id_sub_orden_aparicion;
+                                                                    else
+                                                                        echo '0';
+                                                                ?>"><?php
+
+                                            if(count($listaHijo)==0)
+                                            {
+                                                echo 'Seleccionar';
+
+                                            } else
+                                            {
+                                                echo $listaHijo->orden;
+                                            }
+
+                                            ?>
+
+                                         </option>
+                                        </select>
+                                <span class="help-block" id="alertListaHijo" style="display:none;color: red;">Seleccionar un orden de aparición hijo</span>
+                                    </div>
+
+                            </div>
+
                       
                             
                             <div class="form-group">
@@ -434,32 +466,39 @@ function verificarDatos()
              $("#producto").focus(function(){$("#alertProducto").css("display", "none").fadeOut(2000);});
     $("#Lista").focus(function(){$("#alertLista").css("display", "none").fadeOut(2000);});
 
-        
+
+
+
+
+        /////
+
+    function showlistaHijo()
+    {
+        if($('#Lista').val()>0)
+        {
+            $.getJSON("<?= site_url('Admin/regresarListahijos') ?>",
+                {
+                    idPadre:$('#Lista').val()
+                },
+                function(data)
+                {
+                    var Hijo = $('#ListaHijo');
+                    $("option", Hijo).remove();
+                    var option = '';
+
+                    Hijo.append('<option value="0" >Seleccionar</option>');
+                    $.each(data, function(index, op)//Recorrer el Json elemeto x elemeto
+                    {
+                        Hijo.append('<option value="'+op.id_sub_orden_aparicion+'" >'+op.orden+'</option>');
+
+                    });
+
+                }
+            );
+        }
+    }
+
  
  
 </script>
 
-  <script type="text/javascript">
-  /*
-      $(document).ready(function() {
-	 // $("a#single_image").fancybox();
-		
-	
-
-		/* Apply fancybox to multiple items
-		
-	  $('.fancybox').fancybox({
-			width		: '95%',
-			height		: '70%',
-			autoSize	: false,
-			autoCenter	: true,
-			closeClick	: false,
-			openEffect	: 'elastic',
-			closeEffect	: 'elastic',
-			scrollOutside:false,
-			type: 'iframe',
-      });
-
-	  //$(".fancybox").fancybox();
-  });*/
-  </script>

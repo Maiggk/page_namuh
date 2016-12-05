@@ -1,5 +1,6 @@
+<?php  error_reporting(0);?>
 <link href="<?php echo base_url(); ?>assets/fancybox/jquery.fancybox.css" rel="stylesheet">
- <link href="<?php echo base_url(); ?>assets/css/sweetalert/sweetalert.css" rel="stylesheet">
+ <link href="<?php echo base_url(); ?>assets/css/sweetalertAdmin/sweetalert.css" rel="stylesheet">
 
 
 
@@ -142,7 +143,8 @@
                                 {
 
 
-    parent.location.href="<?php echo base_url();?>index.php/Admin/quitarProductos/<?php echo $this->session->userdata('Id_0rd3n4');?>";
+  //  parent.location.href="< ?php echo base_url();?>index.php/Admin/quitarProductos/< php echo $this->session->userdata('Id_0rd3n4');?>";
+    parent.location.href="<?php echo base_url();?>index.php/Admin/quitarProductos";
 
                                 }
                             );

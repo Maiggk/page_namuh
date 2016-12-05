@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
@@ -179,35 +180,45 @@ class Admin extends CI_Controller {
     
     function formClasificacionEdit($id)
     {
-       // $this->output->enable_profiler(TRUE);
-         $data['categorias'] = $this->Admin_models->categorias();
+        // $this->output->enable_profiler(TRUE);
+        $data['categorias'] = $this->Admin_models->categorias();
         $data['productos'] = $this->Admin_models->productos();
         $data['idClass'] = $id;
-       //$data['tipo'] = $this->Admin_models->consultaTipo($id);
-        
-              $data['tit'] = 'Administración Catálogos';
-       $data['sub'] = 'Clasificación';
+        //$data['tipo'] = $this->Admin_models->consultaTipo($id);
+        $data['tit'] = 'Administración Catálogos';
+        $data['sub'] = 'Clasificación';
  
-      //$data['product']=$this->Admin_models->clasificacionDatos($id);
-      //$data['product']=$this->Admin_models->clasificacionDatosCategoria($id);
-       $productos=$this->Admin_models->clasificacionDatosCategoria($id);
-      $data['product']=$productos;
-        ;
-      $data['grupo']=$this->Admin_models->clasificacionDatosGrupo($id);
-      $data['lista']=$this->Admin_models->listaAparicionProducto($productos->id_aparicion);
-      $data['listasAp']=$this->Admin_models->listasAparicion();
-      $data['tipo']=$this->Admin_models->clasificacionDatosTipo($id);
+        //$data['product']=$this->Admin_models->clasificacionDatos($id);
+        //$data['product']=$this->Admin_models->clasificacionDatosCategoria($id);
+        $productos=$this->Admin_models->clasificacionDatosCategoria($id);
+        $data['product']=$productos;
+        $data['grupo']=$this->Admin_models->clasificacionDatosGrupo($id);
+        $data['tipo']=$this->Admin_models->clasificacionDatosTipo($id);
+
+        $idPadre=$productos->id_aparicion;
+        $idHijo=$productos->id_sub_aparicion;
+
+        //lista padre y la opcion seleccionada
+        $data['listasAp']=$this->Admin_models->listasAparicion();
+        $listaPadre=$this->Admin_models->listaAparicionProducto($productos->id_aparicion);
+        $data['lista']=$listaPadre;
+
+        $data['listaHijo']=$this->Admin_models->listaAparicionProductoHijo($idHijo,$listaPadre->id_orden_aparicion);
+
+        //lista hijo
+
+
         //print_r($data['product']);
         //echo $id;
 		vista_crud_admin('admin/clasificacionEdit_view',$data); 
     }
     function formClasificacionAdd()
     {
-                 $data['tit'] = 'Administración Catálogos';
-       $data['sub'] = 'Clasificación';
-         $data['categorias'] = $this->Admin_models->categorias();
-         $data['productos'] = $this->Admin_models->productos();
-         $data['listasAp'] = $this->Admin_models->listasAparicion();
+        $data['tit'] = 'Administración Catálogos';
+        $data['sub'] = 'Clasificación';
+        $data['categorias'] = $this->Admin_models->categorias();
+        $data['productos'] = $this->Admin_models->productos();
+        $data['listasAp'] = $this->Admin_models->listasAparicion();
 		vista_crud_admin('admin/clasificacionAdd_view',$data);
     }
     function regresarTipos()
@@ -224,17 +235,20 @@ class Admin extends CI_Controller {
          $categoria=$this->input->post('categoria');
          $producto=$this->input->post('producto');
          $Lista=$this->input->post('Lista');
+         $ListaHijo=$this->input->post('ListaHijo');
          $form=array(
-
                         'id_tipo'=>$tipo, 
 			            'id_grupo'=> $grupo,
 			            'id_categoria'=> $categoria,
 			            'id_producto'=> $producto
                     );
         $resp=$this->Admin_models->GuardarClasificacion($form);
+        $resp=$this->Admin_models->consultarOrdenamientoPadre($Lista);
+        $hijo=$this->Admin_models->consultarOrdenamientoHijo($ListaHijo);
         $formLista=array(
 
-                        'id_aparicion'=>$Lista
+                        'id_aparicion'=>$resp->numero_aparicion,
+                        'id_sub_aparicion'=>$hijo->numero_aparicion
                     );
         $this->Admin_models->updateProductosClasificacion($producto,$formLista);
     } 
@@ -407,13 +421,13 @@ class Admin extends CI_Controller {
             $crud->display_as('descripcion', 'Descripción');
             $crud->display_as('precio', 'Precio');
             $crud->display_as('extra', 'Busqueda');
-                 $crud->set_relation('estado','estados','estado');
-              $crud->field_type('nuevo_precio', 'hidden', 0);
-              $crud->field_type('porcentaje', 'hidden', 0);
-              $crud->field_type('estado_promocion', 'hidden', 0);
+            $crud->set_relation('estado','estados','estado');
+            $crud->field_type('nuevo_precio', 'hidden', 0);
+            $crud->field_type('porcentaje', 'hidden', 0);
+            $crud->field_type('estado_promocion', 'hidden', 0);
             $crud->display_as('imagen', 'Foto');
-               $crud->callback_after_insert(array($this, 'crear_imagen_baja_resolucion'));
-              $crud->callback_after_update(array($this, 'crear_imagen_baja_resolucion'));
+            $crud->callback_after_insert(array($this, 'crear_imagen_baja_resolucion'));
+            $crud->callback_after_update(array($this, 'crear_imagen_baja_resolucion'));
             //$crud->set_relation('id_grupo','grupos','Grupo');
               /*
             $crud->display_as('descripcion', 'Descripción');
@@ -1460,9 +1474,10 @@ class Admin extends CI_Controller {
     /////vista principal para agregar
     /////vista principal para agregar
     /////vista principal para agregar
-
+/*
     function ordenAparicion()
     {
+
                           try{
             $crud = new Grocery_CRUD();
             $crud->set_theme('bootstrap');
@@ -1526,121 +1541,34 @@ class Admin extends CI_Controller {
             show_error($e->getMessage().' --- '.$e->getTraceAsString());
         }
     }
+
      function agregarProductosBoton($primary_key,$row){
 
          return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/agregarProductos/'.$row->numero_aparicion.'">Agregar productos</a>';
-    }
+    }   */
+    /*
     function viewListBoton($primary_key,$row){
 
          return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/listProductos/'.$row->numero_aparicion.'">Lista de productos agregados</a>';
-    }
-
-    function agregarProductos()
-    {
-        if($this->uri->segment(3)==NULL)
-        {
-            echo '<script>
-            window.parent.location.href="'.base_url().'index.php/Admin/artistas";
-            </script>';
-        }else
-        {
-            $idOrden=$this->uri->segment(3);
-            $data['tit'] ="Administración Catálogos";
-            $data['sub'] ="Agregar productos a orden de aparición";
-            $data['id'] =$idOrden;
-            $this->session->set_userdata('Id_0rd3n4',$idOrden);
-            //vista_crud_admin('ordenamiento/add_Productos_ordenamiento_view',$data);
-            vista_crud_admin_https('ordenamiento/add_Productos_ordenamiento_view',$data);
-        }
-
-    }
-    function listProductos()
-    {
-        if($this->uri->segment(3)==NULL)
-        {
-            echo '<script>
-            window.parent.location.href="'.base_url().'index.php/Admin/artistas";
-            </script>';
-        }else
-        {
-            $idOrden=$this->uri->segment(3);
-            $data['tit'] ="Administración Catálogos";
-            $data['sub'] ="Lista de productos agregados";
-         try{
-            $crud = new Grocery_CRUD();
-            $crud->set_theme('bootstrap');
-
-            $crud->where('id_aparicion',$idOrden);
-            $crud->set_table('productos');
-            $crud->set_subject('Lista productos agregados a la lista numero '.$idOrden);
-            $crud->set_language('spanish');
-
-            $crud->display_as('codigo', 'Código');
-            $crud->display_as('imagen', 'Foto');
-            $crud->display_as('nombre', 'Producto');
-            $crud->display_as('descripcion', 'Descripción');
-            $crud->display_as('precio', 'Precio');
-
-            $crud->columns(
-                'codigo',
-                'imagen',
-                'nombre',
-              'descripcion',
-              'precio'
-            );
-            $crud->unset_delete();
-            $crud->unset_add();
-            $crud->unset_edit();
-
-
-       $crud->set_field_upload('imagen','assets/uploads/productos');
-		    $output = $crud->render();
-
-
-            $output->titulo ="Administración Productos";
-            $output->subtitulo ="Lista de productos agregados";
-		    vista_crud_admin('principalAdmin',$output);
-        }catch(Exception $e){
-            show_error($e->getMessage().' --- '.$e->getTraceAsString());
-        }
-
-        }
-
-    }
+    }*/
+    /*
      function quitarProductosBoton($primary_key,$row){
 
          return '<a class="btn btn-default" href="'.base_url().'index.php/Admin/quitarProductos/'.$row->numero_aparicion.'">Quitar productos</a>';
-    }
-    function quitarProductos()
-    {
-        if($this->uri->segment(3)==NULL)
-        {
-            echo '<script>
-            window.parent.location.href="'.base_url().'index.php/Admin/artistas";
-            </script>';
-        }else
-        {
-            $idOrden=$this->uri->segment(3);
-            $data['tit'] ="Administración Catálogos";
-            $data['sub'] ="Agregar productos a orden de aparición";
-            $data['id'] =$idOrden;
-            $this->session->set_userdata('Id_0rd3n4',$idOrden);
-            //vista_crud_admin('ordenamiento/quit_Productos_ordenamiento_view',$data);
-            vista_crud_admin_https('ordenamiento/quit_Productos_ordenamiento_view',$data);
-        }
+    }*/
 
-    }
 
     //////funciones para agregar
     //////funciones para agregar
     //////funciones para agregar
     //////funciones para agregar
-    function ordenAparicionAdd()
+    /* function ordenAparicionAdd()
     {
         $data['tit'] ="Administración Catálogos";
         $data['sub'] ="Agregar nuevo orden de aparición de productos";
         vista_crud_admin('ordenamiento/add_ordenamiento_view',$data);
     }
+
     function verificarValorOrdenamiento()
     {
         $ordenAparicion=$this->input->post('ordenAparicion');
@@ -1662,7 +1590,7 @@ class Admin extends CI_Controller {
 
         $this->Admin_models->saveNuevoOrdenamiento($form);
 
-    }
+    }*/
 
 
 
@@ -1670,7 +1598,7 @@ class Admin extends CI_Controller {
     ///////////////editar ordenamiento
     ///////////////editar ordenamiento
 
-
+/*
     function ordenAparicionEdit($id)
     {
         if($id!='')
@@ -1702,6 +1630,7 @@ class Admin extends CI_Controller {
             redirect('Admin/ordenAparicion');
         }
     }
+
     function verificarValorOrdenamientoEdit()
     {
 
@@ -1716,6 +1645,7 @@ class Admin extends CI_Controller {
             echo 0;
         }
     }
+
     function UpdateOrdenamiento()
     {
        $ordenAparicion=$this->input->post('ordenAparicion');
@@ -1741,12 +1671,202 @@ class Admin extends CI_Controller {
         $this->session->unset_userdata('num_0rd3n4');
 
     }
+
     function quitarVariablesSesion()
     {
         $this->session->unset_userdata('Id_0rd3n4');
         $this->session->unset_userdata('num_0rd3n4');
         redirect('Admin/ordenAparicion');
+    } */
+
+
+    /*
+    function ordenAparicionpsadre()
+    {
+        echo '<script>
+            window.parent.location.href="'.base_url().'index.php/Admin/artistas";
+            </script>';
+
     }
+
+    */
+
+
+
+    //////////////////////////nuevas funciones ordenamiento productos //////////////////////////////////
+    function agregarProductos()
+    {
+        if($this->uri->segment(3)==NULL)
+        {
+            echo '<script>
+            window.parent.location.href="'.base_url().'index.php/Admin/artistas";
+            </script>';
+        }else
+        {
+            $idOrden=$this->uri->segment(3);
+            $data['tit'] ="Administración Catálogos";
+            $data['sub'] ="Agregar productos a orden de aparición";
+            $data['id'] =$idOrden;
+             $data['id_padre'] =$this->session->userdata('id_padre_0rd3n');
+            $this->session->set_userdata('Id_0rd3n4_hijo_final',$idOrden);
+             $this->session->unset_userdata('productoFiltro1');
+            $this->session->unset_userdata('productoFiltro');
+            //vista_crud_admin('ordenamiento/add_Productos_ordenamiento_view',$data);
+            vista_crud_admin_https('ordenamiento/add_Productos_ordenamiento_view',$data);
+        }
+
+    }
+    function listProductos()
+    {
+        if($this->uri->segment(3)==NULL)
+        {
+            echo '<script>
+            window.parent.location.href="'.base_url().'index.php/Admin/artistas";
+            </script>';
+        }else
+        {
+            $idOrden=$this->uri->segment(3);
+            $data['tit'] ="Administración Catálogos";
+            $data['sub'] ="Lista de productos agregados";
+         try{
+             $idPadre=$this->session->userdata('num3ro_padre_0rd3n');
+            $crud = new Grocery_CRUD();
+            $crud->set_theme('bootstrap');
+
+            $crud->where('id_aparicion',$idPadre);
+            $crud->where('id_sub_aparicion',$idOrden);
+            $crud->set_table('productos');
+            $crud->set_subject('Lista productos agregados a la lista numero '.$idOrden);
+            $crud->set_language('spanish');
+
+            $crud->callback_column('Eliminar', array($this, 'eliminarProductosBoton'));
+            $crud->display_as('codigo', 'Código');
+            $crud->display_as('imagen', 'Foto');
+            $crud->display_as('nombre', 'Producto');
+            $crud->display_as('descripcion', 'Descripción');
+            $crud->display_as('precio', 'Precio');
+
+            $crud->columns(
+                'codigo',
+                'imagen',
+                'nombre',
+              'descripcion',
+              'precio',
+              'Eliminar'
+            );
+            $crud->unset_delete();
+            $crud->unset_add();
+            $crud->unset_edit();
+
+
+       $crud->set_field_upload('imagen','assets/uploads/productos');
+		    $output = $crud->render();
+
+
+            $output->titulo ="Administración Productos";
+            $output->subtitulo ="Lista de productos agregados";
+		    vista_crud_admin('principalAdmin',$output);
+        }catch(Exception $e){
+            show_error($e->getMessage().' --- '.$e->getTraceAsString());
+        }
+
+        }
+
+    }
+    function eliminarProductosBoton($primary_key,$row)
+    {
+
+         return '<a class="btn btn-danger" onclick="quitarOrdenamientoProductos('.$row->id_producto.')" href="#">Eliminar</a>';
+    }
+    function quitarProductos()
+    {
+     /*   if($this->uri->segment(3)==NULL)
+        {
+            echo '<script>
+            window.parent.location.href="'.base_url().'index.php/Admin/artistas";
+            </script>';
+        }else
+        {*/
+         //   $idOrden=$this->uri->segment(3);
+            $data['tit'] ="Administración Catálogos";
+            $data['sub'] ="Quitar productos a orden de aparición";
+           // $data['id'] =$idOrden;
+           // $this->session->set_userdata('Id_0rd3n4',$idOrden);
+            //vista_crud_admin('ordenamiento/quit_Productos_ordenamiento_view',$data);
+            vista_crud_admin_https('ordenamiento/quit_Productos_ordenamiento_view',$data);
+       // }
+
+    }
+    function quitarProductoListaActual()
+    {
+        $IdProducto=$this->input->post('id');
+        if(is_numeric($IdProducto))
+        {
+            $form=array(
+            'id_aparicion'=>0,
+            'id_sub_aparicion'=>0
+                   );
+            $this->Admin_models->quitarProductoDeListaOrdenamiento($form,$IdProducto);
+        }
+    }
+    function regresarListahijos()
+    {
+         $idPadre = $this->input->get('idPadre');
+          $resp=$this->Admin_models->regresarTodosLosHijosDelPadre($idPadre);
+
+         echo json_encode($resp);
+    }
+
+    function crear_imagen_baja_resolucionProductosMasivo()
+    {
+        //$this->output->enable_profiler(TRUE);
+        $productos=$this->Admin_models->regresaTodosLosProductos();
+        foreach($productos as $producto)
+        {
+            $ruta="./assets/uploads/productos/".$producto->imagen;
+
+            if(file_exists($ruta)==true)
+            {
+                $widthImage=getimagesize(base_url()."assets/uploads/productos/".$producto->imagen);
+                echo $producto->imagen.'<br>';
+                $widthDefault=400;
+                //$contante=10;
+                //$var1=(int)$widthImage[0];
+                //$var2=(int)$widthImage[1];
+                // $x=$var1-$contante;
+                //$y=$var2-$contante;
+                $resultado=($widthDefault*$widthImage[1])/$widthImage[0];
+                // ini_set('max_execution_time', '30');
+                // ini_set('max_input_time', '30');
+                // ini_set('memory_limit', '128M');
+
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/uploads/productos/'.$producto->imagen;
+                $config['new_image'] = './assets/uploads/productos_baja_resolucion/'.$producto->imagen;
+                $config['maintain_ratio'] = TRUE;
+                $config['create_thumb'] = FALSE;
+                $config['width'] = $widthDefault;
+                $config['height'] =$resultado;
+                //$config['quality']      = '90%';
+                //var_dump($config);
+                $this->image_lib->initialize($config);
+
+                if (!$this->image_lib->resize())
+                {
+                    echo $this->image_lib->display_errors('', '');
+                }
+                $this->image_lib->clear();
+            }
+        }
+        //$this->image_lib->clear();
+        //return true;
+    }
+
+
+
+
+
+
 
 }
 
