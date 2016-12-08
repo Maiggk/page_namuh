@@ -88,7 +88,7 @@ class OrdenProductos extends CI_Controller
     }
     function list_subOrdenesBoton($primary_key,$row){
 
-         return '<a class="btn btn-default" href="'.base_url().'index.php/OrdenProductos/addSubOrdenProductos/'.$row->		id_orden_aparicion.'">Agregar Sub ordenes de aparición</a>';
+         return '<a class="btn btn-default" href="'.base_url().'index.php/OrdenProductos/addSubOrdenProductos/'.$row->		id_orden_aparicion.'">Agregar lista específica</a>';
     }
 
 

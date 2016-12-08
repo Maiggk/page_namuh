@@ -1819,6 +1819,7 @@ class Admin extends CI_Controller {
 
     function crear_imagen_baja_resolucionProductosMasivo()
     {
+        set_time_limit (3600);
         //$this->output->enable_profiler(TRUE);
         $productos=$this->Admin_models->regresaTodosLosProductos();
         foreach($productos as $producto)

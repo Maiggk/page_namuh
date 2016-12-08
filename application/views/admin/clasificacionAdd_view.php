@@ -152,7 +152,7 @@ input:checked + .slider:before {
                                  </div>
 						     </div>
                             <div class="form-group">
-							     <label class="col-md-4 control-label" style="text-align:right;" for="textinput">Agregar a lista de aparición padre</label>
+							     <label class="col-md-4 control-label" style="text-align:right;" for="textinput">Agregar a lista de aparición general</label>
                                  <div class="col-md-5">
 							         <select id="Lista" name="Lista" onchange="showlistaHijo()" class="form-control ">
 								        <option selected value="0">Seleccionar</option>
@@ -162,18 +162,18 @@ input:checked + .slider:before {
 								                    </option>
 								                <?php } ?>
 							         </select>
-                                    <span class="help-block" id="alertLista" style="display:none;color: red;">Seleccionar un orden de aparición padre</span>
+                                    <span class="help-block" id="alertLista" style="display:none;color: red;">Seleccionar un orden de aparición general</span>
                                  </div>
 						     </div>
                             
                               <!-- Select Basic -->
                             <div class="form-group"  >
-                                <label class="col-md-4 control-label" style="text-align:right;" for="ListaHijo">Seleccionar un orden de aparición hijo</label>
+                                <label class="col-md-4 control-label" style="text-align:right;" for="ListaHijo">Seleccionar un orden de aparición específico</label>
                                     <div class="col-md-5 ">
                                         <select id="ListaHijo" name="ListaHijo" class="form-control">
                                             <option selected value="0">Seleccionar</option>
                                         </select>
-                                <span class="help-block" id="alertListaHijo" style="display:none;color: red;">Seleccionar un orden de aparición hijo</span>
+                                <span class="help-block" id="alertListaHijo" style="display:none;color: red;">Seleccionar un orden de aparición específico</span>
                                     </div>
 
                             </div>
