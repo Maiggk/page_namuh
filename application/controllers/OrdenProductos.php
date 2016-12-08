@@ -41,7 +41,7 @@ class OrdenProductos extends CI_Controller
             $crud->display_as('descripcion', 'Descripción');
             $crud->display_as('numero_aparicion', 'Orden de aparición');
 
-            $crud->order_by('orden','ASC');
+            $crud->order_by('numero_aparicion','ASC');
             $crud->unset_delete();
 
             $crud->required_fields(
@@ -109,6 +109,7 @@ class OrdenProductos extends CI_Controller
        $descripcion=$this->input->post('descripcion');
        $titulo=$this->input->post('titulo');
 
+       $TodosLosProductos = Array();
        $resp = $this->OrdenProductos_models->countVerificarValorOrdenamientoPadre($ordenAparicion);
        $form=array(
             'orden'=>$titulo,
@@ -123,9 +124,27 @@ class OrdenProductos extends CI_Controller
               $ordenAparicionPadre=$ordenPadre->numero_aparicion+1;
               $updateform=array('numero_aparicion'=>$ordenAparicionPadre);
               $this->OrdenProductos_models->updateOrdenamientoPadre($ordenPadre->id_orden_aparicion,$updateform);
-              $updateformProductos=array('id_aparicion'=>$ordenAparicionPadre);
-              $this->OrdenProductos_models->updateOrdenamientoPadreProductos($ordenPadre->numero_aparicion,$updateformProductos);
+              //$updateformProductos=array('id_aparicion'=>$ordenAparicionPadre);
+             // $this->OrdenProductos_models->updateOrdenamientoPadreProductos($ordenPadre->numero_aparicion,$updateformProductos);
+
+              ///guarda todos los productos con su actalizacion
+              $productosParaActualizar=$this->OrdenProductos_models->regresaProductosOrdenadosPadre($ordenPadre->numero_aparicion);
+                foreach($productosParaActualizar as $producto)
+                {
+                    $TodosLosProductos[] = array(
+                    'id_producto' =>$producto->id_producto,
+                    'id_aparicion' =>$ordenAparicionPadre
+                    );
+                }
            }
+            ///depues de guardar todos los productos gardarlos en la base de datos
+            ////actualizar productos masivo
+            foreach($TodosLosProductos as $productoA)
+            {
+               $updateformProductos=array('id_aparicion'=>$productoA['id_aparicion']);
+                $idProducto=$productoA['id_producto'];
+                $this->OrdenProductos_models->updateOrdenamientoProductos($idProducto,$updateformProductos);
+            }
        }
         $this->OrdenProductos_models->saveNuevoOrdenamientoPadre($form);
 
@@ -174,6 +193,19 @@ class OrdenProductos extends CI_Controller
         $idor=base64_decode($this->session->userdata('Id_0rd3n4'));
         $numeroOrdenamiento=base64_decode($this->session->userdata('num_0rd3n4'));
 
+        $TodosLosProductos = Array();
+        $listaProductos = Array();
+
+        $productosParaActualizarOriginales=$this->OrdenProductos_models->regresaProductosOrdenadosPadre($numeroOrdenamiento);
+
+        foreach($productosParaActualizarOriginales as $producto)
+        {
+            $listaProductos[] = array(
+                'id_producto' =>$producto->id_producto,
+                'id_aparicion' =>$ordenAparicion
+                );
+        }
+
         $resp=$this->OrdenProductos_models->countVerificarValorOrdenamientoEditPadre($ordenAparicion,$idor);
         if($resp>0)
         {
@@ -183,8 +215,24 @@ class OrdenProductos extends CI_Controller
               $ordenAparicionPadre=$ordenPadre->numero_aparicion+1;
               $updateform=array('numero_aparicion'=>$ordenAparicionPadre);
               $this->OrdenProductos_models->updateOrdenamientoPadre($ordenPadre->id_orden_aparicion,$updateform);
-              $updateformProductos=array('id_aparicion'=>$ordenAparicionPadre);
-              $this->OrdenProductos_models->updateOrdenamientoPadreProductos($ordenPadre->numero_aparicion,$updateformProductos);
+              //$updateformProductos=array('id_aparicion'=>$ordenAparicionPadre);
+              //$this->OrdenProductos_models->updateOrdenamientoPadreProductos($ordenPadre->numero_aparicion,$updateformProductos);
+              $productosParaActualizar=$this->OrdenProductos_models->regresaProductosOrdenadosPadre($ordenPadre->numero_aparicion);
+              foreach($productosParaActualizar as $producto)
+              {
+                    $TodosLosProductos[] = array(
+                    'id_producto' =>$producto->id_producto,
+                    'id_aparicion' =>$ordenAparicionPadre
+                    );
+              }
+            }
+              ///depues de guardar todos los productos gardarlos en la base de datos
+            ////actualizar productos masivo
+            foreach($TodosLosProductos as $productoA)
+            {
+               $updateformProductos=array('id_aparicion'=>$productoA['id_aparicion']);
+                $idProducto=$productoA['id_producto'];
+                $this->OrdenProductos_models->updateOrdenamientoProductos($idProducto,$updateformProductos);
             }
         }
 
@@ -194,8 +242,14 @@ class OrdenProductos extends CI_Controller
             'numero_aparicion'=>$ordenAparicion
                    );
         $this->OrdenProductos_models->updateOrdenamientoPadreEditar($form,$idor);
-        $formProductos=array('id_aparicion'=>$ordenAparicion);
-        $this->OrdenProductos_models->updateOrdenamientoProductosPadreEditar($formProductos,$numeroOrdenamiento);
+        //$formProductos=array('id_aparicion'=>$ordenAparicion);
+        //$this->OrdenProductos_models->updateOrdenamientoProductosPadreEditar($formProductos,$numeroOrdenamiento);
+          foreach($listaProductos as $productoA)
+            {
+               $updateformProductos=array('id_aparicion'=>$productoA['id_aparicion']);
+                $idProducto=$productoA['id_producto'];
+                $this->OrdenProductos_models->updateOrdenamientoProductos($idProducto,$updateformProductos);
+            }
 
     }
     function quitarVariablesSesionPadre()
@@ -274,7 +328,7 @@ class OrdenProductos extends CI_Controller
             $crud->display_as('descripcion', 'Descripción');
             $crud->display_as('numero_aparicion', 'Orden de aparición');
             //$crud->field_type('id_orden_aparicion', 'hidden', $idOrden1);
-            $crud->order_by('orden','ASC');
+            $crud->order_by('numero_aparicion','ASC');
             $crud->unset_delete();
 
             $crud->required_fields(
@@ -345,7 +399,8 @@ class OrdenProductos extends CI_Controller
     function verificarValorOrdenamientoHijo()
     {
         $ordenAparicion=$this->input->post('ordenAparicion');
-        $resp = $this->OrdenProductos_models->countVerificarValorOrdenamientoHijo($ordenAparicion);
+        $id_padre=$this->session->userdata('id_padre_0rd3n');
+        $resp = $this->OrdenProductos_models->countVerificarValorOrdenamientoHijo($ordenAparicion,$id_padre);
         echo $resp;
     }
      function AddOrdenamientoHijo()
@@ -353,19 +408,48 @@ class OrdenProductos extends CI_Controller
        $ordenAparicion=$this->input->post('ordenAparicion');
        $descripcion=$this->input->post('descripcion');
        $titulo=$this->input->post('titulo');
+         $id_padre=$this->session->userdata('id_padre_0rd3n');
 
-       $resp = $this->OrdenProductos_models->countVerificarValorOrdenamientoHijo($ordenAparicion);
+         $numOrdenamientoPadre=$this->session->userdata('num3ro_padre_0rd3n');
+          $TodosLosProductos = Array();
+
+       $resp = $this->OrdenProductos_models->countVerificarValorOrdenamientoHijo($ordenAparicion,$id_padre);
+
+
        if($resp>0)
        {
-           $reordenar=$this->OrdenProductos_models->regresaRowOrdenamientoHijoRepetido($ordenAparicion);
+           $reordenar=$this->OrdenProductos_models->regresaRowOrdenamientoHijoRepetido($ordenAparicion,$id_padre);
            foreach($reordenar as $ordenHijo)
            {
               $ordenAparicionHijo=$ordenHijo->numero_aparicion+1;
               $updateform=array('numero_aparicion'=>$ordenAparicionHijo);
               $this->OrdenProductos_models->updateOrdenamientoHijo($ordenHijo->id_sub_orden_aparicion,$updateform);
-              $updateformProductos=array('id_sub_aparicion'=>$ordenAparicionHijo);
-              $this->OrdenProductos_models->updateOrdenamientoHijoProductos($ordenHijo->numero_aparicion,$updateformProductos);
+              //$updateformProductos=array('id_sub_aparicion'=>$ordenAparicionHijo);
+              ///cambiar funcion de ordenamiento productos
+              // $this->OrdenProductos_models->updateOrdenamientoHijoProductos($ordenHijo->numero_aparicion,$updateformProductos);
+
+               ///guarda todos los productos con su actalizacion
+              $productosParaActualizar=$this->OrdenProductos_models->regresaProductosOrdenados($ordenHijo->numero_aparicion,$numOrdenamientoPadre);
+                foreach($productosParaActualizar as $producto)
+                {
+                    $TodosLosProductos[] = array(
+                    'id_producto' =>$producto->id_producto,
+                    'id_sub_aparicion' =>$ordenAparicionHijo
+                    );
+                }
            }
+
+           ///depues de guardar todos los productos gardarlos en la base de datos
+            ////actualizar productos masivo
+            foreach($TodosLosProductos as $productoA)
+            {
+               $updateformProductos=array('id_sub_aparicion'=>$productoA['id_sub_aparicion']);
+                $idProducto=$productoA['id_producto'];
+                $this->OrdenProductos_models->updateOrdenamientoProductos($idProducto,$updateformProductos);
+            }
+
+
+
        }
            $form=array(
             'orden'=>$titulo,
@@ -415,10 +499,10 @@ class OrdenProductos extends CI_Controller
     {
         $numOrd=base64_decode($this->session->userdata('num_0rd3n4_hijo'));
         $id_ordenamientoPadre=base64_decode($this->session->userdata('Id_0rd3n4_hijo'));
-
+ $id_padre=$this->session->userdata('id_padre_0rd3n');
         $ordenAparicion=$this->input->post('ordenAparicion');
         if($id_ordenamientoPadre!=''){
-            $resp = $this->OrdenProductos_models->countVerificarValorOrdenamientoEditHijo($ordenAparicion,$id_ordenamientoPadre);
+            $resp = $this->OrdenProductos_models->countVerificarValorOrdenamientoEditHijo($ordenAparicion,$id_ordenamientoPadre,$id_padre);
             echo $resp;
         }else
         {
@@ -431,21 +515,66 @@ class OrdenProductos extends CI_Controller
        $descripcion=$this->input->post('descripcion');
        $titulo=$this->input->post('titulo');
 
+        //variables de session
         $idor=base64_decode($this->session->userdata('Id_0rd3n4_hijo'));
         $numeroOrdenamiento=base64_decode($this->session->userdata('num_0rd3n4_hijo'));
+        $id_padre=$this->session->userdata('id_padre_0rd3n');
+        $numOrdenamientoPadre=$this->session->userdata('num3ro_padre_0rd3n');
 
-        $resp=$this->OrdenProductos_models->countVerificarValorOrdenamientoEditHijo($ordenAparicion,$idor);
+        $listaProductos = Array();
+        $TodosLosProductos = Array();
+
+        $datosOrdenamientoHijo=$this->OrdenProductos_models->regresarowOrdenados($idor);
+
+        $productosParaActualizarOriginales=$this->OrdenProductos_models->regresaProductosOrdenados($datosOrdenamientoHijo->numero_aparicion,$numOrdenamientoPadre);
+
+                foreach($productosParaActualizarOriginales as $producto)
+                {
+                    $listaProductos[] = array(
+                    'id_producto' =>$producto->id_producto,
+                    'id_sub_aparicion' =>$ordenAparicionHijo
+                    );
+                }
+
+        ////buscar todos los productos que estan en la lista hijo
+
+
+
+
+
+
+
+        $resp=$this->OrdenProductos_models->countVerificarValorOrdenamientoEditHijo($ordenAparicion,$idor,$id_padre);
         if($resp>0)
         {
-            $reordenar=$this->OrdenProductos_models->regresaRowOrdenamientoHijoRepetidoEdit($ordenAparicion,$idor);
+            $reordenar=$this->OrdenProductos_models->regresaRowOrdenamientoHijoRepetidoEdit($ordenAparicion,$idor,$id_padre);
             foreach($reordenar as $ordenHijo)
             {
               $ordenAparicionHijo=$ordenHijo->numero_aparicion+1;
               $updateform=array('numero_aparicion'=>$ordenAparicionHijo);
               $this->OrdenProductos_models->updateOrdenamientoHijo($ordenHijo->id_sub_orden_aparicion,$updateform);
-              $updateformProductos=array('id_sub_aparicion'=>$ordenAparicionHijo);
-              $this->OrdenProductos_models->updateOrdenamientoHijoProductos($ordenHijo->numero_aparicion,$updateformProductos);
+              //$updateformProductos=array('id_sub_aparicion'=>$ordenAparicionHijo);
+              //$this->OrdenProductos_models->updateOrdenamientoHijoProductos($ordenHijo->numero_aparicion,$updateformProductos);
+                 $productosParaActualizar=$this->OrdenProductos_models->regresaProductosOrdenados($ordenHijo->numero_aparicion,$numOrdenamientoPadre);
+                foreach($productosParaActualizar as $producto)
+                {
+                    $TodosLosProductos[] = array(
+                    'id_producto' =>$producto->id_producto,
+                    'id_sub_aparicion' =>$ordenAparicionHijo
+                    );
+                }
             }
+
+            ////actualizar productos masivo
+            foreach($TodosLosProductos as $productoA)
+            {
+               $updateformProductos=array('id_sub_aparicion'=>$productoA['id_sub_aparicion']);
+                $idProducto=$productoA['id_producto'];
+                $this->OrdenProductos_models->updateOrdenamientoProductos($idProducto,$updateformProductos);
+            }
+
+
+
         }
 
          $form=array(
@@ -455,8 +584,14 @@ class OrdenProductos extends CI_Controller
             'id_orden_aparicion'=>$this->session->userdata('id_padre_0rd3n')
                    );
         $this->OrdenProductos_models->updateOrdenamientoHijo($idor,$form);
-        $formProductos=array('id_sub_aparicion'=>$ordenAparicion);
-        $this->OrdenProductos_models->updateOrdenamientoHijoProductos($numeroOrdenamiento,$formProductos);
+        //$formProductos=array('id_sub_aparicion'=>$ordenAparicion);
+        //$this->OrdenProductos_models->updateOrdenamientoHijoProductos($numeroOrdenamiento,$formProductos);
+         foreach($listaProductos as $productoA)
+            {
+               $updateformProductos=array('id_sub_aparicion'=>$ordenAparicion);
+                $idProducto=$productoA['id_producto'];
+                $this->OrdenProductos_models->updateOrdenamientoProductos($idProducto,$updateformProductos);
+            }
     }
     function quitarVariablesSesionHijo()
     {

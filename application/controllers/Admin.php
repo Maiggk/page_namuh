@@ -1736,7 +1736,7 @@ class Admin extends CI_Controller {
             $crud->where('id_aparicion',$idPadre);
             $crud->where('id_sub_aparicion',$idOrden);
             $crud->set_table('productos');
-            $crud->set_subject('Lista productos agregados a la lista numero '.$idOrden);
+            $crud->set_subject('Lista productos agregados a la lista número '.$idOrden);
             $crud->set_language('spanish');
 
             $crud->callback_column('Eliminar', array($this, 'eliminarProductosBoton'));

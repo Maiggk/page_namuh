@@ -112,11 +112,12 @@ class OrdenProductos_models extends CI_Model
         $resultado = $q->row();
         return $resultado;
     }
-    function countVerificarValorOrdenamientoHijo($numOrdenamiento)
+    function countVerificarValorOrdenamientoHijo($numOrdenamiento,$id_padre)
     {
         $this->db->select('count(*) as total ');
         $this->db->from('c3rb3r0_sub_orden_apariciones');
        $this->db->where('numero_aparicion',$numOrdenamiento);
+       $this->db->where('id_orden_aparicion',$id_padre);
          $q = $this->db->get();
         $resultado = $q->row()->total;
         return $resultado;
@@ -126,12 +127,13 @@ class OrdenProductos_models extends CI_Model
         $this->db->insert('c3rb3r0_sub_orden_apariciones',$form);
 	    return $this->db->insert_id();
     }
-    function regresaRowOrdenamientoHijoRepetido($numOrdenamiento)
+    function regresaRowOrdenamientoHijoRepetido($numOrdenamiento,$id_padre)
     {
         $where="numero_aparicion >=".$numOrdenamiento;
         $this->db->select('*');
         $this->db->from('c3rb3r0_sub_orden_apariciones');
         $this->db->where($where);
+        $this->db->where('id_orden_aparicion',$id_padre);
         $q = $this->db->get();
         $resultado = $q->result();
         return $resultado;
@@ -148,25 +150,65 @@ class OrdenProductos_models extends CI_Model
         $this->db->update('productos',$form);
 
     }
-     function countVerificarValorOrdenamientoEditHijo($numOrdenamiento,$id_ordenamientoPadre)
+     function countVerificarValorOrdenamientoEditHijo($numOrdenamiento,$id_ordenamientoPadre,$id_padre)
     {
          $this->db->select('count(*) as total ');
          $this->db->from('c3rb3r0_sub_orden_apariciones');
          $this->db->where('numero_aparicion',$numOrdenamiento);
+         $this->db->where('id_orden_aparicion',$id_padre);
          $this->db->where('id_sub_orden_aparicion !=',$id_ordenamientoPadre);
          $q = $this->db->get();
          $resultado = $q->row()->total;
          return $resultado;
     }
-    function regresaRowOrdenamientoHijoRepetidoEdit($ordenAparicion,$idor)
+    function regresaRowOrdenamientoHijoRepetidoEdit($ordenAparicion,$idor,$id_padre)
     {
         $where="numero_aparicion >=".$ordenAparicion;
         $this->db->select('*');
         $this->db->from('c3rb3r0_sub_orden_apariciones');
         $this->db->where($where);
+              $this->db->where('id_orden_aparicion',$id_padre);
         $this->db->where('id_sub_orden_aparicion !=',$idor);
         $q = $this->db->get();
         $resultado = $q->result();
+        return $resultado;
+    }
+    function regresaProductosOrdenados($ordenAparicion,$id_padre)
+    {
+
+        $this->db->select('*');
+        $this->db->from('productos');
+        $this->db->where('id_aparicion',$id_padre);
+        $this->db->where('id_sub_aparicion',$ordenAparicion);
+        $q = $this->db->get();
+        $resultado = $q->result();
+        return $resultado;
+    }
+    function regresaProductosOrdenadosPadre($id_padre)
+    {
+
+        $this->db->select('*');
+        $this->db->from('productos');
+        $this->db->where('id_aparicion',$id_padre);
+       // $this->db->where('id_sub_aparicion',$ordenAparicion);
+        $q = $this->db->get();
+        $resultado = $q->result();
+        return $resultado;
+    }
+
+    function updateOrdenamientoProductos($idProducto,$form)
+    {
+        $this->db->where('id_producto',$idProducto);
+        $this->db->update('productos',$form);
+    }
+
+    function regresarowOrdenados($idor)
+    {
+        $this->db->select('*');
+        $this->db->from('c3rb3r0_sub_orden_apariciones');
+        $this->db->where('id_sub_orden_aparicion',$idor);
+        $q = $this->db->get();
+        $resultado = $q->row();
         return $resultado;
     }
 
