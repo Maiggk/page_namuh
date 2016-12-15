@@ -80,7 +80,7 @@ class Promociones extends CI_Controller {
         if(strlen($where)>0)
         $results=$this->Promociones_models->regresaBusquedaCount($where);
         else $results='0';
-echo $results;
+         echo $results;
 
     }
 

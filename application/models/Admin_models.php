@@ -457,6 +457,11 @@ function galeriaInicial() /*funcion para traer el id del usuario que inteneta in
        	$this->db->insert('namuhdb_usuarios',$form_datos);
 	   return $this->db->insert_id(); 
     }
+  function saveUsers_register($form_datos)
+    {
+       	$this->db->insert('namuhdb_usuarios_register',$form_datos);
+	   return $this->db->insert_id();
+    }
       function consultarUsuario($idusuario)
 	 {
 		 $this->db->select('count(*) as total');

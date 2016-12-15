@@ -85,9 +85,9 @@
                         <label>CUNA</label><br>
                         LUNES A DOMINGO 11 AM A 7 PM, CERRADO LOS MARTES<BR><BR>
                         <label>ANTARA</label><br>
-                        MARTES A DOMINGO 11 AM A 7 PM<BR><BR>
+                        MARTES A DOMINGO 11 AM A 9 PM<BR><BR>
                         <label>SANTA FE</label><br>
-                        LUNES A DOMINGO 11 AM A 7 PM, CERRADO LOS MARTES<BR>
+                        LUNES A DOMINGO 11 AM A 9 PM, CERRADO LOS MARTES<BR>
                       
                       </p>
                   </div>
@@ -169,7 +169,7 @@
                 <div id="failureMessage" style="display:none" class="alert alert-danger text-center">
                   <p><i class="fa fa-times-circle fa-2x"></i></p>
 <!--                  <p>There was a problem sending your message. Please, try again.</p>-->
-                  <p>Ocurrio un problema enviando tu mensaje porfavor inenta nuevamente.</p>
+                  <p>Ocurrio un problema enviando tu mensaje por favor intenta nuevamente.</p>
                 </div>
                 <div id="incompleteMessage" style="display:none" class="alert alert-warning text-center">
                   <p><i class="fa fa-exclamation-triangle fa-2x"></i></p>

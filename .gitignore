@@ -1,4 +1,3 @@
-
 .buildpath
 .settings/
 .project
@@ -20,3 +19,5 @@ license.txt
 assets/uploads/assets/images
 /assets/uploads/
 >>>>>>> master
+/sql
+
