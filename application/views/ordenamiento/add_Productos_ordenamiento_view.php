@@ -1,3 +1,4 @@
+<?php  error_reporting(0);?>
 <link rel="stylesheet" href="<?php echo base_url().'assets/css/sweetalertAdmin/sweetalert.css'; ?>">
 <script text="text/javascript" src="<?php echo base_url().'assets/js/sweetalert/sweetalert.min.js'; ?>"></script>
 <style type='text/css'>
@@ -86,9 +87,13 @@ input:checked + .slider:before {
                     echo $sub;?>
                  </h5>
           	     <div class="row mt">
+                     <div class="col-md-12" style="text-align: right;">
+                      <a class="btn btn-warning" href="#" onclick="regresar()">Regresar a la lista</a>
+                     </div>
           		    <div class="col-md-12">
                     <!-- Formulario agregar  -->
                     <!-- Formulario agregar  -->
+
               	     <form class="form-horizontal">
 				    <fieldset>
 				        <legend></legend>
@@ -119,6 +124,10 @@ input:checked + .slider:before {
 </section>
 
   <script type="text/javascript">
+      function regresar()
+      {
+           parent.location.href="<?php echo base_url();?>index.php/OrdenProductos/addSubOrdenProductos/<?php echo $id_padre; ?>";
+      }
   function enviarDatos()
         {
             if($('#TextBuscar').val()!='')

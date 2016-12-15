@@ -77,6 +77,67 @@ text-decoration: underline;
       <!--footer end-->
   </section>
 <script type="text/javascript">
+    function quitarOrdenamientoProductos(id)
+    {
+        swal({
+            title: "¿Está seguro que desea quirar el producto?",
+            text: "De esta lista de ordenamiento",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#656668",
+            confirmButtonText: "Aceptar",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: true,
+            closeOnCancel: true },
+            function(isConfirm)
+            {
+                if (isConfirm)
+                {
+                    quitarProductoLista(id);
+                } else
+                {
+
+                }
+            }
+          );
+    }
+    function quitarProductoLista(id)
+    {
+        $.ajax({
+            type: "POST", //envia la posicion por metodo post de ajax
+            data:{
+                id:id
+				},
+            url:"<?= site_url('Admin/quitarProductoListaActual') ?>",
+            async: true,
+            success: function(response)
+            {
+                /////mensaje de exito
+                  swal({
+                        title: "El registro ha sido eliminado correctamente",
+                        text: "",
+                        type: "success",
+                        showCancelButton: false,
+                        confirmButtonColor: "#656668",
+                        confirmButtonText: "Aceptar",
+                        cancelButtonText: "Cancelar",
+                        closeOnConfirm: true,
+                        closeOnCancel: true },
+                        function(isConfirm)
+                        {
+                           parent.location.reload(true);
+                        }
+                      );
+
+
+
+            },
+            error: function (obj, error, objError){
+            alert("Error: " + objError);
+            }
+            });
+
+    }
  /*   function ValidarElimiar(id)
     {
         $('#opc').val(1);

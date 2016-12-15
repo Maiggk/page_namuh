@@ -152,20 +152,32 @@ input:checked + .slider:before {
                                  </div>
 						     </div>
                             <div class="form-group">
-							     <label class="col-md-4 control-label" style="    text-align:right;" for="textinput">Agregar a lista de aparición</label>
+							     <label class="col-md-4 control-label" style="text-align:right;" for="textinput">Agregar a lista de aparición general</label>
                                  <div class="col-md-5">
-							         <select id="Lista" name="Lista"  class="form-control ">
+							         <select id="Lista" name="Lista" onchange="showlistaHijo()" class="form-control ">
 								        <option selected value="0">Seleccionar</option>
 								                <?php foreach($listasAp as $listaAp){ ?>
-								                    <option value="<?php echo $listaAp->numero_aparicion; ?>">
+								                    <option value="<?php echo $listaAp->id_orden_aparicion; ?>">
 									                       <?php echo $listaAp->orden; ?>
 								                    </option>
 								                <?php } ?>
 							         </select>
-                                    <span class="help-block" id="alertLista" style="display:none;color: red;">Seleccionar un orden de aparición</span>
+                                    <span class="help-block" id="alertLista" style="display:none;color: red;">Seleccionar un orden de aparición general</span>
                                  </div>
 						     </div>
                             
+                              <!-- Select Basic -->
+                            <div class="form-group"  >
+                                <label class="col-md-4 control-label" style="text-align:right;" for="ListaHijo">Seleccionar un orden de aparición específico</label>
+                                    <div class="col-md-5 ">
+                                        <select id="ListaHijo" name="ListaHijo" class="form-control">
+                                            <option selected value="0">Seleccionar</option>
+                                        </select>
+                                <span class="help-block" id="alertListaHijo" style="display:none;color: red;">Seleccionar un orden de aparición específico</span>
+                                    </div>
+
+                            </div>
+
                             
                             
                             <div class="form-group">
@@ -263,31 +275,27 @@ input:checked + .slider:before {
 
     function guardarTipo()
     {
-      /*   if($("#tipo").val()>0 && $('#categoria').val()>0 && $('#grupo').val()>0&& $('#producto').val()>0)
-        {*/
-               $.ajax({
-				type: "POST", //envia la posicion por metodo post de ajax
-				data:{
-				tipo: $("#tipo").val(),
+        $.ajax({
+            type: "POST", //envia la posicion por metodo post de ajax
+            data:{
+                tipo: $("#tipo").val(),
 				grupo: $("#grupo").val(),
 				categoria: $("#categoria").val(),
 				producto: $("#producto").val(),
-				Lista: $("#Lista").val()
+				Lista: $("#Lista").val(),
+				ListaHijo: $("#ListaHijo").val()
 				
-				},
-				url:"<?= site_url('Admin/guardarClasificacion') ?>", 
-				async: true,	 
-				success: function(response)
-				{
-  
-                   
-                  parent.location.href="<?php echo base_url();?>index.php/Admin/clasificacion";
-             },
-				error: function (obj, error, objError){
-				alert("Error: " + objError);
-				}
-				});
-/*    }*/
+            },
+            url:"<?= site_url('Admin/guardarClasificacion') ?>",
+            async: true,
+            success: function(response)
+            {
+                parent.location.href="<?php echo base_url();?>index.php/Admin/clasificacion";
+            },
+               error: function (obj, error, objError){
+            alert("Error: " + objError);
+            }
+            });
 }
 function verificarDatos()
     {
@@ -297,6 +305,7 @@ function verificarDatos()
        // if($("#tipo").val()==''){indicador=1;$("#alertTipo").show();}
         if($("#producto").val()==0){indicador=1;$("#alertProducto").show();}
         if($("#Lista").val()==0){indicador=1;$("#alertLista").show();}
+        if($("#ListaHijo").val()==0){indicador=1;$("#alertListaHijo").show();}
             
         if(indicador==0)
         {
@@ -309,33 +318,39 @@ function verificarDatos()
              $("#tipo").focus(function(){$("#alertTipo").css("display", "none").fadeOut(2000);});
              $("#producto").focus(function(){$("#alertProducto").css("display", "none").fadeOut(2000);});
              $("#Lista").focus(function(){$("#alertLista").css("display", "none").fadeOut(2000);});
+             $("#ListaHijo").focus(function(){$("#alertListaHijo").css("display", "none").fadeOut(2000);});
+
+
+    /////
+
+    function showlistaHijo()
+    {
+        if($('#Lista').val()>0)
+        {
+            $.getJSON("<?= site_url('Admin/regresarListahijos') ?>",
+                {
+                    idPadre:$('#Lista').val()
+                },
+                function(data)
+                {
+                    var Hijo = $('#ListaHijo');
+                    $("option", Hijo).remove();
+                    var option = '';
+
+                    Hijo.append('<option value="0" >Seleccionar</option>');
+                    $.each(data, function(index, op)//Recorrer el Json elemeto x elemeto
+                    {
+                        Hijo.append('<option value="'+op.id_sub_orden_aparicion+'" >'+op.orden+'</option>');
+
+                    });
+
+                }
+            );
+        }
+    }
 
         
  
  
 </script>
 
-  <script type="text/javascript">
-      /*
-  $(document).ready(function() {
-	 // $("a#single_image").fancybox();
-		
-	
-
-		/* Apply fancybox to multiple items
-		
-	  $('.fancybox').fancybox({
-			width		: '95%',
-			height		: '70%',
-			autoSize	: false,
-			autoCenter	: true,
-			closeClick	: false,
-			openEffect	: 'elastic',
-			closeEffect	: 'elastic',
-			scrollOutside:false,
-			type: 'iframe',
-      });
-
-	  //$(".fancybox").fancybox();
-  });*/
-  </script>

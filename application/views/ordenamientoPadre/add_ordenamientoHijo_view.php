@@ -1,5 +1,4 @@
-<?php  error_reporting(0);?>
-<link rel="stylesheet" href="<?php echo base_url().'assets/css/sweetalertAdmin/sweetalert.css'; ?>">
+<link href="<?php echo base_url(); ?>assets/css/sweetalertAdmin/sweetalert.css" rel="stylesheet">
 <script text="text/javascript" src="<?php echo base_url().'assets/js/sweetalert/sweetalert.min.js'; ?>"></script>
 <style type='text/css'>
 body
@@ -100,7 +99,7 @@ input:checked + .slider:before {
                             <div class="form-group">
                               <label class="col-md-4 control-label" style="text-align: right;" for="textinput">Titulo</label>
                               <div class="col-md-4">
-                              <input id="titulo" name="titulo" type="text" placeholder="Ingresar titulo" value="<?php echo $infoOrdenamiento->orden; ?>" class="form-control input-md">
+                              <input id="titulo" name="titulo" type="text" placeholder="Ingresar titulo" class="form-control input-md">
                               <span id="alertTitulo" style="color:red;display:none;" class="help-block">Completar el campo titulo</span>
                               </div>
                             </div>
@@ -109,7 +108,7 @@ input:checked + .slider:before {
                             <div class="form-group">
                               <label class="col-md-4 control-label" style="text-align: right;"  for="textarea">Descripción: </label>
                               <div class="col-md-4">
-                                <textarea class="form-control" style="resize: vertical;" id="descripcion" name="descripcion"><?php echo $infoOrdenamiento->descripcion; ?></textarea>
+                                <textarea class="form-control" style="resize: vertical;" id="descripcion" name="descripcion"></textarea>
                                   <span id="alertDescripcion" style="color:red;display:none;" class="help-block">Completar el campo descripción</span>
                               </div>
                             </div>
@@ -118,9 +117,9 @@ input:checked + .slider:before {
                             <div class="form-group">
                               <label class="col-md-4 control-label" style="text-align: right;"  for="textinput">Orden de aparición</label>
                               <div class="col-md-4">
-                              <input id="ordenAparicion" type="number" step="1" value="<?php echo $infoOrdenamiento->numero_aparicion; ?>"  name="ordenAparicion" class="form-control input-md">
+                              <input id="ordenAparicion" type="number" step="1" value="0" name="ordenAparicion" class="form-control input-md">
                               <span id="alertOrdenAparicion" style="color:red;display:none;" class="help-block">Completar el campo orden de aparición</span>
-                              <span id="alertOrdenAparicionError" style="color:red;display:none;" class="help-block">El valor deber mayor o igual a 0</span>
+                              <span id="alertOrdenAparicionError" style="color:red;display:none;" class="help-block">El valor debe ser mayor 0</span>
                               </div>
                             </div>
 
@@ -161,7 +160,7 @@ input:checked + .slider:before {
 
     function cancelarAdd()
     {
-        parent.location.href="<?php echo base_url();?>index.php/Admin/quitarVariablesSesion";
+        parent.location.href="<?php echo base_url();?>index.php/OrdenProductos/addSubOrdenProductos/<?php echo $id_padre; ?>";
     }
     function validarDatos()
     {
@@ -174,7 +173,7 @@ input:checked + .slider:before {
         {
             if($.isNumeric( $('#ordenAparicion').val() ))
             {
-                if($('#ordenAparicion').val()<0)
+                if($('#ordenAparicion').val()<=0)
                 {
                     /*
 
@@ -223,7 +222,7 @@ input:checked + .slider:before {
            {
                ordenAparicion: $("#ordenAparicion").val()
            },
-           url:"<?= site_url('Admin/verificarValorOrdenamientoEdit') ?>",
+           url:"<?= site_url('OrdenProductos/verificarValorOrdenamientoHijo') ?>",
            async: true,
            success: function(response)
            {
@@ -235,7 +234,7 @@ input:checked + .slider:before {
                {
                     swal({
                     title: "El numero de ordenamiento ya esta en uso ¿Desea continuar? ",
-                    text: "Si desea continuar, modifique el otro número de aparición para que nuevo ordenamieno se respete, de lo contrario se combinarán las listas de productos",
+                    text: "",
                     type: "success",
                     showCancelButton: true,
                     confirmButtonColor: "#656668",
@@ -271,11 +270,11 @@ input:checked + .slider:before {
                descripcion: $("#descripcion").val(),
                ordenAparicion: $("#ordenAparicion").val()
            },
-           url:"<?= site_url('Admin/UpdateOrdenamiento') ?>",
+           url:"<?= site_url('OrdenProductos/AddOrdenamientoHijo') ?>",
            async: true,
            success: function(response)
            {
-                  parent.location.href="<?php echo base_url();?>index.php/Admin/ordenAparicion";
+                  parent.location.href="<?php echo base_url();?>index.php/OrdenProductos/addSubOrdenProductos/<?php echo $id_padre; ?>";
             },
             error: function (obj, error, objError){
 				alert("Error: " + objError);

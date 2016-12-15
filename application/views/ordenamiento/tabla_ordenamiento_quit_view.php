@@ -1,4 +1,5 @@
-   <div class="table-responsive">
+<?php error_reporting(0); ?>
+<div class="table-responsive">
         <form id="productosPromocion" method="post">
 
             <table class="table table-bordered table-hover" >

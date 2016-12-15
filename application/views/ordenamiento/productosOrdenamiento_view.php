@@ -1,3 +1,4 @@
+<?php  error_reporting(0);?>
 <link href="<?php echo base_url(); ?>assets/fancybox/jquery.fancybox.css" rel="stylesheet">
  <link href="<?php echo base_url(); ?>assets/css/sweetalertAdmin/sweetalert.css" rel="stylesheet">
 
@@ -103,57 +104,46 @@
 <script src="<?php echo base_url(); ?>assets/fancybox/jquery.fancybox.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/js/sweetalert/sweetalert.min.js"></script>
 <script>
-
-             $('#porcentaje').click( function()
-                                             {
-
-
-                    $('#errorVacio').hide();
-                    $('#errorNumerico').hide();
-                                     });
+$('#porcentaje').click( function()
+ {
+    $('#errorVacio').hide();
+    $('#errorNumerico').hide();
+});
 
     function guardar()
     {
+        $.ajax({
+            type: "POST", //envia la posicion por metodo post de ajax
+            data:{
+	            },
 
-          $.ajax({
-				        type: "POST", //envia la posicion por metodo post de ajax
-				        data:{
-
-
-				            },
-
-				        url:"<?= site_url('Ordenamiento/guardarCambiosProductos') ?>",
-				        async: true,
-				        success: function(response)
-				        {
-
-
-                  swal({
-                                title: "Sus productos se han actualizado correctamente",
-                                text: "",
-                                type: "warning",
-                                showCancelButton: false,
-                                confirmButtonColor: "#656668",
-                                confirmButtonText: "Aceptar",
-                                cancelButtonText: "Cancelar",
-                                closeOnConfirm: true,
-                                closeOnCancel: false },
-                                  function(isConfirm)
-                                {
+            url:"<?= site_url('Ordenamiento/guardarCambiosProductos') ?>",
+            async: true,
+            success: function(response)
+            {
+                swal({
+                    title: "Sus productos se han actualizado correctamente",
+                    text: "",
+                    type: "warning",
+                    showCancelButton: false,
+                    confirmButtonColor: "#656668",
+                    confirmButtonText: "Aceptar",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: true,
+                    closeOnCancel: false },
+                    function(isConfirm)
+                    {
 
 
-    parent.location.href="<?php echo base_url();?>index.php/Admin/agregarProductos/<?php echo $this->session->userdata('Id_0rd3n4');?>";
+    parent.location.href="<?php echo base_url();?>index.php/Admin/agregarProductos/<?php echo $this->session->userdata('Id_0rd3n4_hijo_final');?>";
 
-                                }
-                            );
-
-
-                        },
-				            error: function (obj, error, objError){
-				            alert("Error: " + objError);
+                    }
+                    );
+            },
+                error: function (obj, error, objError){
+				    alert("Error: " + objError);
 				            }
-				        });
-
+            });
     }
     function regresar()
     {
