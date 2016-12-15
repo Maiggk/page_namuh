@@ -396,7 +396,7 @@ class Admin_models extends CI_Model
        	$this->db->insert('namuhdb_usuarios',$form_datos);
 	    return $this->db->insert_id();
     }
-<<<<<<< HEAD
+
   function saveUsers_register($form_datos)
     {
        	$this->db->insert('namuhdb_usuarios_register',$form_datos);
@@ -409,7 +409,7 @@ class Admin_models extends CI_Model
 	   $this->db->where('id_usuario',$idusuario);
 	   //$this->db->limit(1);
  
-=======
+
     function consultarUsuario($idusuario)
     {
         $this->db->select('count(*) as total');
