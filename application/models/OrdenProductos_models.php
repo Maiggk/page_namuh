@@ -1,4 +1,3 @@
-
 <?php
 class OrdenProductos_models extends CI_Model
 {

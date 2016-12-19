@@ -111,11 +111,15 @@
 
                           </div>
     </div>
-                          <!--input#subject.form-control.input-lg.required(type='text', placeholder='Subject of your message', name='subject')
+                          <!--
+< ?php if(isset($mensaje)) { ?>
+
+input#subject.form-control.input-lg.required(type='text', placeholder='Subject of your message', name='subject')
                           -->
                         </form>
                         <div>
                         <input style="display:none" id="mensaje_envio" value="<?php if(isset($MSJ_ENVIO)){echo $MSJ_ENVIO;}?>"/>
+
                         </div>
                      </div>
                 </div>
@@ -271,9 +275,8 @@
 
         $(document).ready(function () {
 //validaciones mensaje error y envio de correo
-        if($('#mensaje_envio').val()==1)
-        {
-
+              <?php if(isset($MSJ_ENVIO)) {
+                        if($MSJ_ENVIO===1){ ?>
                                   swal({
                                     title: "Registro exitoso!",   
                                     text: "Verificar su bandeja de correos para terminar el proceso de registro.",   
@@ -295,32 +298,32 @@
                                         }    
                                     }
                                 );
-        }
-            if($('#mensaje_envio').val()==0){
-                  swal({
-                                    title: "Error!",
-                                    text: "Hubo un error con el envio del correo de bienvenida, contacta al administrador",
-                                    type: "warning",
-                                    showCancelButton: false,
-                                    confirmButtonColor: "#656668",
-                                    confirmButtonText: "Aceptar",
-                                    closeOnConfirm: true,
-                                },
-                                  function(isConfirm)
-                                    {
-                                        if (isConfirm)
+                    <?php } if($MSJ_ENVIO===0){ ?>
+                                swal({
+                                        title: "Error!",
+                                        text: "Tu registro fue exitoso, tu cuenta esta inactiva, ocurrió un error con el envío del correo de validación, contacta al administrador",
+                                        type: "warning",
+                                        showCancelButton: false,
+                                        confirmButtonColor: "#656668",
+                                        confirmButtonText: "Aceptar",
+                                        closeOnConfirm: true,
+                                    },
+                                      function(isConfirm)
                                         {
+                                            if (isConfirm)
+                                            {
 
 
-                                            window.parent.location.href="<?php echo base_url(); ?>index.php/Registro";
-                                        }
-                                        else
-                                        {
-                                           window.parent.location.href="<?php echo base_url(); ?>index.php/Registro";
-                                        }
-                                    }
-                                );
-            }
+                                                window.parent.location.href="<?php echo base_url(); ?>index.php/Registro";
+                                            }
+                                            else
+                                            {
+                                               window.parent.location.href="<?php echo base_url(); ?>index.php/Registro";
+                                            }
+                                        });
+                        <?php }
+                        } ?>
+
     });
         
 	</script>

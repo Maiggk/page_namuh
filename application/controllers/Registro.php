@@ -253,22 +253,25 @@ class Registro extends CI_Controller {
     
 	public function index()
 	{
-        $EstadoEnvio="";
+       // $this->output->enable_profiler('TRUE');
+      //  $EstadoEnvio="";
         $data['Recaptcha']=$this->recaptcha->getWidget();
         $data['ScriptCaptcha']=$this->recaptcha->getScriptTag();
 
-         $EstadoEnvio=$this->session->userdata('estado_envio_correo');
+        // $EstadoEnvio=$this->session->userdata('estado_envio_correo');
 
 
-        $data['MSJ_ENVIO']=$EstadoEnvio;
-        if($EstadoEnvio == 0 || $EstadoEnvio == 1 ){
-            $this->session->set_userdata('estado_envio_correo',2); //estado de espera
+        $data['MSJ_ENVIO']=$this->session->flashdata('estado_envio_correo');
+      //  if($EstadoEnvio == 0 || $EstadoEnvio == 1 ){
+      //      $this->session->set_userdata('estado_envio_correo',2); //estado de espera
 
-        }
+     //   }
 		vista_datos('registrar_view',$data);
 	}
     
     function valida_datos_registro(){
+       // $this->output->enable_profiler('TRUE');
+       // $this->session->unset_userdata('estado_envio_correo');
         $this->form_validation->set_rules('name',"Nombre","required|trim",array('required'=>"El campo %s es requerido <script>$('#name').focus();</script>"));
         $this->form_validation->set_rules('apPaterno',"Apellido Paterno","required|trim",array('required'=>"El campo %s es requerido"));
         $this->form_validation->set_rules('apMaterno',"Apellido Materno","required|trim",array('required'=>"El campo %s es requerido"));
@@ -290,6 +293,8 @@ class Registro extends CI_Controller {
             $this->index();
         }else{ //validaciones de servidor correctas
            if(isset($response['success']) and $response['success']=== true){//validacion c
+
+               //$this->session->unset_userdata('estado_envio_correo');
                     $nombre=$this->input->post('name');
                     $Username=$this->input->post('name').' '.$this->input->post('apPaterno');
                     $apPaterno=$this->input->post('apPaterno');
@@ -490,14 +495,15 @@ class Registro extends CI_Controller {
 
                 if($this->email->send())
              {
-                     $this->session->set_userdata('estado_envio_correo',1);//2 exitoso
-
+                   //  $this->session->set_userdata('estado_envio_correo',1);//1 exitoso
+                    $this->session->set_flashdata('estado_envio_correo',1);
                  $this->index();
 //                    var_dump($this->email->print_debugger());
              }
              else
             {
-                  $this->session->set_userdata('estado_envio_correo',0);//1 error
+//                  $this->session->set_userdata('estado_envio_correo',0);//0 error
+                  $this->session->set_flashdata('estado_envio_correo',0);
              $this->index();
                 
 //                 var_dump($this->email->print_debugger());
@@ -617,6 +623,12 @@ class Registro extends CI_Controller {
 
     }
 
+    function elMayDeLaBasura(){
+        $this->session->unset_userdata('estado_envio_correo');
+        echo '<script>
+            window.parent.location.href="'.base_url().'index.php/Registro";
+            </script>';
+    }
 
 }
 

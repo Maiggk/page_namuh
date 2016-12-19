@@ -408,19 +408,19 @@ class Admin_models extends CI_Model
 	   $this->db->from('namuhdb_usuarios');
 	   $this->db->where('id_usuario',$idusuario);
 	   //$this->db->limit(1);
- 
+      }
 
-    function consultarUsuario($idusuario)
-    {
-        $this->db->select('count(*) as total');
-	    $this->db->from('namuhdb_usuarios');
-	    $this->db->where('id_usuario',$idusuario);
-	    //$this->db->limit(1);
->>>>>>> origin/master
-        $q = $this->db->get();
-        $resultado = $q->row()->total;
-        return $resultado;
-    }
+//    function consultarUsuario($idusuario)
+//    {
+//        $this->db->select('count(*) as total');
+//	    $this->db->from('namuhdb_usuarios');
+//	    $this->db->where('id_usuario',$idusuario);
+//	    //$this->db->limit(1);
+//
+//        $q = $this->db->get();
+//        $resultado = $q->row()->total;
+//        return $resultado;
+//    }
     function consultarUsuarioDatosGeneral($idusuario)
     {
          $this->db->select('*');
@@ -744,6 +744,7 @@ function countVerificarValorOrdenamiento($numOrdenamiento)
         $resultado = $q->result();
         return $resultado;
     }
+
 
 }
 ?>
