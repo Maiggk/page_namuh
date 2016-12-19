@@ -723,7 +723,7 @@ function countVerificarValorOrdenamiento($numOrdenamiento)
         $this->db->select('*');
         $this->db->from('productos');
         $this->db->where('imagen is not null');
-        $this->db->where('estado',2);
+       // $this->db->where('estado',2);
         //$this->db->order_by('numero_aparicion', 'ASC');
         $q = $this->db->get();
         $resultado = $q->result();
