@@ -19,12 +19,13 @@
                   
                 <div class="col-md-12">
                     <div >
-                        <form id="uneteForm" >
+                        <form id="uneteForm" method="POST" action="<?php echo base_url(); ?>index.php/Registro/valida_datos_registro">
                          <div class="col-md-12">
                              <div class="col-md-4">
                              <div class="form-group sep-top-xs">
                             <label for="contactFormName" class="upper">Tu Nombre</label>
                             <input id="name" type="text" placeholder="Introduce tu Nombre" name="name" class="form-control input-lg required"/>
+                                 <?php echo form_error('name'); ?>
                               <label id="requerido_name" style="color:red; display:none;">Campo Nombre Requerido</label>
                             </div> 
                              </div>
@@ -32,6 +33,7 @@
                                  <div class="form-group sep-top-xs">
                             <label for="contactFormName" class="upper">Apellido Paterno</label>
                             <input id="apPaterno" type="text" placeholder="Introduce tu apellido paterno" name="apPaterno" class="form-control input-lg required"/>
+                                     <?php echo form_error('apPaterno'); ?>
                               <label id="requerido_apPaterno" style="color:red; display:none;">Campo Apellido Paterno Requerido</label>
                           </div>
                              </div>
@@ -39,6 +41,7 @@
                                  <div class="form-group sep-top-xs">
                             <label for="contactFormName" class="upper">Apellido Materno</label>
                             <input id="apMaterno" type="text" placeholder="Introduce tu apellido materno" name="apMaterno" class="form-control input-lg required"/>
+                                      <?php echo form_error('apMaterno'); ?>
                               <label id="requerido_apMaterno" style="color:red; display:none;">Campo Apellido Materno Requerido</label>
                           </div>
                              </div>
@@ -52,6 +55,7 @@
                           <div class="form-group sep-top-xs">
                             <label for="contactFormPhone" class="upper">Tu Teléfono</label>
                             <input id="phone" type="text" placeholder="Introduce tu Teléfono" name="phone" class="form-control input-lg required"/>
+                               <?php echo form_error('phone'); ?>
                               <label id="requerido_phone" style="color:red; display:none;">Campo Teléfono requerido</label>
                           </div>
                            </div>
@@ -59,6 +63,7 @@
                           <div class="form-group sep-top-xs">
                             <label for="contactFormEmail" class="upper">Tu Correo Electrónico</label>
                             <input id="email" type="email" placeholder="Introduce tu Correo Electrónico" name="email" class="form-control input-lg required email"/>
+                               <?php echo form_error('email'); ?>
                               <label id="requerido_email" style="color:red; display:none;">Campo Correo Electrónico requerido</label>
                           </div> 
                            </div>  
@@ -66,38 +71,56 @@
                           <div class="form-group sep-top-xs">
                             <label for="contactFormEmail" class="upper">Confirma Correo Electrónico</label>
                             <input id="emailrepeat" type="email" placeholder="Introduce nuevamente tu Correo Electrónico" name="emailrepeat" class="form-control input-lg required email"/>
+                              <?php echo form_error('emailrepeat'); ?>
                               <label id="requerido_emailrepeat" style="color:red; display:none;">El Campo Correo Electrónico no coincide</label>
                           </div> 
                            </div>
     </div>
-                          <div class="col-md-12 col-md-offset-4" > 
-                             <!-- <div class="col-md-6">  
-                        <div class="form-group sep-top-xs">
-                            <label for="contactFormPhone" class="upper">Tu nombre de usuario</label>
-                            <input id="user" type="text" placeholder="Introduce tu nombre de usuario" name="phone" class="form-control input-lg required"/>
-                              <label id="requerido_user" style="color:red; display:none;">Campo nombre de usuario requerido</label>
-                          </div>
-                              </div>-->
-                                <div class="col-md-4">
-                        <div class="form-group sep-top-xs">
-                            <label for="contactFormEmail" class="upper">Tu Contraseña</label>
-                            <input id="pass" type="password" placeholder="Introduce tu Contraseña" name="pass" class="form-control input-lg required email"/>
-                              <label id="requerido_pass" style="color:red; display:none;">Campo Contraseña requerido</label>
-                          </div>
-                              </div>
-    </div>
+                            <div class="col-md-12  col-md-offset-2">
+                            <div class="col-md-4" >
+
+                                <div class="form-group sep-top-xs">
+                                    <label for="contactFormEmail" class="upper">Tu Contraseña</label>
+                                    <input id="pass" type="password" placeholder="Introduce tu Contraseña" name="pass" class="form-control input-lg required email"/>
+                                    <?php echo form_error('pass'); ?>
+                                      <label id="requerido_pass" style="color:red; display:none;">Campo Contraseña requerido</label>
+                                  </div>
+
+                            </div>
+                                <div class="col-md-8" >
+
+                                <div class="form-group sep-top-xs">
+                                  <?php echo $ScriptCaptcha; ?>
+                                    <?php echo $Recaptcha; ?>
+                                    <?php echo form_error('g-recaptcha-response'); ?>
+                                    <label class="requerido_captcha motion" style="color:red;display:none;">Captcha obligatorio</label>
+                                  </div>
+
+                            </div>
+
+                            </div>
+
                             <br>
                             <div class="col-md-12" style="text-align:center">
                           <div class="form-group sep-top-xs">
                          <div id="enviando_registro"  style="display:none">
                  <center> <img src="<?php echo base_url();?>assets/images/botones_carga.gif" style="width:10%"></center>
                   </div>
+                              <button type="submit" id="enviarForm" style="display:none"></button>
                               <a id="Enviar_Registro"  onclick="verificarDatos()" class="btn btn-primary"><i class="fa fa-check" ></i>&nbsp; Enviar solicitud de registro</a>
+
                           </div>
     </div>
-                          <!--input#subject.form-control.input-lg.required(type='text', placeholder='Subject of your message', name='subject')
+                          <!--
+< ?php if(isset($mensaje)) { ?>
+
+input#subject.form-control.input-lg.required(type='text', placeholder='Subject of your message', name='subject')
                           -->
                         </form>
+                        <div>
+                        <input style="display:none" id="mensaje_envio" value="<?php if(isset($MSJ_ENVIO)){echo $MSJ_ENVIO;}?>"/>
+
+                        </div>
                      </div>
                 </div>
               <br>
@@ -143,10 +166,13 @@
                $("#pass").focus(function(){$("#requerido_pass").css("display", "none").fadeOut(2000);});
                 $("#phone").focus(function(){$("#requerido_phone").css("display", "none").fadeOut(2000);});
                 $("#email").focus(function(){$("#requerido_email").css("display", "none").fadeOut(2000);});
+                $("#g-recaptcha-response").focus(function(){$("#requerido_captcha").css("display", "none").fadeOut(2000);});
         
         function verificarDatos()
         {
-        
+
+                event.preventDefault();
+                var responsecaptcha = grecaptcha.getResponse();
             var bandera=0;
                   
             if($('#name').val()==''){bandera=1;$('#requerido_name').show();}
@@ -162,6 +188,7 @@
             }
 
             if($('#email').val()==''){bandera=1;$('#requerido_email').show();}
+            if(responsecaptcha.length == 0){bandera=1;$('.requerido_captcha').show();}
             /* Validación de correo eletrónico */
             if($('#email').val()!=$('#emailrepeat').val()){
                 bandera=1;
@@ -242,34 +269,15 @@
         
         function guardarDatos()
         {
-                /////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////
+            $('#enviarForm').click();
 
-            
-               $.ajax({
-				type: "POST", //envia la posicion por metodo post de ajax
-				data:{
-                nombre: $('#name').val(),
-                user: $('#name').val()+' '+$('#apPaterno').val(),
-                apPaterno: $('#apPaterno').val(),
-                apMaterno: $('#apMaterno').val(),
-                telefono: $('#phone').val(),
-                correo: $('#email').val(),
-                pass: $('#pass').val()
-              
+        }
 
-				
-				},
-				url:"<?= site_url('Registro/guardarDatos') ?>", 
-				async: true,	 
-				success: function(response)
-				{
-                  
-                   if(parseInt(response)==1)
-                   {
-                        ////////////////////////////////////////////
-                            swal({   
+        $(document).ready(function () {
+//validaciones mensaje error y envio de correo
+              <?php if(isset($MSJ_ENVIO)) {
+                        if($MSJ_ENVIO===1){ ?>
+                                  swal({
                                     title: "Registro exitoso!",   
                                     text: "Verificar su bandeja de correos para terminar el proceso de registro.",   
                                     type: "success",   
@@ -282,29 +290,40 @@
                                     {   
                                         if (isConfirm) 
                                         {    
-                                            location.reload(); 
+                                            window.parent.location.href="<?php echo base_url(); ?>index.php/Registro";
                                         } 
                                         else 
                                         {     
-                                            location.reload();
+                                           window.parent.location.href="<?php echo base_url(); ?>index.php/Registro";
                                         }    
                                     }
                                 );
-                        ////////////////////////////////////////////
-                    }else
-                    {
-                        
-                    }
-                    
-             },
-				error: function (obj, error, objError){
-				alert("Error: " + objError);
-				}
-				});
-                /////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////
-        }
-    
-        
+                    <?php } if($MSJ_ENVIO===0){ ?>
+                                swal({
+                                        title: "Error!",
+                                        text: "Tu registro fue exitoso, tu cuenta esta inactiva, ocurrió un error con el envío del correo de validación, contacta al administrador",
+                                        type: "warning",
+                                        showCancelButton: false,
+                                        confirmButtonColor: "#656668",
+                                        confirmButtonText: "Aceptar",
+                                        closeOnConfirm: true,
+                                    },
+                                      function(isConfirm)
+                                        {
+                                            if (isConfirm)
+                                            {
+
+
+                                                window.parent.location.href="<?php echo base_url(); ?>index.php/Registro";
+                                            }
+                                            else
+                                            {
+                                               window.parent.location.href="<?php echo base_url(); ?>index.php/Registro";
+                                            }
+                                        });
+                        <?php }
+                        } ?>
+
+    });
         
 	</script>

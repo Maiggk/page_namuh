@@ -1,6 +1,7 @@
-
 <?php
-error_reporting(E_ALL ^ E_WARNING);
+
+//error_reporting(E_ALL ^ E_WARNING);
+//error_reporting(0);
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class OrdenProductos extends CI_Controller
@@ -607,5 +608,4 @@ class OrdenProductos extends CI_Controller
 
 
 }
-
 ?>

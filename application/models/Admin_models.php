@@ -396,16 +396,31 @@ class Admin_models extends CI_Model
        	$this->db->insert('namuhdb_usuarios',$form_datos);
 	    return $this->db->insert_id();
     }
-    function consultarUsuario($idusuario)
+
+  function saveUsers_register($form_datos)
     {
-        $this->db->select('count(*) as total');
-	    $this->db->from('namuhdb_usuarios');
-	    $this->db->where('id_usuario',$idusuario);
-	    //$this->db->limit(1);
-        $q = $this->db->get();
-        $resultado = $q->row()->total;
-        return $resultado;
+       	$this->db->insert('namuhdb_usuarios_register',$form_datos);
+	   return $this->db->insert_id();
     }
+      function consultarUsuario($idusuario)
+	 {
+		 $this->db->select('count(*) as total');
+	   $this->db->from('namuhdb_usuarios');
+	   $this->db->where('id_usuario',$idusuario);
+	   //$this->db->limit(1);
+      }
+
+//    function consultarUsuario($idusuario)
+//    {
+//        $this->db->select('count(*) as total');
+//	    $this->db->from('namuhdb_usuarios');
+//	    $this->db->where('id_usuario',$idusuario);
+//	    //$this->db->limit(1);
+//
+//        $q = $this->db->get();
+//        $resultado = $q->row()->total;
+//        return $resultado;
+//    }
     function consultarUsuarioDatosGeneral($idusuario)
     {
          $this->db->select('*');
@@ -729,6 +744,7 @@ function countVerificarValorOrdenamiento($numOrdenamiento)
         $resultado = $q->result();
         return $resultado;
     }
+
 
 }
 ?>
