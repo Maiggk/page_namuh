@@ -201,8 +201,8 @@ class Admin_models extends CI_Model
         //  $this->db->limit(1);
         $this->db->where('imagen is not null');
         $this->db->where('estado',2);
-        $this->db->where('id_aparicion !=',0);
-        $this->db->where('id_sub_aparicion !=',0);
+//        $this->db->where('id_aparicion !=',0);
+//        $this->db->where('id_sub_aparicion !=',0);
        // $this->db->order_by('ordenamiento', 'ASC');
           $this->db->order_by('id_aparicion', 'ASC');
         $this->db->order_by('id_sub_aparicion', 'ASC');
@@ -283,8 +283,8 @@ class Admin_models extends CI_Model
         $this->db->where('p.estado',2);
         $this->db->where('u.estado_union',1);
         // $this->db->order_by('p.id_aparicion', 'ASC');
-        $this->db->where('p.id_aparicion !=',0);
-        $this->db->where('p.id_sub_aparicion !=',0);
+//        $this->db->where('p.id_aparicion !=',0);
+//        $this->db->where('p.id_sub_aparicion !=',0);
        // $this->db->order_by('ordenamiento', 'ASC');
           $this->db->order_by('p.id_aparicion', 'ASC');
         $this->db->order_by('p.id_sub_aparicion', 'ASC');
@@ -301,8 +301,8 @@ class Admin_models extends CI_Model
         $this->db->where('p.imagen is not null');
         $this->db->where('p.estado',2);
         $this->db->where('u.estado_union',1);
-        $this->db->where('p.id_aparicion !=',0);
-        $this->db->where('p.id_sub_aparicion !=',0);
+//        $this->db->where('p.id_aparicion !=',0);
+//        $this->db->where('p.id_sub_aparicion !=',0);
         //$this->db->order_by('p.id_aparicion', 'ASC');
         //$this->db->order_by('ordenamiento', 'ASC');
              $this->db->order_by('p.id_aparicion', 'ASC');
@@ -322,8 +322,8 @@ class Admin_models extends CI_Model
         $this->db->where('u.id_grupo',$grupo);
         $this->db->where('u.id_tipo',$tipo);
         $this->db->where('u.estado_union',1);
-        $this->db->where('p.id_aparicion !=',0);
-        $this->db->where('p.id_sub_aparicion !=',0);
+//        $this->db->where('p.id_aparicion !=',0);
+//        $this->db->where('p.id_sub_aparicion !=',0);
         //$this->db->order_by('p.id_aparicion', 'ASC');
         //$this->db->order_by('ordenamiento', 'ASC');
              $this->db->order_by('p.id_aparicion', 'ASC');
