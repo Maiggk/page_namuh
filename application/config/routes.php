@@ -53,3 +53,14 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = 'welcome/_404';
 $route['translate_uri_dashes'] = FALSE;
 $route['registro_clean'] = 'Registro/elMayDeLaBasura';
+
+
+$route['notificaciones'] = 'Transferencias/webhookNotificaciones';
+$route['metodoDePago'] = 'Transferencias/seleccionarTipoPago';
+$route['Metodo_tarjeta'] = 'Transferencias/pagos1';
+$route['Metodo_tarjetaPago'] = 'Transferencias/openPayDate';
+$route['recibos'] = 'Transferencias/visualizarRecibos';
+$route['Metodo_banco'] = 'Transferencias/pagosBancos';
+$route['Metodo_tiendas'] = 'Transferencias/pagosTiendas';
+$route['cargarComprobanteEs'] = 'Transferencias/cargarIdRecibo';
+$route['comprobanteEspecifico'] = 'Transferencias/visualizarRecibosEspecifico';
