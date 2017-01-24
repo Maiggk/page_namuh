@@ -1,4 +1,4 @@
-
+<!--
 <section class="header-section fading-title parallax">
     <div class="section-shade sep-top-5x sep-bottom-3x">
       <div class="container">
@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
- </section>
+ </section>-->
 
 <div class="sep-top-2x">
         <div class="container">
@@ -26,7 +26,7 @@
             <div class="row">
             <div class="col-md-12">
           <center>
-   <iframe src="<?php echo $archivo; ?>" class="col-md-12 col-sm-12 col-xs-12" height="500">
+   <iframe src="<?php echo $archivo; ?>" id="pdfView" name="pdfView"  class="col-md-12 col-sm-12 col-xs-12" height="500">
   <p>Your browser does not support iframes.</p>
 </iframe>
       </center>
@@ -47,3 +47,5 @@
 
         </div>
       </div>
+
+

@@ -17,10 +17,104 @@ class Transferencias extends CI_Controller {
         $this->load->model('Transferencias_models');
     }
 
+  private function _manejoDeErroresOpenPay1()
+  {
+      echo 1;
+  }
+ private function manejoDeErroresOpenPay2()
+  {
+      echo 2;
+  }
+    private function __manejoDeErroresOpenPay3()
+  {
+      echo 3;
+  }
+    public function routesFormaPago()
+    {
+        $opcionPago=$this->input->post('opcionPago');
+        if(is_numeric($opcionPago))
+        {
+            if($opcionPago==1) $this->pagosTiendas();
+            if($opcionPago==2) $this->pagosBancos();
+            if($opcionPago==3) $this->pagos1();
+        }else
+        {
+
+        }
+    }
+    public function cargarProcesoPago()
+    {
+          $productos=$this->Transferencias_models->regresaProductos();
+        $nuevos_datos_recibo = Array();
+        $montoTotal=0;
+        foreach($productos as $producto)
+        {
+            $Total=2*$producto->precio;
+            $nuevos_datos_recibo[] = array(
+                'id_producto' =>$producto->id_producto,
+                'codigo' =>$producto->codigo,
+                'nombre' =>$producto->nombre,
+                'descripcion' =>$producto->descripcion,
+                'precio' =>$producto->precio,
+                'estado_promocion' =>$producto->estado_promocion,
+                'nuevo_precio' =>$producto->nuevo_precio,
+                'cantidad' =>2,
+                'total' =>$Total
+
+            );
+            $montoTotal=$producto->precio;
+        }
+        $data['productos']=$nuevos_datos_recibo;
+        $data['montoTotal']=$montoTotal;
+        $this->session->set_userdata('productosCarrito',$nuevos_datos_recibo);
+         vista_ecommersFrame('ecommers/proceso_pago_view',$data);
+    }
     public function seleccionarTipoPago()
     {
-        vista_admin('ecommers/seleccionarTipoPago_view');
+        /*
+        $productos=$this->Transferencias_models->regresaProductos();
+        $nuevos_datos_recibo = Array();
+        $montoTotal=0;
+        foreach($productos as $producto)
+        {
+            $Total=2*$producto->precio;
+            $nuevos_datos_recibo[] = array(
+                'id_producto' =>$producto->id_producto,
+                'codigo' =>$producto->codigo,
+                'nombre' =>$producto->nombre,
+                'descripcion' =>$producto->descripcion,
+                'precio' =>$producto->precio,
+                'estado_promocion' =>$producto->estado_promocion,
+                'nuevo_precio' =>$producto->nuevo_precio,
+                'cantidad' =>2,
+                'total' =>$Total
+
+            );
+            $montoTotal=$producto->precio;
+        }
+        $data['productos']=$nuevos_datos_recibo;
+        $data['montoTotal']=$montoTotal;
+        */
+        vista_ecommers('ecommers/seleccionarTipoPago_view');
         //vista('ecommers/seleccionarTipoPago_view');
+    }
+    function eliminarProductoSesion()
+    {
+        $IdProducto=$this->input->post('id_producto');
+        if(is_numeric($IdProducto))
+        {
+            if($IdProducto>=0)
+            {
+                $productosCarrito=$this->session->userdata('productosCarrito');
+                unset($productosCarrito[$IdProducto]);
+                $this->session->set_userdata('productosCarrito',$productosCarrito);
+                $data['productos']=$productosCarrito;
+                vista_vacia('ecommers/tabla_productos_view',$data);
+            }
+        }else
+        {
+
+        }
     }
 
     public function pagos1()
@@ -33,7 +127,8 @@ class Transferencias extends CI_Controller {
         }
         $data['msj']=$mensaje;
 
-        vista_crud_admin('ecommers/pagos_view1',$data);
+        vista_vacia('ecommers/pagos_view1',$data);
+       // vista_ecommers('ecommers/pagos_view1',$data);
        //vista_datos('ecommers/pagos_view1',$data);
        //vista('ecommers/pagos_view1');
 	}
@@ -144,7 +239,8 @@ class Transferencias extends CI_Controller {
             $data['archivo']=$ruta;
             $data['tituloPago']='Método de pago - Tiendas de conveniencia ';
             //vista_datos('ecommers/pagoTiendasBancos_view',$data);
-            vista_crud_admin('ecommers/pagoTiendasBancos_view',$data);
+            //vista_ecommers('ecommers/pagoTiendasBancos_view',$data);
+            vista_vacia('ecommers/pagoTiendasBancos_view',$data);
         }
         catch (Exception $e)
         {
@@ -202,17 +298,25 @@ class Transferencias extends CI_Controller {
             $data['regreso']=base_url().'index.php/metodoDePago';
             $data['tituloPago']='Método de pago - Bancos ';
             //vista_datos('ecommers/pagoTiendasBancos_view',$data);
-            vista_crud_admin('ecommers/pagoTiendasBancos_view',$data);
+            //vista_ecommers('ecommers/pagoTiendasBancos_view',$data);
+            vista_vacia('ecommers/pagoTiendasBancos_view',$data);
 
         }
         catch (Exception $e)
         {
+
             $Error_general=$e->getTrace();
             $Error_semiEspecifico=$Error_general[0]['args'][0];
             $errorFinal=json_decode($Error_semiEspecifico);
+            if(isset($errorFinal->error_code))
+            {
             $error_code=$errorFinal->error_code;
             $msj=$this->_manejoDeErroresOpenPay($error_code);
             echo $msj;
+            }else
+            {
+                echo 'error';
+            }
         }
     }
     /*
@@ -225,7 +329,7 @@ class Transferencias extends CI_Controller {
         $data['recibos']=$this->Transferencias_models->regresaRecibos($idCliente);
         $data['tituloPago']='Historial de compras';
         //vista_datos('ecommers/recibosPdf_view',$data);
-         vista_crud_admin('ecommers/recibosPdf_view',$data);
+         vista_ecommers('ecommers/recibosPdf_view',$data);
 
     }
     function cargarIdRecibo()
@@ -264,7 +368,7 @@ class Transferencias extends CI_Controller {
             $data['archivo']=$ruta;
 
            // vista_datos('ecommers/pagoTiendasBancos_view',$data);
-            vista_crud_admin('ecommers/pagoTiendasBancos_view',$data);
+            vista_ecommers('ecommers/pagoTiendasBancos_view',$data);
         }
     }
 

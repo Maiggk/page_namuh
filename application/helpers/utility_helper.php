@@ -83,6 +83,42 @@ function vista_datos($vista,$output){
     $CI->load->view('footerJS');
 }
 
+function vista_ecommers($vista, $datos=TRUE)
+{
+    force_ssl();
+    $CI = &get_instance();
+
+    $CI->load->view('headerCSS');
+    $CI->load->view('menu_principal');
+    $CI->load->view($vista, $datos);
+    $CI->load->view('footer_principal');
+    $CI->load->view('footerJS');
+}
+function vista_ecommersFrame($vista, $datos=TRUE)
+{
+    force_ssl();
+    $CI = &get_instance();
+
+    $CI->load->view('headerCSS');
+   // $CI->load->view('menu_principal');
+    $CI->load->view($vista, $datos);
+    //$CI->load->view('footer_principal');
+    $CI->load->view('footerJS');
+}
+function vista_vacia($vista, $datos=TRUE){
+    force_ssl();
+    $CI = &get_instance();
+
+   // $CI->load->view('headerCSS_https');
+   // $CI->load->view('menu_principal_https');
+    $CI->load->view($vista,$datos);
+//$CI->load->view('footer_principal_https');
+//$CI->load->view('footerJS_https');
+}
+
+
+
+
 
 function vista_datosGaleria($vista,$output){
      force_ssl();

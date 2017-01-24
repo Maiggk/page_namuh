@@ -6,6 +6,17 @@ class Transferencias_models extends CI_Model
         parent::__construct();
         $this->load->library('session');
     }
+    function regresaProductos()
+    {
+        $this->db->select('*');
+        $this->db->from('productos');
+        //$this->db->where('correo',$UzerCorreo);
+        $this->db->where('estado',1);
+        $this->db->limit(5);
+         $q = $this->db->get();
+        $resultado = $q->result();;
+        return $resultado;
+    }
     function updateEstadoCompra($order_id,$form)
     {
         $this->db->where('order_id',$order_id);

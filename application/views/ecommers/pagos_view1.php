@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo base_url().'assets/css/sweetalertAdmin/sweetalert.css'; ?>">
+<!--<link rel="stylesheet" href="<?php echo base_url().'assets/css/sweetalertAdmin/sweetalert.css'; ?>">
 <script text="text/javascript" src="<?php echo base_url().'assets/js/sweetalert/sweetalert.min.js'; ?>"></script>
 
 <section class="header-section fading-title parallax">
@@ -12,7 +12,7 @@
  </section>
 <div id="servicios"></div>
 <br>
-<br>
+<br>-->
 <!-- Feature Area  -->
 <div id="feature">
     <div class="container">
@@ -180,17 +180,17 @@
                                 name="button1id" class="btn btn-success">Pagar</button>
    <!-- <button id="button1id" name="button1id" class="btn btn-success">Pagar</button>
       <input type="button" class="disableOnSubmit" id="makeRequestCard" value="Create" />-->
-                            <a id="s"  onclick="enviar()" name="button1id" class="btn btn-primary">Pagar</a>
+                            <a id="s"  onclick="enviar()" name="button1id" class="btn btn-primary btn-sm">Pagar</a>
                         </center>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-12">
                         <center>
-                            <a id="regresarTienda" href="<?php echo base_url(); ?>index.php/metodoDePago"  name="regresarTienda" class="btn btn-primary btn-sm">
+                            <a id="regresarTienda" href="<?php echo base_url(); ?>index.php/metodoDePago"  name="regresarTienda" class="btn btn-primary btn-xs">
                                 Regregar a la tienda
                             </a>
-                            <a id="cancelarCompra"   name="cancelarCompra" class="btn btn-primary btn-sm">
+                            <a id="cancelarCompra"   name="cancelarCompra" class="btn btn-primary btn-xs">
                                Cancelar compra
                             </a>
                         </center>
@@ -202,7 +202,7 @@
         <!-- formulario final  -->
         <!-- formulario final  -->
         <div>
-         <input id="msj"  type="text" class="form-control input-md inputText" value="<?php echo $msj; ?>" >
+         <input id="msj"  type="text" style="display:none;" class="form-control input-md inputText" value="<?php echo $msj; ?>" >
         </div>
     </div>
 </div>
@@ -212,6 +212,7 @@
 <script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
 
 <script type="text/javascript">
+    /*
     $(document).ready(function()
     {
         if($('#msj').val()==1)
@@ -506,5 +507,5 @@
         $("#holderName").focus(function()
                                      {
                        $("#erroCompletarNombre").css("display", "none").fadeOut(2000);
-                   });
+                   });*/
 </script>
