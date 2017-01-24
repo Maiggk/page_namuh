@@ -87,33 +87,44 @@ function vista_ecommers($vista, $datos=TRUE)
 {
     force_ssl();
     $CI = &get_instance();
-
+ if($CI->session->userdata('admin_var') == 1 || $CI->session->userdata('us3r_cl1ent_v4r') >=1){
     $CI->load->view('headerCSS');
     $CI->load->view('menu_principal');
     $CI->load->view($vista, $datos);
     $CI->load->view('footer_principal');
     $CI->load->view('footerJS');
+     }else{
+         echo '<script>
+            window.parent.location.href="'.base_url().'";
+            </script>';
+     }
 }
 function vista_ecommersFrame($vista, $datos=TRUE)
 {
     force_ssl();
     $CI = &get_instance();
-
-    $CI->load->view('headerCSS');
-   // $CI->load->view('menu_principal');
-    $CI->load->view($vista, $datos);
-    //$CI->load->view('footer_principal');
-    $CI->load->view('footerJS');
+    if($CI->session->userdata('admin_var') == 1 || $CI->session->userdata('us3r_cl1ent_v4r') >=1){
+        $CI->load->view('headerCSS');
+        $CI->load->view($vista, $datos);
+        $CI->load->view('footerJS');
+    }else{
+         echo '<script>
+            window.parent.location.href="'.base_url().'";
+            </script>';
+     }
 }
 function vista_vacia($vista, $datos=TRUE){
     force_ssl();
     $CI = &get_instance();
 
-   // $CI->load->view('headerCSS_https');
-   // $CI->load->view('menu_principal_https');
-    $CI->load->view($vista,$datos);
-//$CI->load->view('footer_principal_https');
-//$CI->load->view('footerJS_https');
+    if($CI->session->userdata('admin_var') == 1 || $CI->session->userdata('us3r_cl1ent_v4r') >=1){
+        $CI->load->view($vista,$datos);
+
+      }else{
+         echo '<script>
+            window.parent.location.href="'.base_url().'";
+            </script>';
+     }
 }
 
 
