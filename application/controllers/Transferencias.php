@@ -17,18 +17,7 @@ class Transferencias extends CI_Controller {
         $this->load->model('Transferencias_models');
     }
 
-  private function _manejoDeErroresOpenPay1()
-  {
-      echo 1;
-  }
- private function manejoDeErroresOpenPay2()
-  {
-      echo 2;
-  }
-    private function __manejoDeErroresOpenPay3()
-  {
-      echo 3;
-  }
+
     public function routesFormaPago()
     {
         $opcionPago=$this->input->post('opcionPago');
@@ -44,6 +33,7 @@ class Transferencias extends CI_Controller {
     }
     public function cargarProcesoPago()
     {
+        /*
           $productos=$this->Transferencias_models->regresaProductos();
         $nuevos_datos_recibo = Array();
         $montoTotal=0;
@@ -68,6 +58,7 @@ class Transferencias extends CI_Controller {
         $data['montoTotal']=$montoTotal;
         $this->session->set_userdata('productosCarrito',$nuevos_datos_recibo);
          vista_ecommersFrame('ecommers/proceso_pago_view',$data);
+         */
     }
     public function seleccionarTipoPago()
     {
@@ -95,7 +86,18 @@ class Transferencias extends CI_Controller {
         $data['productos']=$nuevos_datos_recibo;
         $data['montoTotal']=$montoTotal;
         */
-        vista_ecommers('ecommers/seleccionarTipoPago_view');
+        if($this->session->userdata('imprime')==1)
+        {
+            $this->session->unset_userdata('imprime');
+           $data['imprime']=1;
+        }else
+        {
+           $data['imprime']=0;
+        }
+         $data['productos1']=$this->session->userdata('productosCarrito');
+        //$data['montoTotal']=$montoTotal;
+
+        vista_ecommers('ecommers/seleccionarTipoPago_view',$data);
         //vista('ecommers/seleccionarTipoPago_view');
     }
     function eliminarProductoSesion()
@@ -105,9 +107,26 @@ class Transferencias extends CI_Controller {
         {
             if($IdProducto>=0)
             {
+
+                //borra elementoPrevio
+                $productosCarritoInicial=$this->session->userdata('pr0ductosV3nta');
+               /* $posicion=0;
+                 foreach($productosCarritoInicial as $producto)
+                {
+                    if($producto['id_producto']==$IdProducto)
+                    {
+                        $productoYaEnlista=1;
+                        unset($productosCarritoInicial[$posicion]);
+                    }
+                   $posicion=$posicion+1;
+                }*/
+                unset($productosCarritoInicial[$IdProducto]);
+                $this->session->set_userdata('pr0ductosV3nta',array_values($productosCarritoInicial));
+
                 $productosCarrito=$this->session->userdata('productosCarrito');
                 unset($productosCarrito[$IdProducto]);
-                $this->session->set_userdata('productosCarrito',$productosCarrito);
+                $this->session->set_userdata('productosCarrito',array_values($productosCarrito));
+
                 $data['productos']=$productosCarrito;
                 vista_vacia('ecommers/tabla_productos_view',$data);
             }
@@ -707,6 +726,123 @@ $pag="";
 
 
 	}
+
+    public function agregarDireccionesClientes()
+    {
+
+    }
+
+    public function guardarDirecciones()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );
+        $this->form_validation->set_rules('apPaterno', 'Apellido paterno', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );
+        $this->form_validation->set_rules('apMaterno', 'Apellido materno', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );
+        $this->form_validation->set_rules('tipoDireccion', 'Tipo dirección', array(
+                array('verifica_estado',
+                    function($value) {
+                        return strcmp($value,'') != 0;
+                    }
+                )
+            ),
+            array('verifica_estado' => 'Selecciona una opción diferente a la de por defecto.')
+        );
+        $this->form_validation->set_rules('country', 'País', array(
+                array('verifica_estado',
+                    function($value) {
+                        return $value!= -1;
+                    }
+                )
+            ),
+            array('verifica_estado' => 'Selecciona una opción diferente a la de por defecto.')
+        );
+        $this->form_validation->set_rules('state', 'Estado', array(
+                array('verifica_estado',
+                    function($value) {
+                        return strcmp($value,'') != 0;
+                    }
+                )
+            ),
+            array('verifica_estado' => 'Selecciona una opción diferente a la de por defecto.')
+        );
+        $this->form_validation->set_rules('ciudad', 'Ciudad', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );
+        $this->form_validation->set_rules('colonia', 'colonia', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );
+        $this->form_validation->set_rules('cp', 'C.P.', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );
+        $this->form_validation->set_rules('calle1', 'Calle y No.', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );
+        $this->form_validation->set_rules('telefono', 'Telefono', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );
+        $this->form_validation->set_rules('celular', 'Celular', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );
+    /*    $this->form_validation->set_rules('autorizo', 'Anterior', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );
+        $this->form_validation->set_rules('referencia', 'Referencia', 'required',
+            array(
+                'required' => 'El campo %s es obligatorio.'
+            )
+        );*/
+
+
+        if ($this->form_validation->run() == FALSE)
+        {
+             $this->session->set_userdata('imprime',1);
+            $this->seleccionarTipoPago();
+        }
+        else
+        {
+            $this->input->post('nombre');
+            $this->input->post('apPaterno');
+            $this->input->post('apMaterno');
+            $this->input->post('tipoDireccion');
+            $this->input->post('country');
+            $this->input->post('state');
+            $this->input->post('ciudad');
+            $this->input->post('colonia');
+            $this->input->post('cp');
+            $this->input->post('calle1');
+            $this->input->post('telefono');
+            $this->input->post('extTelefono');
+            $this->input->post('celular');
+            $this->input->post('autorizo');
+            $this->input->post('referencia');
+        }
+    }
 
 
 }

@@ -408,6 +408,9 @@ class Admin_models extends CI_Model
 	   $this->db->from('namuhdb_usuarios');
 	   $this->db->where('id_usuario',$idusuario);
 	   //$this->db->limit(1);
+           $q = $this->db->get();
+      $resultado = $q->row()->total;
+       return $resultado;
       }
 
 //    function consultarUsuario($idusuario)

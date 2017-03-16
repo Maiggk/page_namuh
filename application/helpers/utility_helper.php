@@ -5,12 +5,14 @@ if (!function_exists('force_ssl'))
 {
    function force_ssl()
     {
+       /*
         $CI =& get_instance();
         $CI->config->config['base_url'] = str_replace('http://', 'https://', $CI->config->config['base_url']);
         if ($_SERVER['SERVER_PORT'] != 443)
         {
             redirect($CI->uri->uri_string());
         }
+       */
     }
 }
 
@@ -88,8 +90,13 @@ function vista_ecommers($vista, $datos=TRUE)
     force_ssl();
     $CI = &get_instance();
  if($CI->session->userdata('admin_var') == 1 || $CI->session->userdata('us3r_cl1ent_v4r') >=1){
+
+    $totalProductos=$CI->session->userdata('T0t4lProductoC4rr1t0');
+    if($totalProductos==0)$elementos['elementos']='';
+    else $elementos['elementos']=$totalProductos;
+
     $CI->load->view('headerCSS');
-    $CI->load->view('menu_principal');
+    $CI->load->view('menu_principal',$elementos);
     $CI->load->view($vista, $datos);
     $CI->load->view('footer_principal');
     $CI->load->view('footerJS');

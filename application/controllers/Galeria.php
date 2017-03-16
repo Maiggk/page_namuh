@@ -188,6 +188,86 @@ class Galeria extends CI_Controller {
                 redirect('Galeria');
         }
     }
+    function  verificarDatos()
+    {
+        var_dump($this->session->userdata('pr0ductosV3nta'));
+        //$this->session->unset_userdata('pr0ductosV3nta');
+    }
+    function cargarProductosAlcarrito()
+    {
+        $idProducto=$this->session->userdata('produc');
+        $cantidadProductos=$this->input->post('cantidadProductos');
+        if(is_numeric($idProducto) && is_numeric($cantidadProductos))
+        {
+          if($idProducto>0 && $cantidadProductos>0)
+          {
+              ///agregar producto y su cantidad al carrito, verificar si tiene descuento
+              //SKU, ID, precio, precio con descuento, foto,descripcion,
+              //consultar El sku
+               $datosProducto= array(
+                'id_producto' =>$idProducto,
+                'cantidad' =>$cantidadProductos
+
+               );
+
+            $listaProductos = Array();
+            $productosCarrito=$this->session->userdata('pr0ductosV3nta');
+            $productoYaEnlista=0;
+            $posicion=0;
+              $total=0;
+            if(count($productosCarrito,1)>0)
+            {
+                foreach($productosCarrito as $producto)
+                {
+                    if($producto['id_producto']==$idProducto)
+                    {
+                        $total=$producto['cantidad']+$cantidadProductos;
+                        $productoYaEnlista=1;
+                        unset($productosCarrito[$posicion]);
+                    }
+                   $posicion=$posicion+1;
+                }
+
+                if($productoYaEnlista==0)
+                {
+                    array_push($productosCarrito,$datosProducto);
+                }else
+                {
+                   $datosProducto= array(
+                    'id_producto' =>$idProducto,
+                    'cantidad' =>$total
+                    );
+                   array_push($productosCarrito,$datosProducto);
+                }
+
+                $this->session->set_userdata('pr0ductosV3nta',array_values( $productosCarrito));
+
+            }else
+            {
+              array_push($listaProductos,$datosProducto);
+                $this->session->set_userdata('pr0ductosV3nta',$listaProductos);
+            }
+              $this->session->set_userdata('T0t4lProductoC4rr1t0',count($listaProductos));
+              /*
+            if(count($productosCarrito,1)>0)
+            {
+                array_push($productosCarrito,$datosProducto);
+                // $this->session->set_userdata('productosFiltradosFinal',$datos);
+            }else
+            {
+                $listaProductos[] = $producto;
+            }
+            */
+          echo '0';
+          }else{
+             // redirect('Galeria');
+              echo '1';
+          }
+        }else
+        {
+            redirect('Galeria');
+        }
+    }
 
 
 

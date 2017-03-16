@@ -67,3 +67,6 @@ $route['cargarComprobanteEs'] = 'Transferencias/cargarIdRecibo';
 $route['comprobanteEspecifico'] = 'Transferencias/visualizarRecibosEspecifico';
 $route['eliminarProducto'] = 'Transferencias/eliminarProductoSesion';
 $route['opcionDePago'] = 'Transferencias/routesFormaPago';
+$route['cargarCarrito'] = 'Galeria/cargarProductosAlcarrito';
+$route['Carrito'] = 'Carrito/carritoConProductos';
+$route['guardarDireccionEnvio'] = 'Transferencias/guardarDirecciones';

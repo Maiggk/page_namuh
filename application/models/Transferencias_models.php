@@ -11,10 +11,21 @@ class Transferencias_models extends CI_Model
         $this->db->select('*');
         $this->db->from('productos');
         //$this->db->where('correo',$UzerCorreo);
-        $this->db->where('estado',1);
+        $this->db->where('estado',2);
         $this->db->limit(5);
          $q = $this->db->get();
         $resultado = $q->result();;
+        return $resultado;
+    }
+     function regresaP($idProducto)
+    {
+        $this->db->select('*');
+        $this->db->from('productos');
+        $this->db->where('id_producto',$idProducto);
+        $this->db->where('estado',2);
+
+         $q = $this->db->get();
+        $resultado =$q->row();
         return $resultado;
     }
     function updateEstadoCompra($order_id,$form)

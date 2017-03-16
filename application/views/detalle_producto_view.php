@@ -13,21 +13,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <!-- <link href="< ?php echo base_url(); ?>assets/css/menuNamuh.css" rel="stylesheet">-->
      <link href="<?php echo base_url(); ?>assets/css/menuNamuh/menu.css" rel="stylesheet">
-<!--       <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/bootstrap.min.css">-->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/bootstrap.min.css">
 <!--          <link rel="stylesheet" href="--><?php //echo base_url(); ?><!--assets/css/googlecss.css">-->
    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/font-awesome.css">
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/bootstrap.min.css">
+   <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/bootstrap.min.css">-->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/main.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
 <!--    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/sweetalert/sweetalert.css">-->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/main-responsive.css">
-
+      <link href="<?php echo base_url(); ?>assets/js/toastr/toastr.min.css" rel="stylesheet" media="screen">
+<link id="primary_color_scheme" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles/theme_meadow.css">
 
             <!--menu movil-->
  <link href="<?php echo base_url(); ?>assets/galeria/assets/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/galeria/assets/css/style-responsive.css" rel="stylesheet">
                  <link href="<?php echo base_url(); ?>assets/css/photoswipe_master/default-skin/default-skin.css" rel="stylesheet">
+      <link rel="stylesheet" href="<?php echo base_url().'assets/css/sweetalertAdmin/sweetalert.css'; ?>">
+<script text="text/javascript" src="<?php echo base_url().'assets/js/sweetalert/sweetalert.min.js'; ?>"></script>
     <link href="<?php echo base_url(); ?>assets/css/photoswipe.css" rel="stylesheet">
      <style type='text/css'>
 .subM
@@ -157,13 +160,16 @@ body {
 
                     <div class="row">
                         <div class=" col-xs-12 col-sm-12  col-md-12 col-lg-12">
-                            <?php    $widthImageGRande=getimagesize(base_url()."assets/uploads/productos/".$datosProducto->imagen);
-                           // echo '$w'.$widthImageGRande[0];
-
+                            <?php
+                                $ruta="./assets/uploads/productos/".$datosProducto->imagen;
+                                if(file_exists($ruta)==true)
+                                {
+                                $widthImageGRande=getimagesize(base_url()."assets/uploads/productos/".$datosProducto->imagen);
                             ?>
                              <a onclick="IMGindex(<?php echo $i; ?>)"  href="<?php echo base_url();?>assets/uploads/productos/<?php echo $datosProducto->imagen; ?>"  itemprop="contentUrl" data-size="<?php echo $widthImageGRande[0].'x'.$widthImageGRande[1]; ?>" data-index="<?php echo $i; ?>">
     <img src="<?php echo base_url();?>assets/uploads/productos_baja_resolucion/<?php echo $datosProducto->imagen; ?>" class="sep-top-sm img-responsive" itemprop="thumbnail" alt="">
                             </a>
+                            <?php } ?>
 
 
                         </div>
@@ -174,6 +180,9 @@ body {
                         <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
                             <?php $i=1; ?>
                             <?php foreach ($detallesProducto as $detalleProducto){
+                            $ruta1="./assets/uploads/galeria_productos/".$detalleProducto->ruta_foto;
+                                if(file_exists($ruta1)==true)
+                                {
                             $widthImage=getimagesize(base_url()."assets/uploads/galeria_productos/".$detalleProducto->ruta_foto);
                             ?>
                             <div class="col-xs-4 col-sm-2  col-md-2 col-lg-2">
@@ -183,7 +192,7 @@ body {
                                 </a>
                             </div>
 
-                              <?php $i=$i+1;  } ?>
+                              <?php $i=$i+1; } } ?>
 
                         </div>
                     </div>
@@ -194,22 +203,17 @@ body {
 
                 <!--seccion descripcion del producto -->
                 <div class="col-xs-12 col-sm-4  col-md-4 col-lg-4">
-
-
                     <div class="row mt">
                     </div>
                     <!--Seccion descripcion del producto -->
                      <div class="row mt">
-                        <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12" style="border : solid 1px #dad7d7; height : 290px; overflow : auto; ">
-
+                        <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12"
+                             style="border : solid 1px #dad7d7; height : 290px; overflow : auto; ">
                              <p class="lead" >
-                                 <label><center><strong><?php echo $datosProducto->nombre;?></strong></center></label></p>
-
+                                 <label><center><strong><?php echo $datosProducto->nombre;?></strong></center></label>
+                             </p>
                                  <label style="text-align:justify;"><?php echo $datosProducto->descripcion;?></label>
                             </p>
-
-
-
                         </div>
                     </div>
                     <!--End Seccion descripcion del producto -->
@@ -217,8 +221,7 @@ body {
                      <!--Seccion precio producto -->
                      <div class="row">
                         <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
-
-                             <div class="openSans" style="font-style: italic;font-size: 15px;text-align:center">
+                            <div class="openSans" style="font-style: italic;font-size: 15px;text-align:center">
 
                                 <?php if( $datosProducto->estado_promocion==0){ ?>
                             Precio:<span><?php echo '$'.decimales_ceros($datosProducto->precio,2);?></span><br>
@@ -228,9 +231,20 @@ body {
                                 <strong> Precio de promoción :<span><?php echo '$'.decimales_ceros($datosProducto->nuevo_precio,2);?></span></strong><br>
 
                                 <?php } ?>
-                                <br>
 
                             </div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6 sep-top-md">
+                                    <input id="cantidadProducto" type="text" value="0" name="" class="qty">
+                                </div>
+                                <div class="col-md-9 col-sm-6 sep-top-md">
+                                    <a href="#" onclick="mensajePreventivoAgregar()" class="btn btn-primary btn-xs">
+                                        <i class="fa fa-shopping-cart"></i> Add to cart
+                                    </a>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
                         </div>
                     </div>
                     <!--End Seccion precio producto -->
@@ -247,7 +261,7 @@ body {
 
 
 
-        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg"></div>
     <div class="pswp__scroll-wrap">
 
@@ -285,13 +299,6 @@ body {
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
 
 
     </div>
@@ -347,30 +354,18 @@ body {
 
 
 <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/photoswipe_master/jquery.min.js"></script>
-
-<!--  Scripts scroll  -->
+<script src="<?php echo base_url(); ?>assets/js/photoswipe_master/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/helios/jquery.dropotron.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/helios/jquery.scrolly.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/helios/jquery.onvisible.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/helios/skel.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/helios/util.js"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="<?php echo base_url(); ?>assets/js/helios/main.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/scripts/vendor/bootstrap.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/photoswipe_master/photoswipe.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/photoswipe_master/photoswipe-ui-default.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/toastr/toastr.min.js"></script>
 
-  <!-- <script src="<?php echo base_url(); ?>assets/css/menuNamuh/menu.js" type="text/javascript"></script> -->
- <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/bootstrap.js"></script>
-<!--    <script src="<?php echo base_url(); ?>assets/js/photoswipe_master/script-min.js"></script>-->
-
-
-        <!--menu movil
-    <script class="include" type="text/javascript" src="<?php echo base_url(); ?>assets/galeria/assets/js/jquery.dcjqaccordion.2.7.js"></script>
-   <script src="<?php echo base_url(); ?>assets/galeria/assets/js/jquery.scrollTo.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/galeria/assets/js/common-scripts.js"></script>-->
-      <script src="<?php echo base_url(); ?>assets/js/photoswipe_master/photoswipe.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/photoswipe_master/photoswipe-ui-default.min.js"></script>
-
-<!--<script src="<?php echo base_url(); ?>assets/fancybox/jquery.fancybox.js" type="text/javascript"></script>-->
 <script>
     var indiceImagen=0;
     $(document).ready(function () {
@@ -434,6 +429,171 @@ body {
         indiceImagen=num;
     }
 
+    function mensajePreventivoAgregar()
+    {
+        swal({
+        title: "",
+        text: "¿Desea agregar este producto a su carrito?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#656668",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar",
+        closeOnConfirm: true,
+        closeOnCancel: true },
+        function(isConfirm)
+        {
+            if (isConfirm)
+            {
+              addCart();
+            } else
+            {
+
+            }
+        }
+        );
+    }
+
+    function addCart()
+    {
+        var cantidadProductos=$('#cantidadProducto').val();
+        if(cantidadProductos>0)
+        {
+            $.ajax({
+                type: "POST", //envia la posicion por metodo post de ajax
+                data:
+                {
+                    cantidadProductos: cantidadProductos
+                },
+                url:"<?= site_url('cargarCarrito') ?>",
+                // url:base+"cargarComprobanteEs",
+                async: true,
+                success: function(response)
+                {
+                    if($.isNumeric(response))
+                    {
+
+                        if(response==0)
+                        {
+                            //mensaje de que se agregaron exitosamente
+                            mensajeExitoso(cantidadProductos);
+                        }
+                        if(response==1)
+                        {
+                            //no hay piezas suficientes
+                        }
+                        if(response==2)
+                        {
+                            //No hay piezas
+                        }
+                    }else
+                    {
+                        //
+                    }
+
+                },
+                error: function (obj, error, objError){
+                alert("Error: " + objError);
+                    }
+                });
+        }else
+        {
+            mensajeError();
+            //debe seleccionar almenos uno para poder agregar al carrito
+        }
+
+    }
+
+    function mensajeExitoso(TotalProductos)
+    {
+        var mensaje="";
+        if(TotalProductos>1)
+            mensaje="Se agregaron con éxito "+TotalProductos+" productos a su carrito.";
+        else
+             mensaje="Se agregó con éxito "+TotalProductos+" producto a su carrito.";
+
+        Command: toastr['success'](""+mensaje+"", "")
+
+        toastr.options = {
+          "closeButton": false,
+          "positionClass": "toast-top-right",
+          "onclick": null,
+          "showDuration": "1000",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+    }
+    function mensajeError()
+    {
+        Command: toastr['error']("Debe agregar almenos un producto.", "Operación invalida.")
+
+        toastr.options = {
+          "closeButton": false,
+          "positionClass": "toast-top-right",
+          "onclick": null,
+          "showDuration": "1000",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+    }
+
     </script>
 
 
+ <!--    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/queryloader2.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.slitslider.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.bootstrap-touchspin.min.js"></script>
+-->
+
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/queryloader2.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/owl.carousel.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.ba-cond.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.slitslider.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/idangerous.swiper.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.fitvids.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.countTo.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/TweenMax.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/ScrollToPlugin.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.scrollmagic.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.easypiechart.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.validate.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/wow.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.placeholder.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.easing.1.3.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.waitforimages.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.prettyPhoto.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/isotope.pkgd.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.fillparent.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/raphael-min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/bootstrap.js"></script>
+
+<script src="<?php echo base_url(); ?>assets/js/scripts/vendor/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/bootstrap-slider.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/bootstrap-rating-input.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/vendor/bootstrap-hover-dropdown.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/jquery.gmap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/scripts/circle_diagram.js"></script>
+
+
+
+    <script src="<?php echo base_url(); ?>assets/js/scripts/main.js"></script>
+
+ <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'XX-XXXXXXXX-XX', 'auto');
+      ga('send', 'pageview');
+    </script>
