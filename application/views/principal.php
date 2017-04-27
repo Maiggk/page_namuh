@@ -51,7 +51,7 @@
 
 
       <!-- Start Parallax section-->
-      <section id="pricing" style="background-image: url(assets/img/intro-home6.jpg);" class="parallax">
+      <section id="pricing" style="background-image: url(../assets/img/intro-home6.jpg);" class="parallax">
         <div class="section-shade sep-top-5x sep-bottom-4x">
           <div class="container">
             <div class="row">
