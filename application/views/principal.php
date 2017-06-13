@@ -68,14 +68,18 @@
 
                         Camino a Alcocer km 2.2<br>
                         San Miguel de Allende, Gto Méx<br>
-                        T(415)1548080 - CP 37760<br>
-                        <br>
-                        SHOWROOM CUNA QUINCE<br>
+                        T(415)1548080 - CP 37760<br><br>
 
+                        SHOWROOM CUNA QUINCE<br>
                         Cuna de Allende 15. Centro<br>
                         San Miguel de Allende, Gto Méx<br>
-                        T(415)1547300 - CP 37700<br>
-                        <br>
+                        T(415)1547300 - CP 37700<br><br>
+
+
+                        BODEGA CDMX<br>
+                        Lago Ladoga 119, Nuevo Polanco<br>
+                        Col. Anáhuac Del. Miguel Hidalgo, CDMX<br>
+                        T(552)1559956 - CP 11320<br><br>
                         CASA PALACIO, ANTARA Y SANTA FE<br><br>
                         
                         HORARIOS <br><br>
