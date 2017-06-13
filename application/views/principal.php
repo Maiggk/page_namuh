@@ -77,7 +77,7 @@
 
 
                         BODEGA CDMX<br>
-                        Lago Ladoga 119, Nuevo Polanco<br>
+                        Lago Ladoga 199, Nuevo Polanco<br>
                         Col. Anáhuac Del. Miguel Hidalgo, CDMX<br>
                         T(552)1559956 - CP 11320<br><br>
                         CASA PALACIO, ANTARA Y SANTA FE<br><br>
